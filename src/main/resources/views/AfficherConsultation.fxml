@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.10" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.suivie_nawres.controllers.AfficherConsultationController"
+            styleClass="card">
+    <top>
+        <VBox spacing="12">
+            <Label text="Consultations" styleClass="section-title"/>
+            <HBox spacing="8">
+                <TextField fx:id="txtRechercheId" promptText="Rechercher par utilisateur_id" HBox.hgrow="ALWAYS"/>
+                <Button text="Rechercher" onAction="#rechercher" styleClass="secondary-button"/>
+                <Button text="Actualiser" onAction="#actualiser" styleClass="primary-button"/>
+            </HBox>
+        </VBox>
+    </top>
+    <center>
+        <TableView fx:id="tableConsultation" prefHeight="560">
+            <columns>
+                <TableColumn fx:id="colUtilisateurId" text="ID" prefWidth="70"/>
+                <TableColumn fx:id="colDate" text="Date" prefWidth="110"/>
+                <TableColumn fx:id="colHeure" text="Heure" prefWidth="90"/>
+                <TableColumn fx:id="colMode" text="Mode" prefWidth="120"/>
+                <TableColumn fx:id="colMaladie" text="Maladie" prefWidth="130"/>
+                <TableColumn fx:id="colDiagnostic" text="Diagnostic" prefWidth="140"/>
+                <TableColumn fx:id="colTraitement" text="Traitement" prefWidth="140"/>
+                <TableColumn fx:id="colExamens" text="Examens" prefWidth="150"/>
+                <TableColumn fx:id="colNotes" text="Notes" prefWidth="160"/>
+                <TableColumn fx:id="colCout" text="Coût" prefWidth="90"/>
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <VBox spacing="10" styleClass="content-area">
+            <Label fx:id="lblMessage" text="Prêt." styleClass="info-label"/>
+            <HBox spacing="10">
+                <Button fx:id="btnModifier" text="Modifier" onAction="#modifier" styleClass="secondary-button"/>
+                <Button fx:id="btnSupprimer" text="Supprimer" onAction="#supprimer" styleClass="danger-button"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>
+
