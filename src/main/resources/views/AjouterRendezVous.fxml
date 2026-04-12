@@ -27,26 +27,32 @@
             <Label text="Utilisateur ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
             <TextField fx:id="txtUtilisateurId" promptText="1" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-            <Label text="Date rendez-vous" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <DatePicker fx:id="datePickerRendezVous" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="Nom" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtNom" promptText="Dupont" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-            <Label text="Heure rendez-vous" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtHeureRendezVous" promptText="14:30" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Label text="Prenom" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtPrenom" promptText="Ali" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-            <Label text="Priorité" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-            <ComboBox fx:id="comboPriorite" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Label text="Date rendez-vous" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="datePickerRendezVous" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-            <Label text="Mode consultation" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-            <ComboBox fx:id="comboModeConsultation" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <Label text="Heure rendez-vous" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtHeureRendezVous" promptText="14:30" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
-            <Label text="Notes" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-            <TextArea fx:id="txtNotesRendezVous" prefRowCount="4" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            <Label text="Priorité" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="comboPriorite" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
 
-            <Label text="Pays" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtPays" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+            <Label text="Mode consultation" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="comboModeConsultation" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
 
-            <Label text="Téléphone" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtTelephone" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+            <Label text="Notes" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <TextArea fx:id="txtNotesRendezVous" prefRowCount="4" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+            <Label text="Pays" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtPays" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+
+            <Label text="Téléphone" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtTelephone" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
         </GridPane>
     </center>
     <bottom>

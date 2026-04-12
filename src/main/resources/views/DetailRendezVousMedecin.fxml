@@ -41,6 +41,12 @@
 
                             <Label text="Pays :" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="detail-label"/>
                             <Label fx:id="lblPays" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="detail-value"/>
+
+                            <Label text="Nom :" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="detail-label"/>
+                            <Label fx:id="lblNom" GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="detail-value"/>
+
+                            <Label text="Prenom :" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="detail-label"/>
+                            <Label fx:id="lblPrenom" GridPane.columnIndex="1" GridPane.rowIndex="3" styleClass="detail-value"/>
                         </GridPane>
                     </VBox>
 

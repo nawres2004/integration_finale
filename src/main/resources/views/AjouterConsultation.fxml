@@ -26,32 +26,38 @@
             <Label text="Utilisateur ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
             <TextField fx:id="txtUtilisateurId" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-            <Label text="Date consultation" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <DatePicker fx:id="datePickerConsultation" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="Nom" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtNom" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-            <Label text="Heure consultation" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtHeureConsultation" promptText="15:00" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Label text="Prenom" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtPrenom" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-            <Label text="Mode consultation" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtModeConsultation" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Label text="Date consultation" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="datePickerConsultation" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-            <Label text="Maladie" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtMaladie" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <Label text="Heure consultation" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtHeureConsultation" promptText="15:00" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
-            <Label text="Diagnostic" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtDiagnostic" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            <Label text="Mode consultation" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtModeConsultation" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
 
-            <Label text="Traitement" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtTraitement" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+            <Label text="Maladie" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtMaladie" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
 
-            <Label text="Examens complémentaires" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtExamensComplementaires" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+            <Label text="Diagnostic" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtDiagnostic" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
 
-            <Label text="Notes" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
-            <TextArea fx:id="txtNotesConsultation" prefRowCount="3" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+            <Label text="Traitement" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtTraitement" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
 
-            <Label text="Coût" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtCoutConsultation" promptText="100.00" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+            <Label text="Examens complémentaires" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtExamensComplementaires" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+
+            <Label text="Notes" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
+            <TextArea fx:id="txtNotesConsultation" prefRowCount="3" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
+
+            <Label text="Coût" GridPane.rowIndex="11" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtCoutConsultation" promptText="100.00" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
         </GridPane>
     </center>
     <bottom>

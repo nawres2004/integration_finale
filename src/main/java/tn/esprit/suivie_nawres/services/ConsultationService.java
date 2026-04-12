@@ -18,7 +18,7 @@ public class ConsultationService {
     private static final String TABLE_NAME = "consultation";
 
     public void ajouterConsultation(Consultation consultation) throws SQLException {
-        String sql = "INSERT INTO " + TABLE_NAME + " (utilisateur_id, date_consultation, heure_consultation, mode_consultation, maladie, diagnostic, traitement, examens_complementaires, notes_consultation, cout_consultation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO " + TABLE_NAME + " (id, nom, prenom, date_consultation, heure_consultation, mode_consultation, maladie, diagnostic, traitement, examens_complementaires, notes_consultation, cout_consultation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Connection connection = DatabaseConnection.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             bind(statement, consultation);
@@ -27,25 +27,27 @@ public class ConsultationService {
     }
 
     public void modifierConsultation(Consultation consultation) throws SQLException {
-        String sql = "UPDATE " + TABLE_NAME + " SET date_consultation = ?, heure_consultation = ?, mode_consultation = ?, maladie = ?, diagnostic = ?, traitement = ?, examens_complementaires = ?, notes_consultation = ?, cout_consultation = ? WHERE utilisateur_id = ?";
+        String sql = "UPDATE " + TABLE_NAME + " SET nom = ?, prenom = ?, date_consultation = ?, heure_consultation = ?, mode_consultation = ?, maladie = ?, diagnostic = ?, traitement = ?, examens_complementaires = ?, notes_consultation = ?, cout_consultation = ? WHERE id = ?";
         Connection connection = DatabaseConnection.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setDate(1, Date.valueOf(consultation.getDateConsultation()));
-            statement.setTime(2, Time.valueOf(consultation.getHeureConsultation()));
-            statement.setString(3, consultation.getModeConsultation());
-            statement.setString(4, consultation.getMaladie());
-            statement.setString(5, consultation.getDiagnostic());
-            statement.setString(6, consultation.getTraitement());
-            statement.setString(7, consultation.getExamensComplementaires());
-            statement.setString(8, consultation.getNotesConsultation());
-            statement.setBigDecimal(9, consultation.getCoutConsultation());
-            statement.setInt(10, consultation.getUtilisateurId());
+            statement.setString(1, consultation.getNom());
+            statement.setString(2, consultation.getPrenom());
+            statement.setDate(3, Date.valueOf(consultation.getDateConsultation()));
+            statement.setTime(4, Time.valueOf(consultation.getHeureConsultation()));
+            statement.setString(5, consultation.getModeConsultation());
+            statement.setString(6, consultation.getMaladie());
+            statement.setString(7, consultation.getDiagnostic());
+            statement.setString(8, consultation.getTraitement());
+            statement.setString(9, consultation.getExamensComplementaires());
+            statement.setString(10, consultation.getNotesConsultation());
+            statement.setBigDecimal(11, consultation.getCoutConsultation());
+            statement.setInt(12, consultation.getUtilisateurId());
             statement.executeUpdate();
         }
     }
 
     public void supprimerConsultation(int utilisateurId) throws SQLException {
-        String sql = "DELETE FROM " + TABLE_NAME + " WHERE utilisateur_id = ?";
+        String sql = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
         Connection connection = DatabaseConnection.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, utilisateurId);
@@ -67,7 +69,7 @@ public class ConsultationService {
     }
 
     public Optional<Consultation> chercherParId(int utilisateurId) throws SQLException {
-        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE utilisateur_id = ?";
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE id = ?";
         Connection connection = DatabaseConnection.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, utilisateurId);
@@ -86,20 +88,24 @@ public class ConsultationService {
 
     private void bind(PreparedStatement statement, Consultation consultation) throws SQLException {
         statement.setInt(1, consultation.getUtilisateurId());
-        statement.setDate(2, Date.valueOf(consultation.getDateConsultation()));
-        statement.setTime(3, Time.valueOf(consultation.getHeureConsultation()));
-        statement.setString(4, consultation.getModeConsultation());
-        statement.setString(5, consultation.getMaladie());
-        statement.setString(6, consultation.getDiagnostic());
-        statement.setString(7, consultation.getTraitement());
-        statement.setString(8, consultation.getExamensComplementaires());
-        statement.setString(9, consultation.getNotesConsultation());
-        statement.setBigDecimal(10, consultation.getCoutConsultation() == null ? BigDecimal.ZERO : consultation.getCoutConsultation());
+        statement.setString(2, consultation.getNom());
+        statement.setString(3, consultation.getPrenom());
+        statement.setDate(4, Date.valueOf(consultation.getDateConsultation()));
+        statement.setTime(5, Time.valueOf(consultation.getHeureConsultation()));
+        statement.setString(6, consultation.getModeConsultation());
+        statement.setString(7, consultation.getMaladie());
+        statement.setString(8, consultation.getDiagnostic());
+        statement.setString(9, consultation.getTraitement());
+        statement.setString(10, consultation.getExamensComplementaires());
+        statement.setString(11, consultation.getNotesConsultation());
+        statement.setBigDecimal(12, consultation.getCoutConsultation() == null ? BigDecimal.ZERO : consultation.getCoutConsultation());
     }
 
     private Consultation mapRow(ResultSet resultSet) throws SQLException {
         Consultation consultation = new Consultation();
-        consultation.setUtilisateurId(resultSet.getInt("utilisateur_id"));
+        consultation.setUtilisateurId(resultSet.getInt("id"));
+        consultation.setNom(resultSet.getString("nom"));
+        consultation.setPrenom(resultSet.getString("prenom"));
         Date date = resultSet.getDate("date_consultation");
         Time time = resultSet.getTime("heure_consultation");
         consultation.setDateConsultation(date == null ? null : date.toLocalDate());

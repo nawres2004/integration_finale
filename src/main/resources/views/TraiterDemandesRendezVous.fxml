@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.10" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.suivie_nawres.controllers.TraiterDemandesRendezVousController"
+            styleClass="card">
+    <top>
+        <VBox spacing="12">
+            <Label text="Demandes de Rendez-vous" styleClass="section-title"/>
+            <Label text="Cliquez sur une demande pour la traiter (accepter ou refuser)." styleClass="info-label"/>
+        </VBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background: transparent;">
+            <VBox fx:id="cardsContainer" spacing="12">
+                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+            </VBox>
+        </ScrollPane>
+    </center>
+    <bottom>
+        <VBox spacing="10" styleClass="content-area">
+            <Label fx:id="lblMessage" text="Pret." styleClass="info-label"/>
+            <Button text="Actualiser" onAction="#actualiser" styleClass="primary-button"/>
+        </VBox>
+    </bottom>
+</BorderPane>
+

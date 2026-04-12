@@ -19,7 +19,7 @@ public class RendezVousService {
     private static final String TABLE_NAME = "rendez_vous";
 
     public void ajouterRendezVous(RendezVous rendezVous) throws SQLException {
-        String sql = "INSERT INTO " + TABLE_NAME + " (utilisateur_id, date_rendez_vous, heure_rendez_vous, priorite, mode_consultation, statut_rendez_vous, notes_rendez_vous, pays, telephone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO " + TABLE_NAME + " (id, nom, prenom, date_rendez_vous, heure_rendez_vous, priorite, mode_consultation, statut_rendez_vous, notes_rendez_vous, pays, telephone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Connection connection = DatabaseConnection.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             bind(statement, rendezVous);
@@ -28,24 +28,26 @@ public class RendezVousService {
     }
 
     public void modifierRendezVous(RendezVous rendezVous) throws SQLException {
-        String sql = "UPDATE " + TABLE_NAME + " SET date_rendez_vous = ?, heure_rendez_vous = ?, priorite = ?, mode_consultation = ?, statut_rendez_vous = ?, notes_rendez_vous = ?, pays = ?, telephone = ? WHERE utilisateur_id = ?";
+        String sql = "UPDATE " + TABLE_NAME + " SET nom = ?, prenom = ?, date_rendez_vous = ?, heure_rendez_vous = ?, priorite = ?, mode_consultation = ?, statut_rendez_vous = ?, notes_rendez_vous = ?, pays = ?, telephone = ? WHERE id = ?";
         Connection connection = DatabaseConnection.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setDate(1, Date.valueOf(rendezVous.getDateRendezVous()));
-            statement.setTime(2, Time.valueOf(rendezVous.getHeureRendezVous()));
-            statement.setString(3, rendezVous.getPriorite());
-            statement.setString(4, rendezVous.getModeConsultation());
-            statement.setString(5, resolveStatut(rendezVous.getStatutRendezVous()));
-            statement.setString(6, rendezVous.getNotesRendezVous());
-            statement.setString(7, rendezVous.getPays());
-            statement.setString(8, rendezVous.getTelephone());
-            statement.setInt(9, rendezVous.getUtilisateurId());
+            statement.setString(1, rendezVous.getNom());
+            statement.setString(2, rendezVous.getPrenom());
+            statement.setDate(3, Date.valueOf(rendezVous.getDateRendezVous()));
+            statement.setTime(4, Time.valueOf(rendezVous.getHeureRendezVous()));
+            statement.setString(5, rendezVous.getPriorite());
+            statement.setString(6, rendezVous.getModeConsultation());
+            statement.setString(7, resolveStatut(rendezVous.getStatutRendezVous()));
+            statement.setString(8, rendezVous.getNotesRendezVous());
+            statement.setString(9, rendezVous.getPays());
+            statement.setString(10, rendezVous.getTelephone());
+            statement.setInt(11, rendezVous.getUtilisateurId());
             statement.executeUpdate();
         }
     }
 
     public void supprimerRendezVous(int utilisateurId) throws SQLException {
-        String sql = "DELETE FROM " + TABLE_NAME + " WHERE utilisateur_id = ?";
+        String sql = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
         Connection connection = DatabaseConnection.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, utilisateurId);
@@ -67,7 +69,7 @@ public class RendezVousService {
     }
 
     public Optional<RendezVous> chercherParId(int utilisateurId) throws SQLException {
-        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE utilisateur_id = ?";
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE id = ?";
         Connection connection = DatabaseConnection.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, utilisateurId);
@@ -81,7 +83,7 @@ public class RendezVousService {
     }
 
     public void changerStatutRendezVous(int utilisateurId, StatutRendezVous statut) throws SQLException {
-        String sql = "UPDATE " + TABLE_NAME + " SET statut_rendez_vous = ? WHERE utilisateur_id = ?";
+        String sql = "UPDATE " + TABLE_NAME + " SET statut_rendez_vous = ? WHERE id = ?";
         Connection connection = DatabaseConnection.getInstance().getConnection();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, resolveStatut(statut));
@@ -96,19 +98,23 @@ public class RendezVousService {
 
     private void bind(PreparedStatement statement, RendezVous rendezVous) throws SQLException {
         statement.setInt(1, rendezVous.getUtilisateurId());
-        statement.setDate(2, Date.valueOf(rendezVous.getDateRendezVous()));
-        statement.setTime(3, Time.valueOf(rendezVous.getHeureRendezVous()));
-        statement.setString(4, rendezVous.getPriorite());
-        statement.setString(5, rendezVous.getModeConsultation());
-        statement.setString(6, resolveStatut(rendezVous.getStatutRendezVous()));
-        statement.setString(7, rendezVous.getNotesRendezVous());
-        statement.setString(8, rendezVous.getPays());
-        statement.setString(9, rendezVous.getTelephone());
+        statement.setString(2, rendezVous.getNom());
+        statement.setString(3, rendezVous.getPrenom());
+        statement.setDate(4, Date.valueOf(rendezVous.getDateRendezVous()));
+        statement.setTime(5, Time.valueOf(rendezVous.getHeureRendezVous()));
+        statement.setString(6, rendezVous.getPriorite());
+        statement.setString(7, rendezVous.getModeConsultation());
+        statement.setString(8, resolveStatut(rendezVous.getStatutRendezVous()));
+        statement.setString(9, rendezVous.getNotesRendezVous());
+        statement.setString(10, rendezVous.getPays());
+        statement.setString(11, rendezVous.getTelephone());
     }
 
     private RendezVous mapRow(ResultSet resultSet) throws SQLException {
         RendezVous rendezVous = new RendezVous();
-        rendezVous.setUtilisateurId(resultSet.getInt("utilisateur_id"));
+        rendezVous.setUtilisateurId(resultSet.getInt("id"));
+        rendezVous.setNom(resultSet.getString("nom"));
+        rendezVous.setPrenom(resultSet.getString("prenom"));
         Date date = resultSet.getDate("date_rendez_vous");
         Time time = resultSet.getTime("heure_rendez_vous");
         rendezVous.setDateRendezVous(date == null ? null : date.toLocalDate());

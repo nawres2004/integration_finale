@@ -6,24 +6,24 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tn.esprit.suivie_nawres.models.RendezVous;
+import tn.esprit.suivie_nawres.models.StatutRendezVous;
 import tn.esprit.suivie_nawres.services.RendezVousService;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class AfficherRendezVousMedecinController {
+public class TraiterDemandesRendezVousController {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
 
     @FXML private VBox cardsContainer;
-    @FXML private TextField txtRechercheId;
     @FXML private Label lblMessage;
 
     private final RendezVousService rendezVousService = new RendezVousService();
@@ -36,36 +36,14 @@ public class AfficherRendezVousMedecinController {
     @FXML
     private void actualiser() {
         try {
-            List<RendezVous> rendezVous = rendezVousService.afficherRendezVous();
+            List<RendezVous> rendezVous = rendezVousService.afficherRendezVous()
+                    .stream()
+                    .filter(rdv -> rdv.getStatutRendezVous() == StatutRendezVous.EN_ATTENTE)
+                    .collect(Collectors.toList());
             renderCards(rendezVous);
-            afficherMessage(rendezVous.isEmpty() ? "Aucun rendez-vous trouve." : "Liste chargee.");
+            afficherMessage(rendezVous.isEmpty() ? "Aucune demande a traiter." : rendezVous.size() + " demande(s) en attente.");
         } catch (Exception exception) {
-            afficherMessage("Erreur : " + exception.getMessage());
-        }
-    }
-
-    @FXML
-    private void rechercher() {
-        try {
-            String texte = txtRechercheId.getText();
-            if (texte == null || texte.isBlank()) {
-                actualiser();
-                return;
-            }
-            int utilisateurId = Integer.parseInt(texte.trim());
-            rendezVousService.chercherParId(utilisateurId)
-                    .ifPresentOrElse(
-                            rdv -> {
-                                renderCards(List.of(rdv));
-                                afficherMessage("1 rendez-vous trouve.");
-                            },
-                            () -> {
-                                renderCards(List.of());
-                                afficherMessage("Aucun rendez-vous pour cet id.");
-                            }
-                    );
-        } catch (Exception exception) {
-            afficherMessage("Erreur : " + exception.getMessage());
+            afficherMessage("Erreur base de donnees.");
         }
     }
 
@@ -87,28 +65,24 @@ public class AfficherRendezVousMedecinController {
         VBox left = new VBox(10);
         left.getStyleClass().add("rdv-row-left");
         left.setPadding(new Insets(14));
-        Label id = new Label("#" + rendezVous.getUtilisateurId());
-        id.getStyleClass().add("rdv-row-id");
-        Label priorite = new Label(safe(rendezVous.getPriorite()));
+        Label patient = new Label(safe(rendezVous.getNom()) + "\n" + safe(rendezVous.getPrenom()));
+        patient.getStyleClass().add("rdv-row-id");
+        Label priorite = new Label("Priorite: " + safe(rendezVous.getPriorite()));
         priorite.getStyleClass().add("rdv-row-priority");
-        left.getChildren().addAll(id, priorite);
+        left.getChildren().addAll(patient, priorite);
 
         VBox middle = new VBox(8);
         middle.getStyleClass().add("rdv-row-middle");
         middle.setPadding(new Insets(14));
-        Label patient = new Label("Patient: " + safe(rendezVous.getNom()) + " " + safe(rendezVous.getPrenom()) + " (#" + rendezVous.getUtilisateurId() + ")");
-        patient.getStyleClass().add("rdv-row-patient");
         Label date = new Label("Date: " + (rendezVous.getDateRendezVous() == null ? "-" : rendezVous.getDateRendezVous().format(DATE_FORMAT)));
         Label heure = new Label("Heure: " + (rendezVous.getHeureRendezVous() == null ? "-" : rendezVous.getHeureRendezVous().format(TIME_FORMAT)));
-        Label tel = new Label("Telephone: " + safe(rendezVous.getTelephone()));
+        Label tel = new Label("Tel: " + safe(rendezVous.getTelephone()));
         Label mode = new Label("Mode: " + safe(rendezVous.getModeConsultation()));
-        Label statut = new Label("Statut: " + (rendezVous.getStatutRendezVous() == null ? "EN_ATTENTE" : rendezVous.getStatutRendezVous().name()));
         date.getStyleClass().add("rdv-row-line");
         heure.getStyleClass().add("rdv-row-line");
         tel.getStyleClass().add("rdv-row-line");
         mode.getStyleClass().add("rdv-row-line");
-        statut.getStyleClass().add("rdv-row-line");
-        middle.getChildren().addAll(patient, date, heure, tel, mode, statut);
+        middle.getChildren().addAll(date, heure, tel, mode);
         HBox.setHgrow(middle, Priority.ALWAYS);
 
         VBox right = new VBox(10);
@@ -117,10 +91,15 @@ public class AfficherRendezVousMedecinController {
         Button btnVoir = new Button("Voir");
         btnVoir.getStyleClass().addAll("crud-icon-button", "crud-view");
         btnVoir.setOnAction(event -> ouvrirDetailsModale(rendezVous));
-        Button btnModifier = new Button("Modifier");
-        btnModifier.getStyleClass().addAll("crud-icon-button", "crud-edit");
-        btnModifier.setOnAction(event -> ouvrirEditionModale(rendezVous));
-        right.getChildren().addAll(btnVoir, btnModifier);
+        Button btnAccepter = new Button("Accepter");
+        btnAccepter.getStyleClass().addAll("crud-icon-button", "crud-edit");
+        btnAccepter.setStyle("-fx-text-fill: #2e7d32;");
+        btnAccepter.setOnAction(event -> accepterDemande(rendezVous));
+        Button btnRefuser = new Button("Refuser");
+        btnRefuser.getStyleClass().addAll("crud-icon-button", "crud-delete");
+        btnRefuser.setStyle("-fx-text-fill: #d32f2f;");
+        btnRefuser.setOnAction(event -> refuserDemande(rendezVous));
+        right.getChildren().addAll(btnVoir, btnAccepter, btnRefuser);
 
         row.getChildren().addAll(left, middle, right);
         return row;
@@ -129,34 +108,36 @@ public class AfficherRendezVousMedecinController {
     private void ouvrirDetailsModale(RendezVous rendezVous) {
         try {
             DetailRendezVousMedecinController.setSelectedRendezVous(rendezVous);
-            DetailRendezVousMedecinController.setParentController(this);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/DetailRendezVousMedecin.fxml"));
             Scene scene = new Scene(loader.load(), 920, 680);
             scene.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Details Rendez-vous");
+            stage.setTitle("Details Demande");
             stage.setScene(scene);
             stage.showAndWait();
         } catch (Exception exception) {
-            afficherMessage("Impossible d'ouvrir les details: " + exception.getMessage());
+            afficherMessage("Impossible d'ouvrir les details.");
         }
     }
 
-    private void ouvrirEditionModale(RendezVous rendezVous) {
+    private void accepterDemande(RendezVous rendezVous) {
         try {
-            AjouterRendezVousController.setRendezVousAEditer(rendezVous);
-            AjouterRendezVousController.setParentMedecinController(this);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AjouterRendezVous.fxml"));
-            Scene scene = new Scene(loader.load(), 860, 760);
-            scene.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Modifier Rendez-vous");
-            stage.setScene(scene);
-            stage.showAndWait();
+            rendezVousService.changerStatutRendezVous(rendezVous.getUtilisateurId(), StatutRendezVous.ACCEPTE);
+            afficherMessage("Demande acceptee.");
+            actualiser();
         } catch (Exception exception) {
-            afficherMessage("Impossible d'ouvrir la modification: " + exception.getMessage());
+            afficherMessage("Erreur lors de l'acceptation.");
+        }
+    }
+
+    private void refuserDemande(RendezVous rendezVous) {
+        try {
+            rendezVousService.changerStatutRendezVous(rendezVous.getUtilisateurId(), StatutRendezVous.REFUSE);
+            afficherMessage("Demande refusee.");
+            actualiser();
+        } catch (Exception exception) {
+            afficherMessage("Erreur lors du refus.");
         }
     }
 

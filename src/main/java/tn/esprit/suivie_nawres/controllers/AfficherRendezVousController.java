@@ -1,9 +1,13 @@
 package tn.esprit.suivie_nawres.controllers;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -23,7 +27,8 @@ import java.util.Objects;
 
 public class AfficherRendezVousController {
     @FXML private TableView<RendezVous> tableRendezVous;
-    @FXML private TableColumn<RendezVous, Integer> colUtilisateurId;
+    @FXML private TableColumn<RendezVous, String> colNom;
+    @FXML private TableColumn<RendezVous, String> colPrenom;
     @FXML private TableColumn<RendezVous, Object> colDate;
     @FXML private TableColumn<RendezVous, Object> colHeure;
     @FXML private TableColumn<RendezVous, String> colPriorite;
@@ -33,6 +38,8 @@ public class AfficherRendezVousController {
     @FXML private TableColumn<RendezVous, String> colPays;
     @FXML private TableColumn<RendezVous, String> colTelephone;
     @FXML private TextField txtRechercheId;
+    @FXML private ComboBox<String> comboFiltreStatut;
+    @FXML private ComboBox<String> comboFiltreMode;
     @FXML private Label lblMessage;
     @FXML private Button btnSupprimer;
     @FXML private Button btnModifier;
@@ -40,11 +47,14 @@ public class AfficherRendezVousController {
     @FXML private Button btnRefuser;
 
     private final RendezVousService rendezVousService = new RendezVousService();
+    private final ObservableList<RendezVous> sourceRendezVous = FXCollections.observableArrayList();
+    private FilteredList<RendezVous> rendezVousFiltres;
 
     @FXML
     private void initialize() {
         tableRendezVous.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
-        colUtilisateurId.setCellValueFactory(new PropertyValueFactory<>("utilisateurId"));
+        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("dateRendezVous"));
         colHeure.setCellValueFactory(new PropertyValueFactory<>("heureRendezVous"));
         colPriorite.setCellValueFactory(new PropertyValueFactory<>("priorite"));
@@ -53,6 +63,7 @@ public class AfficherRendezVousController {
         colNotes.setCellValueFactory(new PropertyValueFactory<>("notesRendezVous"));
         colPays.setCellValueFactory(new PropertyValueFactory<>("pays"));
         colTelephone.setCellValueFactory(new PropertyValueFactory<>("telephone"));
+        initialiserFiltres();
         appliquerVisibiliteSelonRole();
         tableRendezVous.getSelectionModel().selectedItemProperty().addListener((observable, ancien, selection) -> actualiserActions(selection));
         actualiser();
@@ -63,40 +74,33 @@ public class AfficherRendezVousController {
         try {
             if (RoleContext.getCurrentRole() == UserRole.PATIENT) {
                 chargerRendezVousPatient();
+                appliquerFiltres();
                 return;
             }
             List<RendezVous> rendezVous = rendezVousService.afficherRendezVous();
-            tableRendezVous.setItems(FXCollections.observableArrayList(rendezVous));
-            afficherMessage(rendezVous.isEmpty() ? "Aucun rendez-vous trouvé." : "Liste des rendez-vous chargée.");
+            sourceRendezVous.setAll(rendezVous);
+            appliquerFiltres();
+            afficherMessage(sourceRendezVous.isEmpty() ? "Aucun rendez-vous trouve." : "Liste des rendez-vous chargee.");
         } catch (Exception exception) {
-            afficherMessage("Erreur : " + exception.getMessage());
+            afficherMessage("Erreur base de donnees. Verifie la structure de la table rendez_vous.");
         }
     }
 
     @FXML
     private void rechercher() {
-        try {
-            String texte = txtRechercheId.getText();
-            if (texte == null || texte.isBlank()) {
-                actualiser();
-                return;
-            }
-            int utilisateurId = Integer.parseInt(texte.trim());
-            if (RoleContext.getCurrentRole() == UserRole.PATIENT) {
-                Integer utilisateurCourant = RoleContext.getCurrentUtilisateurId();
-                if (utilisateurCourant != null && utilisateurCourant != utilisateurId) {
-                    afficherMessage("Tu peux rechercher uniquement ton identifiant patient.");
-                    return;
-                }
-                RoleContext.setCurrentUtilisateurId(utilisateurId);
-            }
-            rendezVousService.chercherParId(utilisateurId)
-                    .ifPresentOrElse(rendezVous -> tableRendezVous.setItems(FXCollections.observableArrayList(rendezVous)),
-                            () -> tableRendezVous.setItems(FXCollections.observableArrayList()));
-            afficherMessage(tableRendezVous.getItems().isEmpty() ? "Aucun rendez-vous trouvé." : "Rendez-vous chargé.");
-        } catch (Exception exception) {
-            afficherMessage("Erreur : " + exception.getMessage());
+        appliquerFiltres();
+    }
+
+    @FXML
+    private void reinitialiserFiltres() {
+        txtRechercheId.clear();
+        if (comboFiltreStatut != null) {
+            comboFiltreStatut.getSelectionModel().select("Tous");
         }
+        if (comboFiltreMode != null) {
+            comboFiltreMode.getSelectionModel().select("Tous");
+        }
+        appliquerFiltres();
     }
 
     @FXML
@@ -119,7 +123,7 @@ public class AfficherRendezVousController {
             actualiser();
             afficherMessage("Rendez-vous supprimé.");
         } catch (Exception exception) {
-            afficherMessage("Erreur : " + exception.getMessage());
+            afficherMessage("Suppression impossible. Verifie les donnees.");
         }
     }
 
@@ -152,7 +156,7 @@ public class AfficherRendezVousController {
             stage.showAndWait();
             actualiser();
         } catch (Exception exception) {
-            afficherMessage("Impossible d'ouvrir la modification: " + exception.getMessage());
+            afficherMessage("Impossible d'ouvrir la modification.");
         }
     }
 
@@ -177,7 +181,7 @@ public class AfficherRendezVousController {
             actualiser();
             afficherMessage(message);
         } catch (Exception exception) {
-            afficherMessage("Erreur : " + exception.getMessage());
+            afficherMessage("Mise a jour du statut impossible.");
         }
     }
 
@@ -227,21 +231,86 @@ public class AfficherRendezVousController {
         }
     }
 
+    private void initialiserFiltres() {
+        if (comboFiltreStatut != null) {
+            comboFiltreStatut.setItems(FXCollections.observableArrayList("Tous", "EN_ATTENTE", "ACCEPTE", "REFUSE"));
+            comboFiltreStatut.getSelectionModel().select("Tous");
+            comboFiltreStatut.valueProperty().addListener((obs, oldValue, newValue) -> appliquerFiltres());
+        }
+        if (comboFiltreMode != null) {
+            comboFiltreMode.setItems(FXCollections.observableArrayList("Tous", "A_DISTANCE", "PRESENTIEL", "TELECONSULTATION"));
+            comboFiltreMode.getSelectionModel().select("Tous");
+            comboFiltreMode.valueProperty().addListener((obs, oldValue, newValue) -> appliquerFiltres());
+        }
+        if (txtRechercheId != null) {
+            txtRechercheId.textProperty().addListener((obs, oldValue, newValue) -> appliquerFiltres());
+        }
+
+        rendezVousFiltres = new FilteredList<>(sourceRendezVous, item -> true);
+        SortedList<RendezVous> rendezVousTries = new SortedList<>(rendezVousFiltres);
+        rendezVousTries.comparatorProperty().bind(tableRendezVous.comparatorProperty());
+        tableRendezVous.setItems(rendezVousTries);
+    }
+
+    private void appliquerFiltres() {
+        if (rendezVousFiltres == null) {
+            return;
+        }
+        String recherche = txtRechercheId == null || txtRechercheId.getText() == null
+                ? ""
+                : txtRechercheId.getText().trim().toLowerCase();
+        String statut = comboFiltreStatut == null ? "Tous" : comboFiltreStatut.getValue();
+        String mode = comboFiltreMode == null ? "Tous" : comboFiltreMode.getValue();
+
+        rendezVousFiltres.setPredicate(rendezVous -> {
+            if (rendezVous == null) {
+                return false;
+            }
+            boolean matchRecherche = recherche.isEmpty()
+                    || String.valueOf(rendezVous.getUtilisateurId()).contains(recherche)
+                    || contient(rendezVous.getNom(), recherche)
+                    || contient(rendezVous.getPrenom(), recherche)
+                    || contient(rendezVous.getNotesRendezVous(), recherche)
+                    || contient(rendezVous.getPays(), recherche)
+                    || contient(rendezVous.getTelephone(), recherche);
+
+            boolean matchStatut = statut == null || "Tous".equals(statut)
+                    || (rendezVous.getStatutRendezVous() != null && statut.equals(rendezVous.getStatutRendezVous().name()));
+
+            boolean matchMode = mode == null || "Tous".equals(mode)
+                    || contientExact(rendezVous.getModeConsultation(), mode);
+
+            return matchRecherche && matchStatut && matchMode;
+        });
+
+        afficherMessage(tableRendezVous.getItems().isEmpty()
+                ? "Aucun rendez-vous ne correspond au filtre."
+                : tableRendezVous.getItems().size() + " rendez-vous affiches.");
+    }
+
+    private boolean contient(String valeur, String recherche) {
+        return valeur != null && valeur.toLowerCase().contains(recherche);
+    }
+
+    private boolean contientExact(String valeur, String attendu) {
+        return valeur != null && valeur.trim().equalsIgnoreCase(attendu);
+    }
+
     private void chargerRendezVousPatient() throws Exception {
         Integer utilisateurCourant = RoleContext.getCurrentUtilisateurId();
         if (utilisateurCourant == null) {
-            tableRendezVous.setItems(FXCollections.observableArrayList());
-            afficherMessage("Reserve d'abord un rendez-vous, puis utilise ton utilisateur_id pour rechercher.");
+            sourceRendezVous.clear();
+            afficherMessage("Reserve d'abord un rendez-vous, puis utilise ton id pour rechercher.");
             return;
         }
         rendezVousService.chercherParId(utilisateurCourant)
                 .ifPresentOrElse(
                         rendezVous -> {
-                            tableRendezVous.setItems(FXCollections.observableArrayList(rendezVous));
+                            sourceRendezVous.setAll(rendezVous);
                             afficherMessage("Ton rendez-vous et son statut sont affichés.");
                         },
                         () -> {
-                            tableRendezVous.setItems(FXCollections.observableArrayList());
+                            sourceRendezVous.clear();
                             afficherMessage("Aucun rendez-vous trouvé pour ton identifiant.");
                         }
                 );

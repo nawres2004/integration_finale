@@ -14,13 +14,17 @@ import tn.esprit.suivie_nawres.utils.RoleContext;
 import tn.esprit.suivie_nawres.utils.UserRole;
 
 import java.time.LocalTime;
+import java.sql.SQLException;
 
 public class AjouterRendezVousController {
+    private static final String NOM_PRENOM_REGEX = "^[\\p{L}][\\p{L} '\\-]{1,49}$";
     private static RendezVous rendezVousAEditer;
     private static AfficherRendezVousMedecinController parentMedecinController;
     private static boolean fermerApresEnregistrement;
 
     @FXML private TextField txtUtilisateurId;
+    @FXML private TextField txtNom;
+    @FXML private TextField txtPrenom;
     @FXML private DatePicker datePickerRendezVous;
     @FXML private TextField txtHeureRendezVous;
     @FXML private ComboBox<String> comboPriorite;
@@ -64,23 +68,32 @@ public class AjouterRendezVousController {
     @FXML
     private void enregistrer() {
         try {
+            String erreurValidation = validerChampsObligatoires();
+            if (erreurValidation != null) {
+                afficherErreur(erreurValidation);
+                return;
+            }
+
+            int utilisateurId = parseUtilisateurId();
             RendezVous rendezVous = new RendezVous();
-            rendezVous.setUtilisateurId(Integer.parseInt(txtUtilisateurId.getText().trim()));
+            rendezVous.setUtilisateurId(utilisateurId);
+            rendezVous.setNom(txtNom.getText().trim());
+            rendezVous.setPrenom(txtPrenom.getText().trim());
             rendezVous.setDateRendezVous(datePickerRendezVous.getValue());
-            rendezVous.setHeureRendezVous(parseHeure(txtHeureRendezVous.getText()));
+            rendezVous.setHeureRendezVous(parseHeure(txtHeureRendezVous.getText().trim()));
             rendezVous.setPriorite(comboPriorite.getValue());
             rendezVous.setModeConsultation(comboModeConsultation.getValue());
             rendezVous.setStatutRendezVous(resolveStatutPourSauvegarde());
-            rendezVous.setNotesRendezVous(txtNotesRendezVous.getText());
-            rendezVous.setPays(txtPays.getText());
-            rendezVous.setTelephone(txtTelephone.getText());
+            rendezVous.setNotesRendezVous(txtNotesRendezVous.getText().trim());
+            rendezVous.setPays(txtPays.getText().trim());
+            rendezVous.setTelephone(txtTelephone.getText().trim());
 
             if (rendezVousService.existe(rendezVous.getUtilisateurId())) {
                 rendezVousService.modifierRendezVous(rendezVous);
-                afficherMessage("Rendez-vous modifie avec succes.");
+                afficherInfo("Rendez-vous modifie avec succes.");
             } else {
                 rendezVousService.ajouterRendezVous(rendezVous);
-                afficherMessage("Rendez-vous ajoute avec succes.");
+                afficherInfo("Rendez-vous ajoute avec succes.");
             }
             if (RoleContext.getCurrentRole() == UserRole.PATIENT) {
                 RoleContext.setCurrentUtilisateurId(rendezVous.getUtilisateurId());
@@ -93,8 +106,12 @@ public class AjouterRendezVousController {
             } else {
                 viderChamps();
             }
+        } catch (IllegalArgumentException exception) {
+            afficherErreur(exception.getMessage());
+        } catch (SQLException exception) {
+            afficherErreur("Erreur base de donnees. Verifie la colonne id dans la table.");
         } catch (Exception exception) {
-            afficherMessage("Erreur : " + exception.getMessage());
+            afficherErreur("Operation impossible. Verifie les champs saisis.");
         }
     }
 
@@ -111,12 +128,14 @@ public class AjouterRendezVousController {
     @FXML
     private void vider() {
         viderChamps();
-        afficherMessage("Prêt.");
+        afficherInfo("Pret.");
     }
 
     private void viderChamps() {
         txtUtilisateurId.clear();
         txtUtilisateurId.setDisable(false);
+        txtNom.clear();
+        txtPrenom.clear();
         datePickerRendezVous.setValue(null);
         txtHeureRendezVous.clear();
         comboPriorite.getSelectionModel().selectFirst();
@@ -137,8 +156,53 @@ public class AjouterRendezVousController {
                 : StatutRendezVous.EN_ATTENTE;
     }
 
+    private String validerChampsObligatoires() {
+        if (txtUtilisateurId.getText() == null || txtUtilisateurId.getText().trim().isEmpty()) {
+            return "Le champ Utilisateur ID est obligatoire.";
+        }
+        if (!txtUtilisateurId.getText().trim().matches("\\d+")) {
+            return "Utilisateur ID doit etre un nombre positif.";
+        }
+        if (datePickerRendezVous.getValue() == null) {
+            return "Le champ Date rendez-vous est obligatoire.";
+        }
+        if (txtNom.getText() == null || txtNom.getText().trim().isEmpty()) {
+            return "Le champ Nom est obligatoire.";
+        }
+        if (!txtNom.getText().trim().matches(NOM_PRENOM_REGEX)) {
+            return "Nom invalide : utilise uniquement des lettres, espaces, tiret ou apostrophe (2 a 50 caracteres).";
+        }
+        if (txtPrenom.getText() == null || txtPrenom.getText().trim().isEmpty()) {
+            return "Le champ Prenom est obligatoire.";
+        }
+        if (!txtPrenom.getText().trim().matches(NOM_PRENOM_REGEX)) {
+            return "Prenom invalide : utilise uniquement des lettres, espaces, tiret ou apostrophe (2 a 50 caracteres).";
+        }
+        if (txtHeureRendezVous.getText() == null || txtHeureRendezVous.getText().trim().isEmpty()) {
+            return "Le champ Heure rendez-vous est obligatoire.";
+        }
+        if (comboPriorite.getValue() == null || comboPriorite.getValue().trim().isEmpty()) {
+            return "Le champ Priorite est obligatoire.";
+        }
+        if (comboModeConsultation.getValue() == null || comboModeConsultation.getValue().trim().isEmpty()) {
+            return "Le champ Mode consultation est obligatoire.";
+        }
+        if (txtNotesRendezVous.getText() == null || txtNotesRendezVous.getText().trim().isEmpty()) {
+            return "Le champ Notes est obligatoire.";
+        }
+        if (txtPays.getText() == null || txtPays.getText().trim().isEmpty()) {
+            return "Le champ Pays est obligatoire.";
+        }
+        if (txtTelephone.getText() == null || txtTelephone.getText().trim().isEmpty()) {
+            return "Le champ Telephone est obligatoire.";
+        }
+        return null;
+    }
+
     private void remplirFormulaire(RendezVous rendezVous) {
         txtUtilisateurId.setText(String.valueOf(rendezVous.getUtilisateurId()));
+        txtNom.setText(rendezVous.getNom());
+        txtPrenom.setText(rendezVous.getPrenom());
         datePickerRendezVous.setValue(rendezVous.getDateRendezVous());
         txtHeureRendezVous.setText(rendezVous.getHeureRendezVous() == null ? "" : rendezVous.getHeureRendezVous().toString());
         comboPriorite.setValue(rendezVous.getPriorite());
@@ -147,7 +211,7 @@ public class AjouterRendezVousController {
         txtPays.setText(rendezVous.getPays());
         txtTelephone.setText(rendezVous.getTelephone());
         statutEdition = rendezVous.getStatutRendezVous() == null ? StatutRendezVous.EN_ATTENTE : rendezVous.getStatutRendezVous();
-        afficherMessage("Mode modification actif.");
+        afficherInfo("Mode modification actif.");
     }
 
     private LocalTime parseHeure(String valeur) {
@@ -158,10 +222,35 @@ public class AjouterRendezVousController {
         return LocalTime.parse(texte);
     }
 
+    private int parseUtilisateurId() {
+        String texte = txtUtilisateurId.getText() == null ? "" : txtUtilisateurId.getText().trim();
+        if (texte.isEmpty()) {
+            throw new IllegalArgumentException("Le champ Utilisateur ID est obligatoire.");
+        }
+        if (!texte.matches("\\d+")) {
+            throw new IllegalArgumentException("Utilisateur ID doit etre un nombre positif.");
+        }
+        return Integer.parseInt(texte);
+    }
+
     private void afficherMessage(String message) {
         if (lblMessage != null) {
             lblMessage.setText(message);
         }
+    }
+
+    private void afficherInfo(String message) {
+        if (lblMessage != null) {
+            lblMessage.setStyle("");
+        }
+        afficherMessage(message);
+    }
+
+    private void afficherErreur(String message) {
+        if (lblMessage != null) {
+            lblMessage.setStyle("-fx-text-fill: #d32f2f;");
+        }
+        afficherMessage(message);
     }
 }
 

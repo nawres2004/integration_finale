@@ -6,6 +6,8 @@ import java.time.LocalTime;
 
 public class Consultation {
     private Integer utilisateurId;
+    private String nom;
+    private String prenom;
     private LocalDate dateConsultation;
     private LocalTime heureConsultation;
     private String modeConsultation;
@@ -19,10 +21,12 @@ public class Consultation {
     public Consultation() {
     }
 
-    public Consultation(Integer utilisateurId, LocalDate dateConsultation, LocalTime heureConsultation,
+    public Consultation(Integer utilisateurId, String nom, String prenom, LocalDate dateConsultation, LocalTime heureConsultation,
                         String modeConsultation, String maladie, String diagnostic, String traitement,
                         String examensComplementaires, String notesConsultation, BigDecimal coutConsultation) {
         this.utilisateurId = utilisateurId;
+        this.nom = nom;
+        this.prenom = prenom;
         this.dateConsultation = dateConsultation;
         this.heureConsultation = heureConsultation;
         this.modeConsultation = modeConsultation;
@@ -40,6 +44,22 @@ public class Consultation {
 
     public void setUtilisateurId(Integer utilisateurId) {
         this.utilisateurId = utilisateurId;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public LocalDate getDateConsultation() {

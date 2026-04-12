@@ -21,6 +21,10 @@ public class DetailRendezVousMedecinController {
     @FXML
     private Label lblTitre;
     @FXML
+    private Label lblNom;
+    @FXML
+    private Label lblPrenom;
+    @FXML
     private Label lblDate;
     @FXML
     private Label lblHeure;
@@ -89,6 +93,8 @@ public class DetailRendezVousMedecinController {
 
     private void remplirDetail(RendezVous rendezVous) {
         lblTitre.setText("Details rendez-vous #" + rendezVous.getUtilisateurId());
+        lblNom.setText(safe(rendezVous.getNom()));
+        lblPrenom.setText(safe(rendezVous.getPrenom()));
         lblDate.setText(rendezVous.getDateRendezVous() == null ? "-" : rendezVous.getDateRendezVous().format(DATE_FORMAT));
         lblHeure.setText(rendezVous.getHeureRendezVous() == null ? "-" : rendezVous.getHeureRendezVous().format(TIME_FORMAT));
         lblPriorite.setText(safe(rendezVous.getPriorite()));

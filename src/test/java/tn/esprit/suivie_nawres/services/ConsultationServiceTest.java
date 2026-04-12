@@ -32,6 +32,8 @@ class ConsultationServiceTest {
     private Consultation consultation(int id, BigDecimal cout) {
         return new Consultation(
                 id,
+                "Trabelsi",
+                "Yasmine",
                 LocalDate.now(),
                 LocalTime.of(14, 30),
                 "EN_LIGNE",
@@ -75,6 +77,7 @@ class ConsultationServiceTest {
 
         assertTrue(consultation.isPresent());
         assertEquals(id, consultation.get().getUtilisateurId());
+        assertEquals("Trabelsi", consultation.get().getNom());
         assertEquals("Grippe", consultation.get().getMaladie());
         assertEquals("Grippe saisonnière", consultation.get().getDiagnostic());
         assertEquals("EN_LIGNE", consultation.get().getModeConsultation());
@@ -187,6 +190,8 @@ class ConsultationServiceTest {
 
         Consultation consultationComplete = new Consultation(
                 id,
+                "Gharbi",
+                "Sami",
                 LocalDate.now().minusDays(2),
                 LocalTime.of(11, 0),
                 "EN_PERSONNE",

@@ -5,6 +5,8 @@ import java.time.LocalTime;
 
 public class RendezVous {
     private Integer utilisateurId;
+    private String nom;
+    private String prenom;
     private LocalDate dateRendezVous;
     private LocalTime heureRendezVous;
     private String priorite;
@@ -17,10 +19,12 @@ public class RendezVous {
     public RendezVous() {
     }
 
-    public RendezVous(Integer utilisateurId, LocalDate dateRendezVous, LocalTime heureRendezVous, String priorite,
+    public RendezVous(Integer utilisateurId, String nom, String prenom, LocalDate dateRendezVous, LocalTime heureRendezVous, String priorite,
                       String modeConsultation, StatutRendezVous statutRendezVous, String notesRendezVous,
                       String pays, String telephone) {
         this.utilisateurId = utilisateurId;
+        this.nom = nom;
+        this.prenom = prenom;
         this.dateRendezVous = dateRendezVous;
         this.heureRendezVous = heureRendezVous;
         this.priorite = priorite;
@@ -37,6 +41,22 @@ public class RendezVous {
 
     public void setUtilisateurId(Integer utilisateurId) {
         this.utilisateurId = utilisateurId;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public LocalDate getDateRendezVous() {

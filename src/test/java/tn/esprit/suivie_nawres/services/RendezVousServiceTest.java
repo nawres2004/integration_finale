@@ -32,6 +32,8 @@ class RendezVousServiceTest {
     private RendezVous rendezVous(int id, StatutRendezVous statut) {
         return new RendezVous(
                 id,
+                "Ben Ali",
+                "Nour",
                 LocalDate.now().plusDays(5),
                 LocalTime.of(10, 30),
                 "HAUTE",
@@ -74,6 +76,8 @@ class RendezVousServiceTest {
 
         assertTrue(rdv.isPresent());
         assertEquals(id, rdv.get().getUtilisateurId());
+        assertEquals("Ben Ali", rdv.get().getNom());
+        assertEquals("Nour", rdv.get().getPrenom());
         assertEquals("HAUTE", rdv.get().getPriorite());
         assertEquals("EN_LIGNE", rdv.get().getModeConsultation());
         cleanup(id);

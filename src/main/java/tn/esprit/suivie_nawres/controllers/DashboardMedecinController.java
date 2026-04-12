@@ -27,6 +27,11 @@ public class DashboardMedecinController {
     }
 
     @FXML
+    private void traiterDemandesRendezVous() {
+        SceneManager.replaceContent(contentPane, "/views/TraiterDemandesRendezVous.fxml");
+    }
+
+    @FXML
     private void ajouterRendezVous() {
         ouvrirModale("/views/AjouterRendezVous.fxml", "Creer Rendez-vous", 860, 760);
     }

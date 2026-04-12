@@ -41,7 +41,7 @@
                             </StackPane>
                             <Label text="Demandes en Attente" wrapText="true" styleClass="dashboard-medecin-card-title"/>
                             <Label text="Validez ou refusez les demandes de rendez-vous des patients." wrapText="true" styleClass="dashboard-medecin-card-text"/>
-                            <Button text="Traiter les Demandes" onAction="#gererRendezVous" maxWidth="1.7976931348623157E308" styleClass="dashboard-medecin-action-primary"/>
+                            <Button text="Traiter les Demandes" onAction="#traiterDemandesRendezVous" maxWidth="1.7976931348623157E308" styleClass="dashboard-medecin-action-primary"/>
                         </VBox>
 
                         <VBox spacing="14" prefWidth="340" styleClass="dashboard-medecin-card">

@@ -18,6 +18,8 @@ class RendezVousServiceMockTest {
     void testModeleRendezVous() {
         RendezVous rendezVous = new RendezVous(
                 1,
+                "Ben Salah",
+                "Amine",
                 LocalDate.now().plusDays(1),
                 LocalTime.of(10, 30),
                 "HAUTE",
@@ -30,6 +32,8 @@ class RendezVousServiceMockTest {
 
         assertNotNull(rendezVous);
         assertEquals(1, rendezVous.getUtilisateurId());
+        assertEquals("Ben Salah", rendezVous.getNom());
+        assertEquals("Amine", rendezVous.getPrenom());
         assertEquals(StatutRendezVous.EN_ATTENTE, rendezVous.getStatutRendezVous());
         assertEquals("HAUTE", rendezVous.getPriorite());
         assertEquals("EN_LIGNE", rendezVous.getModeConsultation());
