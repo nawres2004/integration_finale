@@ -32,6 +32,7 @@ public class AjouterConsultationController {
     @FXML private Label lblMessage;
 
     private final ConsultationService consultationService = new ConsultationService();
+    private boolean modeEdition;
 
     public static void setConsultationAEditer(Consultation consultation) {
         consultationAEditer = consultation;
@@ -43,6 +44,7 @@ public class AjouterConsultationController {
 
     @FXML
     private void initialize() {
+        modeEdition = consultationAEditer != null;
         if (consultationAEditer != null) {
             remplirFormulaire(consultationAEditer);
             txtUtilisateurId.setDisable(true);
@@ -74,7 +76,12 @@ public class AjouterConsultationController {
             consultation.setNotesConsultation(txtNotesConsultation.getText().trim());
             consultation.setCoutConsultation(parseCout(txtCoutConsultation.getText().trim()));
 
-            if (consultationService.existe(consultation.getUtilisateurId())) {
+            if (!modeEdition && consultationService.existe(consultation.getUtilisateurId())) {
+                afficherErreur("Cet ID existe deja. Utilise un autre ID.");
+                return;
+            }
+
+            if (modeEdition) {
                 consultationService.modifierConsultation(consultation);
                 afficherInfo("Consultation modifiee avec succes.");
             } else {
@@ -109,6 +116,7 @@ public class AjouterConsultationController {
         txtExamensComplementaires.clear();
         txtNotesConsultation.clear();
         txtCoutConsultation.clear();
+        modeEdition = false;
         afficherInfo("Pret.");
     }
 
@@ -161,9 +169,6 @@ public class AjouterConsultationController {
         if (!txtUtilisateurId.getText().trim().matches("\\d+")) {
             return "Utilisateur ID doit etre un nombre positif.";
         }
-        if (datePickerConsultation.getValue() == null) {
-            return "Le champ Date consultation est obligatoire.";
-        }
         if (txtNom.getText() == null || txtNom.getText().trim().isEmpty()) {
             return "Le champ Nom est obligatoire.";
         }
@@ -175,6 +180,9 @@ public class AjouterConsultationController {
         }
         if (!txtPrenom.getText().trim().matches(NOM_PRENOM_REGEX)) {
             return "Prenom invalide : utilise uniquement des lettres, espaces, tiret ou apostrophe (2 a 50 caracteres).";
+        }
+        if (datePickerConsultation.getValue() == null) {
+            return "Le champ Date consultation est obligatoire.";
         }
         if (txtHeureConsultation.getText() == null || txtHeureConsultation.getText().trim().isEmpty()) {
             return "Le champ Heure consultation est obligatoire.";

@@ -18,12 +18,34 @@ import java.util.Objects;
 public class RendezVousService {
     private static final String TABLE_NAME = "rendez_vous";
 
-    public void ajouterRendezVous(RendezVous rendezVous) throws SQLException {
-        String sql = "INSERT INTO " + TABLE_NAME + " (id, nom, prenom, date_rendez_vous, heure_rendez_vous, priorite, mode_consultation, statut_rendez_vous, notes_rendez_vous, pays, telephone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    /**
+     * 💾 AJOUTER UN RENDEZ-VOUS (avec ID auto-généré)
+     * 
+     * L'ID est maintenant AUTO-INCRÉMENTÉ par MySQL
+     * On n'a plus besoin de le fournir !
+     */
+    public int ajouterRendezVous(RendezVous rendezVous) throws SQLException {
+        // ✅ NOUVELLE REQUÊTE : Sans l'ID (MySQL le génère automatiquement)
+        String sql = "INSERT INTO " + TABLE_NAME + " (nom, prenom, date_rendez_vous, heure_rendez_vous, priorite, mode_consultation, statut_rendez_vous, notes_rendez_vous, pays, telephone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
         Connection connection = DatabaseConnection.getInstance().getConnection();
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            bind(statement, rendezVous);
+        
+        // RETURN_GENERATED_KEYS permet de récupérer l'ID généré
+        try (PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            // Remplit les paramètres (sans l'ID)
+            bindSansId(statement, rendezVous);
             statement.executeUpdate();
+            
+            // Récupère l'ID généré par MySQL
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int idGenere = generatedKeys.getInt(1);
+                    rendezVous.setUtilisateurId(idGenere);  // Met à jour l'objet avec l'ID généré
+                    return idGenere;  // Retourne l'ID généré
+                } else {
+                    throw new SQLException("Échec de la création du rendez-vous, aucun ID généré.");
+                }
+            }
         }
     }
 
@@ -106,6 +128,26 @@ public class RendezVousService {
         statement.setString(7, rendezVous.getModeConsultation());
         statement.setString(8, resolveStatut(rendezVous.getStatutRendezVous()));
         statement.setString(9, rendezVous.getNotesRendezVous());
+        statement.setString(10, rendezVous.getPays());
+        statement.setString(11, rendezVous.getTelephone());
+    }
+
+    /**
+     * 🆕 NOUVELLE MÉTHODE : Remplit le PreparedStatement SANS l'ID
+     * Utilisée pour l'ajout (l'ID est auto-généré)
+     */
+    private void bindSansId(PreparedStatement statement, RendezVous rendezVous) throws SQLException {
+        statement.setString(1, rendezVous.getNom());
+        statement.setString(2, rendezVous.getPrenom());
+        statement.setDate(3, Date.valueOf(rendezVous.getDateRendezVous()));
+        statement.setTime(4, Time.valueOf(rendezVous.getHeureRendezVous()));
+        statement.setString(5, rendezVous.getPriorite());
+        statement.setString(6, rendezVous.getModeConsultation());
+        statement.setString(7, resolveStatut(rendezVous.getStatutRendezVous()));
+        statement.setString(8, rendezVous.getNotesRendezVous());
+        statement.setString(9, rendezVous.getPays());
+        statement.setString(10, rendezVous.getTelephone());
+    }
         statement.setString(10, rendezVous.getPays());
         statement.setString(11, rendezVous.getTelephone());
     }
