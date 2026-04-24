@@ -481,3 +481,163 @@
     -fx-border-color: #e2e8f0 transparent transparent transparent;
     -fx-border-width: 1 0 0 0;
 }
+
+
+/* ========================================
+   STYLES DU CALENDRIER
+   ======================================== */
+
+/* Titre du mois */
+.calendrier-mois-titre {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0f172a;
+    -fx-min-width: 200px;
+    -fx-alignment: center;
+}
+
+/* Grille du calendrier */
+.calendrier-grille {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-padding: 10;
+}
+
+/* En-tête des jours (Lun, Mar, etc.) */
+.calendrier-entete-jour {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #64748b;
+    -fx-padding: 10;
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 0 0 2 0;
+}
+
+/* Bouton jour par défaut */
+.calendrier-jour {
+    -fx-background-color: white;
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-min-height: 70px;
+    -fx-min-width: 70px;
+}
+
+.calendrier-jour:hover {
+    -fx-background-color: #f1f5f9;
+    -fx-border-color: #cbd5e1;
+}
+
+/* Jour avec rendez-vous */
+.calendrier-jour-rdv {
+    -fx-background-color: #dbeafe;
+    -fx-border-color: #3b82f6;
+    -fx-border-width: 2;
+}
+
+.calendrier-jour-rdv:hover {
+    -fx-background-color: #bfdbfe;
+}
+
+/* Jour avec consultations */
+.calendrier-jour-consultation {
+    -fx-background-color: #dcfce7;
+    -fx-border-color: #22c55e;
+    -fx-border-width: 2;
+}
+
+.calendrier-jour-consultation:hover {
+    -fx-background-color: #bbf7d0;
+}
+
+/* Jour avec RDV ET consultations */
+.calendrier-jour-mixte {
+    -fx-background-color: #fef3c7;
+    -fx-border-color: #f59e0b;
+    -fx-border-width: 2;
+}
+
+.calendrier-jour-mixte:hover {
+    -fx-background-color: #fde68a;
+}
+
+/* Aujourd'hui */
+.calendrier-jour-aujourd-hui {
+    -fx-border-color: #dc2626;
+    -fx-border-width: 3;
+    -fx-font-weight: 900;
+}
+
+/* Panneau de détails */
+.calendrier-details {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.calendrier-details-titre {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0f172a;
+}
+
+.calendrier-details-date {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2563eb;
+    -fx-padding: 0 0 10 0;
+}
+
+.calendrier-details-contenu {
+    -fx-font-size: 13px;
+    -fx-text-fill: #475569;
+    -fx-font-family: "Consolas", "Courier New", monospace;
+    -fx-padding: 10;
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+/* Légende */
+.calendrier-legende-titre {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #64748b;
+}
+
+.calendrier-legende-texte {
+    -fx-font-size: 12px;
+    -fx-text-fill: #64748b;
+}
+
+.calendrier-legende-rdv {
+    -fx-font-size: 20px;
+    -fx-text-fill: #3b82f6;
+}
+
+.calendrier-legende-consultation {
+    -fx-font-size: 20px;
+    -fx-text-fill: #22c55e;
+}
+
+.calendrier-legende-mixte {
+    -fx-font-size: 20px;
+    -fx-text-fill: #f59e0b;
+}
+
+.calendrier-legende-aujourd-hui {
+    -fx-font-size: 20px;
+    -fx-text-fill: #dc2626;
+}

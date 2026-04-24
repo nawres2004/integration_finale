@@ -47,6 +47,11 @@ public class DashboardMedecinController {
     }
 
     @FXML
+    private void afficherCalendrier() {
+        SceneManager.replaceContent(contentPane, "/views/Calendrier.fxml");
+    }
+
+    @FXML
     private void retourChoixRole() {
         SceneManager.show("/views/ChoixRole.fxml", "VitaPlus Medical - Choix du role");
     }

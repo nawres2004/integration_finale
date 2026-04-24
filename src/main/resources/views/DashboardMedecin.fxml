@@ -51,7 +51,8 @@
                             </StackPane>
                             <Label text="Gerer les Rendez-Vous" wrapText="true" styleClass="dashboard-medecin-card-title"/>
                             <Label text="Consultez et gerez tous les rendez-vous confirmes." wrapText="true" styleClass="dashboard-medecin-card-text"/>
-                            <Button text="Creer un Rendez-vous" onAction="#ajouterRendezVous" maxWidth="1.7976931348623157E308" styleClass="dashboard-medecin-action-primary"/>
+                            <Button text="📅 Voir le Calendrier" onAction="#afficherCalendrier" maxWidth="1.7976931348623157E308" styleClass="dashboard-medecin-action-primary"/>
+                            <Button text="Creer un Rendez-vous" onAction="#ajouterRendezVous" maxWidth="1.7976931348623157E308" styleClass="dashboard-medecin-action-secondary"/>
                             <Button text="Voir Tous les RDV" onAction="#gererRendezVous" maxWidth="1.7976931348623157E308" styleClass="dashboard-medecin-action-secondary"/>
                         </VBox>
 
