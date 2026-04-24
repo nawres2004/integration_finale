@@ -49,7 +49,7 @@
             <TextArea fx:id="txtNotesRendezVous" prefRowCount="4" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
 
             <Label text="Pays" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtPays" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+            <ComboBox fx:id="comboPays" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
 
             <Label text="Téléphone" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
             <TextField fx:id="txtTelephone" GridPane.rowIndex="8" GridPane.columnIndex="1"/>

@@ -53,7 +53,7 @@ public class AjouterRendezVousController {
     @FXML private ComboBox<String> comboPriorite;    // Liste déroulante : Priorité
     @FXML private ComboBox<String> comboModeConsultation; // Liste déroulante : Mode
     @FXML private TextArea txtNotesRendezVous;       // Zone de texte : Notes
-    @FXML private TextField txtPays;                 // Champ : Pays
+    @FXML private ComboBox<String> comboPays;        // Liste déroulante : Pays
     @FXML private TextField txtTelephone;            // Champ : Téléphone
     @FXML private Label lblMessage;                  // Label pour afficher les messages
 
@@ -91,9 +91,20 @@ public class AjouterRendezVousController {
         // Remplit la liste déroulante "Mode Consultation" avec 3 options
         comboModeConsultation.setItems(FXCollections.observableArrayList("A_DISTANCE", "PRESENTIEL", "TELECONSULTATION"));
         
+        // Remplit la liste déroulante "Pays" avec 4 pays
+        comboPays.setItems(FXCollections.observableArrayList("Tunisie", "Maroc", "Algérie", "France"));
+        
         // Sélectionne le premier élément par défaut
         comboPriorite.getSelectionModel().selectFirst();
         comboModeConsultation.getSelectionModel().selectFirst();
+        comboPays.getSelectionModel().selectFirst();
+        
+        // Ajoute un listener pour mettre à jour le préfixe téléphonique automatiquement
+        comboPays.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                ajouterPrefixeTelephone(newValue);
+            }
+        });
         
         // Vérifie si on est en mode édition (modifier un RDV existant)
         modeEdition = rendezVousAEditer != null;
@@ -103,6 +114,55 @@ public class AjouterRendezVousController {
             remplirFormulaire(rendezVousAEditer);
             // ❌ SUPPRIMÉ : txtUtilisateurId.setDisable(true);  // Plus besoin, l'ID n'est plus affiché
             rendezVousAEditer = null;
+        }
+    }
+    
+    /**
+     * 📞 AJOUTE LE PRÉFIXE TÉLÉPHONIQUE SELON LE PAYS
+     * 
+     * Cette fonction ajoute automatiquement le préfixe téléphonique du pays sélectionné
+     * - Tunisie : +216
+     * - Maroc : +212
+     * - Algérie : +213
+     * - France : +33
+     */
+    private void ajouterPrefixeTelephone(String pays) {
+        String prefixe = "";
+        
+        switch (pays) {
+            case "Tunisie":
+                prefixe = "+216 ";
+                break;
+            case "Maroc":
+                prefixe = "+212 ";
+                break;
+            case "Algérie":
+                prefixe = "+213 ";
+                break;
+            case "France":
+                prefixe = "+33 ";
+                break;
+        }
+        
+        // Récupère le numéro actuel
+        String numeroActuel = txtTelephone.getText().trim();
+        
+        // Si le champ est vide ou commence déjà par un préfixe, remplace par le nouveau préfixe
+        if (numeroActuel.isEmpty() || numeroActuel.startsWith("+")) {
+            // Enlève l'ancien préfixe si présent
+            if (numeroActuel.startsWith("+")) {
+                // Trouve la position après le préfixe (après l'espace)
+                int indexEspace = numeroActuel.indexOf(" ");
+                if (indexEspace > 0 && indexEspace < numeroActuel.length() - 1) {
+                    numeroActuel = numeroActuel.substring(indexEspace + 1).trim();
+                } else {
+                    numeroActuel = "";
+                }
+            }
+            txtTelephone.setText(prefixe + numeroActuel);
+        } else {
+            // Si le numéro ne commence pas par +, ajoute simplement le préfixe
+            txtTelephone.setText(prefixe + numeroActuel);
         }
     }
 
@@ -151,7 +211,7 @@ public class AjouterRendezVousController {
             rendezVous.setModeConsultation(comboModeConsultation.getValue());
             rendezVous.setStatutRendezVous(resolveStatutPourSauvegarde());
             rendezVous.setNotesRendezVous(txtNotesRendezVous.getText().trim());
-            rendezVous.setPays(txtPays.getText().trim());
+            rendezVous.setPays(comboPays.getValue());
             rendezVous.setTelephone(txtTelephone.getText().trim());
 
             // ========================================
@@ -226,7 +286,7 @@ public class AjouterRendezVousController {
         comboPriorite.getSelectionModel().selectFirst();
         comboModeConsultation.getSelectionModel().selectFirst();
         txtNotesRendezVous.clear();
-        txtPays.clear();
+        comboPays.getSelectionModel().selectFirst();
         txtTelephone.clear();
         statutEdition = StatutRendezVous.EN_ATTENTE;
         modeEdition = false;
@@ -327,7 +387,7 @@ public class AjouterRendezVousController {
         // ========================================
         // VALIDATION 10 : PAYS (vide ?)
         // ========================================
-        if (txtPays.getText() == null || txtPays.getText().trim().isEmpty()) {
+        if (comboPays.getValue() == null || comboPays.getValue().trim().isEmpty()) {
             return "Le champ Pays est obligatoire.";
         }
         
@@ -354,7 +414,7 @@ public class AjouterRendezVousController {
         comboPriorite.setValue(rendezVous.getPriorite());
         comboModeConsultation.setValue(rendezVous.getModeConsultation());
         txtNotesRendezVous.setText(rendezVous.getNotesRendezVous());
-        txtPays.setText(rendezVous.getPays());
+        comboPays.setValue(rendezVous.getPays());
         txtTelephone.setText(rendezVous.getTelephone());
         statutEdition = rendezVous.getStatutRendezVous() == null ? StatutRendezVous.EN_ATTENTE : rendezVous.getStatutRendezVous();
         afficherInfo("Mode modification actif.");
