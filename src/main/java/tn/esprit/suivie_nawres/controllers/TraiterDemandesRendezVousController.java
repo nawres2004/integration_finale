@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import tn.esprit.suivie_nawres.models.RendezVous;
 import tn.esprit.suivie_nawres.models.StatutRendezVous;
 import tn.esprit.suivie_nawres.services.RendezVousService;
+import tn.esprit.suivie_nawres.services.VonageSmsService;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -123,8 +124,23 @@ public class TraiterDemandesRendezVousController {
 
     private void accepterDemande(RendezVous rendezVous) {
         try {
+            // Change le statut à ACCEPTE
             rendezVousService.changerStatutRendezVous(rendezVous.getUtilisateurId(), StatutRendezVous.ACCEPTE);
-            afficherMessage("Demande acceptee.");
+            
+            // Met à jour le statut dans l'objet pour l'envoi du SMS
+            rendezVous.setStatutRendezVous(StatutRendezVous.ACCEPTE);
+            
+            // ========================================
+            // 📱 ENVOI DE SMS D'ACCEPTATION AU PATIENT
+            // ========================================
+            boolean smsEnvoye = VonageSmsService.envoyerSmsAcceptationRendezVous(rendezVous);
+            
+            if (smsEnvoye) {
+                afficherMessage("Demande acceptee. SMS envoye au patient.");
+            } else {
+                afficherMessage("Demande acceptee. (SMS non envoye - verifiez la configuration)");
+            }
+            
             actualiser();
         } catch (Exception exception) {
             afficherMessage("Erreur lors de l'acceptation.");

@@ -55,6 +55,12 @@
             <version>7.2.5</version>
             <type>pom</type>
         </dependency>
+        <!-- Vonage (Nexmo) SDK pour l'envoi de SMS -->
+        <dependency>
+            <groupId>com.vonage</groupId>
+            <artifactId>client</artifactId>
+            <version>7.10.0</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import tn.esprit.suivie_nawres.models.RendezVous;
 import tn.esprit.suivie_nawres.models.StatutRendezVous;
 import tn.esprit.suivie_nawres.services.RendezVousService;
+import tn.esprit.suivie_nawres.services.VonageSmsService;
 import tn.esprit.suivie_nawres.utils.RoleContext;
 import tn.esprit.suivie_nawres.utils.UserRole;
 
@@ -131,39 +132,47 @@ public class AjouterRendezVousController {
         
         switch (pays) {
             case "Tunisie":
-                prefixe = "+216 ";
+                prefixe = "+216";
                 break;
             case "Maroc":
-                prefixe = "+212 ";
+                prefixe = "+212";
                 break;
             case "Algérie":
-                prefixe = "+213 ";
+                prefixe = "+213";
                 break;
             case "France":
-                prefixe = "+33 ";
+                prefixe = "+33";
                 break;
         }
         
         // Récupère le numéro actuel
         String numeroActuel = txtTelephone.getText().trim();
         
-        // Si le champ est vide ou commence déjà par un préfixe, remplace par le nouveau préfixe
-        if (numeroActuel.isEmpty() || numeroActuel.startsWith("+")) {
-            // Enlève l'ancien préfixe si présent
-            if (numeroActuel.startsWith("+")) {
-                // Trouve la position après le préfixe (après l'espace)
-                int indexEspace = numeroActuel.indexOf(" ");
-                if (indexEspace > 0 && indexEspace < numeroActuel.length() - 1) {
-                    numeroActuel = numeroActuel.substring(indexEspace + 1).trim();
-                } else {
-                    numeroActuel = "";
-                }
-            }
-            txtTelephone.setText(prefixe + numeroActuel);
+        // Si le champ est vide, ajoute juste le préfixe avec un espace
+        if (numeroActuel.isEmpty()) {
+            txtTelephone.setText(prefixe + " ");
+            txtTelephone.positionCaret(txtTelephone.getText().length()); // Place le curseur à la fin
+            return;
+        }
+        
+        // Si le numéro commence déjà par un préfixe (+), on le remplace
+        if (numeroActuel.startsWith("+")) {
+            // Trouve la position après le préfixe (après l'espace ou après les chiffres du préfixe)
+            String numeroSansPrefixe = numeroActuel;
+            
+            // Enlève l'ancien préfixe (tout ce qui est avant le premier chiffre qui n'est pas un préfixe)
+            // Exemple : "+216 26018082" → "26018082"
+            numeroSansPrefixe = numeroSansPrefixe.replaceFirst("^\\+\\d{1,3}\\s*", "");
+            
+            // Ajoute le nouveau préfixe
+            txtTelephone.setText(prefixe + " " + numeroSansPrefixe);
         } else {
             // Si le numéro ne commence pas par +, ajoute simplement le préfixe
-            txtTelephone.setText(prefixe + numeroActuel);
+            txtTelephone.setText(prefixe + " " + numeroActuel);
         }
+        
+        // Place le curseur à la fin
+        txtTelephone.positionCaret(txtTelephone.getText().length());
     }
 
     /**
@@ -225,7 +234,21 @@ public class AjouterRendezVousController {
                 // Mode CRÉATION : Ajoute un nouveau RDV
                 // ✅ L'ID est généré automatiquement et retourné
                 int idGenere = rendezVousService.ajouterRendezVous(rendezVous);
+                rendezVous.setUtilisateurId(idGenere); // Met à jour l'ID dans l'objet
                 afficherInfo("Rendez-vous ajoute avec succes ! ID genere : " + idGenere);
+                
+                // ========================================
+                // 📱 ENVOI DE SMS SI MÉDECIN CRÉE LE RDV
+                // ========================================
+                // Si c'est un médecin qui crée le RDV, envoie un SMS de confirmation au patient
+                if (RoleContext.getCurrentRole() == UserRole.MEDECIN) {
+                    boolean smsEnvoye = VonageSmsService.envoyerSmsConfirmationRendezVous(rendezVous);
+                    if (smsEnvoye) {
+                        afficherInfo("Rendez-vous ajoute avec succes ! SMS de confirmation envoye au patient.");
+                    } else {
+                        afficherInfo("Rendez-vous ajoute avec succes ! (SMS non envoye - verifiez la configuration)");
+                    }
+                }
             }
             
             // ========================================
@@ -396,6 +419,28 @@ public class AjouterRendezVousController {
         // ========================================
         if (txtTelephone.getText() == null || txtTelephone.getText().trim().isEmpty()) {
             return "Le champ Telephone est obligatoire.";
+        }
+        
+        // ========================================
+        // VALIDATION 12 : TÉLÉPHONE (format correct ?)
+        // ========================================
+        String telephone = txtTelephone.getText().trim();
+        
+        // Vérifie que le numéro commence par + (format international)
+        if (!telephone.startsWith("+")) {
+            return "Le numero de telephone doit commencer par + (format international). Selectionnez d'abord le pays.";
+        }
+        
+        // Vérifie que le numéro contient au moins 10 chiffres après le préfixe
+        String numeroSansEspaces = telephone.replaceAll("\\s+", "");
+        String chiffresSeuls = numeroSansEspaces.replaceAll("[^0-9]", "");
+        
+        if (chiffresSeuls.length() < 8) {
+            return "Le numero de telephone est trop court (minimum 8 chiffres).";
+        }
+        
+        if (chiffresSeuls.length() > 15) {
+            return "Le numero de telephone est trop long (maximum 15 chiffres).";
         }
         
         // ========================================
