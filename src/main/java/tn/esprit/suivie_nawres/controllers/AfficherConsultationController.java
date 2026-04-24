@@ -14,13 +14,17 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tn.esprit.suivie_nawres.models.Consultation;
+import tn.esprit.suivie_nawres.services.ConsultationPdfService;
 import tn.esprit.suivie_nawres.services.ConsultationService;
 import tn.esprit.suivie_nawres.utils.RoleContext;
 import tn.esprit.suivie_nawres.utils.UserRole;
 
+import java.io.File;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,8 +46,10 @@ public class AfficherConsultationController {
     @FXML private Label lblMessage;
     @FXML private Button btnSupprimer;
     @FXML private Button btnModifier;
+    @FXML private Button btnTelechargerPdf;
 
     private final ConsultationService consultationService = new ConsultationService();
+    private final ConsultationPdfService pdfService = new ConsultationPdfService();
     private final ObservableList<Consultation> sourceConsultations = FXCollections.observableArrayList();
     private FilteredList<Consultation> consultationsFiltrees;
 
@@ -135,6 +141,81 @@ public class AfficherConsultationController {
 
     public void rafraichirListe() {
         actualiser();
+    }
+
+    /**
+     * 📄 TÉLÉCHARGER LA CONSULTATION EN PDF
+     * =====================================
+     * Cette méthode permet de générer et télécharger un PDF de la consultation sélectionnée.
+     * 
+     * 🎯 FONCTIONNEMENT :
+     * 1. Vérifier qu'une consultation est sélectionnée
+     * 2. Ouvrir une fenêtre pour choisir où sauvegarder le PDF
+     * 3. Générer le PDF avec toutes les informations
+     * 4. Afficher un message de succès ou d'erreur
+     * 
+     * 💡 ANALOGIE :
+     * C'est comme "Enregistrer sous..." dans Word :
+     * - Tu choisis le nom du fichier
+     * - Tu choisis l'emplacement (Bureau, Documents, etc.)
+     * - Le fichier est créé automatiquement
+     */
+    @FXML
+    private void telechargerPdf() {
+        try {
+            // ✅ ÉTAPE 1 : Vérifier qu'une consultation est sélectionnée
+            Consultation selection = tableConsultation.getSelectionModel().getSelectedItem();
+            if (selection == null) {
+                afficherMessage("❌ Sélectionne une consultation pour générer le PDF.");
+                return;
+            }
+
+            // ✅ ÉTAPE 2 : Ouvrir la fenêtre de sélection de fichier
+            // FileChooser = Fenêtre Windows pour choisir où sauvegarder
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Enregistrer la consultation en PDF");
+            
+            // 📁 Définir le nom par défaut du fichier
+            // Format : "Consultation_NOM_PRENOM_DATE.pdf"
+            String nomFichier = String.format("Consultation_%s_%s_%s.pdf",
+                    selection.getNom() != null ? selection.getNom().replace(" ", "_") : "Patient",
+                    selection.getPrenom() != null ? selection.getPrenom().replace(" ", "_") : "",
+                    selection.getDateConsultation() != null 
+                            ? selection.getDateConsultation().format(DateTimeFormatter.ofPattern("ddMMyyyy"))
+                            : "SansDate");
+            fileChooser.setInitialFileName(nomFichier);
+            
+            // 🔧 Définir le filtre pour n'afficher que les fichiers PDF
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Fichiers PDF (*.pdf)", "*.pdf");
+            fileChooser.getExtensionFilters().add(extFilter);
+            
+            // 📂 Définir le dossier par défaut (Bureau de l'utilisateur)
+            String cheminBureau = System.getProperty("user.home") + "/Desktop";
+            File dossierBureau = new File(cheminBureau);
+            if (dossierBureau.exists()) {
+                fileChooser.setInitialDirectory(dossierBureau);
+            }
+
+            // 🪟 Afficher la fenêtre et attendre que l'utilisateur choisisse
+            File fichier = fileChooser.showSaveDialog(tableConsultation.getScene().getWindow());
+            
+            // ❌ Si l'utilisateur annule, on arrête
+            if (fichier == null) {
+                afficherMessage("⚠️ Téléchargement PDF annulé.");
+                return;
+            }
+
+            // ✅ ÉTAPE 3 : Générer le PDF
+            pdfService.genererPdfConsultation(selection, fichier.getAbsolutePath());
+            
+            // ✅ ÉTAPE 4 : Afficher le message de succès
+            afficherMessage("✅ PDF téléchargé avec succès : " + fichier.getName());
+            
+        } catch (Exception exception) {
+            // ❌ En cas d'erreur, afficher un message d'erreur
+            afficherMessage("❌ Erreur lors de la génération du PDF : " + exception.getMessage());
+            exception.printStackTrace(); // Afficher l'erreur dans la console pour le débogage
+        }
     }
 
     private void appliquerVisibiliteSelonRole() {

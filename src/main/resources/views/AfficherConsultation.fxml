@@ -48,6 +48,7 @@
             <HBox spacing="10">
                 <Button fx:id="btnModifier" text="Modifier" onAction="#modifier" styleClass="secondary-button"/>
                 <Button fx:id="btnSupprimer" text="Supprimer" onAction="#supprimer" styleClass="danger-button"/>
+                <Button fx:id="btnTelechargerPdf" text="📄 Télécharger PDF" onAction="#telechargerPdf" styleClass="primary-button"/>
             </HBox>
         </VBox>
     </bottom>

@@ -202,7 +202,7 @@ public class AjouterRendezVousController {
 
     private void fermerModale() {
         try {
-            javafx.stage.Stage stage = (javafx.stage.Stage) txtUtilisateurId.getScene().getWindow();
+            javafx.stage.Stage stage = (javafx.stage.Stage) txtNom.getScene().getWindow();
             stage.close();
             fermerApresEnregistrement = false;
         } catch (Exception e) {

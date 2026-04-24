@@ -148,9 +148,6 @@ public class RendezVousService {
         statement.setString(9, rendezVous.getPays());
         statement.setString(10, rendezVous.getTelephone());
     }
-        statement.setString(10, rendezVous.getPays());
-        statement.setString(11, rendezVous.getTelephone());
-    }
 
     private RendezVous mapRow(ResultSet resultSet) throws SQLException {
         RendezVous rendezVous = new RendezVous();
