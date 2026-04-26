@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import tn.esprit.suivie_nawres.models.Consultation;
 import tn.esprit.suivie_nawres.models.RendezVous;
 import tn.esprit.suivie_nawres.services.ConsultationService;
+import tn.esprit.suivie_nawres.services.NylasCalendarService;
 import tn.esprit.suivie_nawres.services.RendezVousService;
 
 import java.time.LocalDate;
@@ -50,6 +51,7 @@ public class CalendrierController {
 
     private final RendezVousService rendezVousService = new RendezVousService();
     private final ConsultationService consultationService = new ConsultationService();
+    private final NylasCalendarService nylasCalendarService = new NylasCalendarService();
     
     private YearMonth moisActuel;
     private LocalDate dateSelectionnee;
@@ -316,6 +318,7 @@ public class CalendrierController {
      * ➕ CRÉER UN NOUVEAU RENDEZ-VOUS
      * ===============================
      * Ouvre la fenêtre de création de rendez-vous
+     * ET synchronise avec Nylas Calendar
      */
     @FXML
     private void creerRendezVous() {
@@ -331,6 +334,9 @@ public class CalendrierController {
             
             // Actualiser après la création
             actualiser();
+            
+            // Synchroniser avec Nylas Calendar
+            synchroniserAvecNylas();
         } catch (Exception e) {
             System.err.println("Erreur ouverture fenêtre : " + e.getMessage());
         }
@@ -340,6 +346,7 @@ public class CalendrierController {
      * ➕ CRÉER UNE NOUVELLE CONSULTATION
      * ==================================
      * Ouvre la fenêtre de création de consultation
+     * ET synchronise avec Nylas Calendar
      */
     @FXML
     private void creerConsultation() {
@@ -355,8 +362,44 @@ public class CalendrierController {
             
             // Actualiser après la création
             actualiser();
+            
+            // Synchroniser avec Nylas Calendar
+            synchroniserAvecNylas();
         } catch (Exception e) {
             System.err.println("Erreur ouverture fenêtre : " + e.getMessage());
+        }
+    }
+
+    /**
+     * 🔄 SYNCHRONISER AVEC NYLAS CALENDAR
+     * ===================================
+     * Envoie tous les RDV et consultations vers Nylas Calendar
+     */
+    private void synchroniserAvecNylas() {
+        try {
+            System.out.println("🔄 Synchronisation avec Nylas Calendar...");
+            
+            // Synchroniser les rendez-vous
+            for (RendezVous rdv : tousLesRendezVous) {
+                try {
+                    nylasCalendarService.creerEvenementRendezVous(rdv);
+                } catch (Exception e) {
+                    System.err.println("Erreur sync RDV : " + e.getMessage());
+                }
+            }
+            
+            // Synchroniser les consultations
+            for (Consultation c : toutesLesConsultations) {
+                try {
+                    nylasCalendarService.creerEvenementConsultation(c);
+                } catch (Exception e) {
+                    System.err.println("Erreur sync consultation : " + e.getMessage());
+                }
+            }
+            
+            System.out.println("✓ Synchronisation terminée");
+        } catch (Exception e) {
+            System.err.println("Erreur synchronisation Nylas Calendar : " + e.getMessage());
         }
     }
 

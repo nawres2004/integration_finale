@@ -11,25 +11,29 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns="http://javafx.com/javafx/17.0.10" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="tn.esprit.suivie_nawres.controllers.AfficherConsultationModerneController"
+            fx:controller="tn.esprit.suivie_nawres.controllers.AfficherRendezVousModerneController"
             styleClass="card">
     <top>
         <VBox spacing="16">
             <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
             
             <!-- Titre -->
-            <Label text="🏥 Mes Consultations" styleClass="section-title"/>
+            <Label text="📅 Mes Rendez-vous" styleClass="section-title"/>
             
             <!-- Barre de recherche -->
             <HBox spacing="10" styleClass="search-bar">
                 <TextField fx:id="txtRechercheId" 
-                          promptText="🔍 Rechercher par nom, prénom, maladie..." 
+                          promptText="🔍 Rechercher par nom, prénom, notes..." 
                           styleClass="search-field-modern"
                           HBox.hgrow="ALWAYS"/>
+                <ComboBox fx:id="comboFiltreStatut" 
+                         promptText="Statut" 
+                         styleClass="filter-combo"
+                         prefWidth="150"/>
                 <ComboBox fx:id="comboFiltreMode" 
                          promptText="Mode" 
                          styleClass="filter-combo"
-                         prefWidth="180"/>
+                         prefWidth="170"/>
                 <Button text="🔍 Rechercher" 
                        onAction="#rechercher" 
                        styleClass="btn-search"/>
@@ -60,10 +64,7 @@
     <bottom>
         <VBox spacing="12" styleClass="content-area">
             <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Label fx:id="lblMessage" text="✓ Prêt." styleClass="status-message" HBox.hgrow="ALWAYS"/>
-                <Button text="✖ Fermer" onAction="#fermerFenetre" styleClass="btn-close"/>
-            </HBox>
+            <Label fx:id="lblMessage" text="✓ Prêt." styleClass="status-message"/>
         </VBox>
     </bottom>
 </BorderPane>

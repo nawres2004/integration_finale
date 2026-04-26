@@ -18,7 +18,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tn.esprit.suivie_nawres.models.Consultation;
-import tn.esprit.suivie_nawres.services.ConsultationPdfService;
+import tn.esprit.suivie_nawres.services.ConsultationApi2PdfService;
 import tn.esprit.suivie_nawres.services.ConsultationService;
 import tn.esprit.suivie_nawres.utils.RoleContext;
 import tn.esprit.suivie_nawres.utils.UserRole;
@@ -49,7 +49,7 @@ public class AfficherConsultationController {
     @FXML private Button btnTelechargerPdf;
 
     private final ConsultationService consultationService = new ConsultationService();
-    private final ConsultationPdfService pdfService = new ConsultationPdfService();
+    private final ConsultationApi2PdfService pdfService = new ConsultationApi2PdfService();
     private final ObservableList<Consultation> sourceConsultations = FXCollections.observableArrayList();
     private FilteredList<Consultation> consultationsFiltrees;
 

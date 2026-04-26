@@ -23,7 +23,7 @@ public class DashboardMedecinController {
 
     @FXML
     private void gererRendezVous() {
-        SceneManager.replaceContent(contentPane, "/views/AfficherRendezVous.fxml");
+        ouvrirModale("/views/AfficherRendezVous.fxml", "📅 Mes Rendez-vous", 1400, 850);
     }
 
     @FXML
@@ -38,7 +38,7 @@ public class DashboardMedecinController {
 
     @FXML
     private void gererConsultations() {
-        SceneManager.replaceContent(contentPane, "/views/AfficherConsultation.fxml");
+        ouvrirModale("/views/AfficherConsultation.fxml", "🏥 Mes Consultations", 1400, 850);
     }
 
     @FXML
@@ -62,11 +62,10 @@ public class DashboardMedecinController {
             Scene scene = new Scene(loader.load(), width, height);
             scene.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
             Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initModality(Modality.NONE); // Permet de fermer la fenêtre librement
             stage.setTitle(titre);
             stage.setScene(scene);
-            stage.showAndWait();
-            gererRendezVous();
+            stage.show(); // show() au lieu de showAndWait() pour ne pas bloquer
         } catch (Exception exception) {
             throw new IllegalStateException("Impossible d'ouvrir la fenetre : " + fxmlPath, exception);
         }

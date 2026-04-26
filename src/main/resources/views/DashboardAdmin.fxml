@@ -19,6 +19,7 @@
             <Label text="Dashboard Admin" styleClass="app-subtitle"/>
             <Button text="Voir rendez-vous" onAction="#afficherRendezVous" maxWidth="1.7976931348623157E308" styleClass="primary-button"/>
             <Button text="Voir consultations" onAction="#afficherConsultations" maxWidth="1.7976931348623157E308" styleClass="secondary-button"/>
+            <Button text="📊 Statistiques" onAction="#afficherStatistiques" maxWidth="1.7976931348623157E308" styleClass="primary-button"/>
         </VBox>
     </left>
     <top>

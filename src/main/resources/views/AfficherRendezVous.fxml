@@ -1,57 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns="http://javafx.com/javafx/17.0.10" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="tn.esprit.suivie_nawres.controllers.AfficherRendezVousController"
+            fx:controller="tn.esprit.suivie_nawres.controllers.AfficherRendezVousModerneController"
             styleClass="card">
     <top>
-        <VBox spacing="12">
-            <Label text="Rendez-vous" styleClass="section-title"/>
-            <HBox spacing="8">
-                <TextField fx:id="txtRechercheId" promptText="Rechercher (nom, prenom, notes...)" HBox.hgrow="ALWAYS"/>
-                <ComboBox fx:id="comboFiltreStatut" promptText="Statut" prefWidth="150"/>
-                <ComboBox fx:id="comboFiltreMode" promptText="Mode" prefWidth="170"/>
-                <Button text="Rechercher" onAction="#rechercher" styleClass="secondary-button"/>
-                <Button text="Reset" onAction="#reinitialiserFiltres" styleClass="secondary-button"/>
-                <Button text="Actualiser" onAction="#actualiser" styleClass="primary-button"/>
+        <VBox spacing="16">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            
+            <!-- Titre -->
+            <Label text="📅 Mes Rendez-vous" styleClass="section-title"/>
+            
+            <!-- Barre de recherche -->
+            <HBox spacing="10" styleClass="search-bar">
+                <TextField fx:id="txtRechercheId" 
+                          promptText="🔍 Rechercher par nom, prénom, notes..." 
+                          styleClass="search-field-modern"
+                          HBox.hgrow="ALWAYS"/>
+                <ComboBox fx:id="comboFiltreStatut" 
+                         promptText="Statut" 
+                         styleClass="filter-combo"
+                         prefWidth="150"/>
+                <ComboBox fx:id="comboFiltreMode" 
+                         promptText="Mode" 
+                         styleClass="filter-combo"
+                         prefWidth="170"/>
+                <Button text="🔍 Rechercher" 
+                       onAction="#rechercher" 
+                       styleClass="btn-search"/>
+                <Button text="↻ Reset" 
+                       onAction="#reinitialiserFiltres" 
+                       styleClass="btn-reset"/>
+                <Button text="⟳ Actualiser" 
+                       onAction="#actualiser" 
+                       styleClass="btn-refresh"/>
             </HBox>
         </VBox>
     </top>
+    
     <center>
-        <TableView fx:id="tableRendezVous" prefHeight="560">
-            <columns>
-                <TableColumn fx:id="colNom" text="Nom" prefWidth="120"/>
-                <TableColumn fx:id="colPrenom" text="Prenom" prefWidth="120"/>
-                <TableColumn fx:id="colDate" text="Date" prefWidth="110"/>
-                <TableColumn fx:id="colHeure" text="Heure" prefWidth="90"/>
-                <TableColumn fx:id="colPriorite" text="Priorité" prefWidth="100"/>
-                <TableColumn fx:id="colMode" text="Mode" prefWidth="130"/>
-                <TableColumn fx:id="colStatut" text="Statut" prefWidth="120"/>
-                <TableColumn fx:id="colNotes" text="Notes" prefWidth="160"/>
-                <TableColumn fx:id="colPays" text="Pays" prefWidth="100"/>
-                <TableColumn fx:id="colTelephone" text="Téléphone" prefWidth="120"/>
-            </columns>
-        </TableView>
+        <!-- ScrollPane pour les cartes -->
+        <ScrollPane fx:id="scrollPane" 
+                   styleClass="cards-scroll" 
+                   fitToWidth="true"
+                   hbarPolicy="NEVER">
+            <VBox fx:id="cardsContainer" 
+                 styleClass="cards-container" 
+                 spacing="16">
+                <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            </VBox>
+        </ScrollPane>
     </center>
+    
     <bottom>
-        <VBox spacing="10" styleClass="content-area">
-            <Label fx:id="lblMessage" text="Prêt." styleClass="info-label"/>
-            <HBox spacing="10">
-                <Button fx:id="btnModifier" text="Modifier" onAction="#modifier" styleClass="secondary-button"/>
-                <Button fx:id="btnSupprimer" text="Supprimer" onAction="#supprimer" styleClass="danger-button"/>
-                <Button fx:id="btnAccepter" text="Accepter" onAction="#accepter" styleClass="primary-button"/>
-                <Button fx:id="btnRefuser" text="Refuser" onAction="#refuser" styleClass="secondary-button"/>
+        <VBox spacing="12" styleClass="content-area">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="lblMessage" text="✓ Prêt." styleClass="status-message" HBox.hgrow="ALWAYS"/>
+                <Button text="✖ Fermer" onAction="#fermerFenetre" styleClass="btn-close"/>
             </HBox>
         </VBox>
     </bottom>
 </BorderPane>
-

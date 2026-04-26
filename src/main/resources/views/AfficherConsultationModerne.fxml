@@ -60,10 +60,7 @@
     <bottom>
         <VBox spacing="12" styleClass="content-area">
             <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Label fx:id="lblMessage" text="✓ Prêt." styleClass="status-message" HBox.hgrow="ALWAYS"/>
-                <Button text="✖ Fermer" onAction="#fermerFenetre" styleClass="btn-close"/>
-            </HBox>
+            <Label fx:id="lblMessage" text="✓ Prêt." styleClass="status-message"/>
         </VBox>
     </bottom>
 </BorderPane>

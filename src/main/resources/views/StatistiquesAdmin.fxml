@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="tn.esprit.suivie_nawres.controllers.StatistiquesAdminController"
+            stylesheets="@../css/app.css"
+            styleClass="root"
+            prefWidth="1400" prefHeight="900">
+
+    <!-- En-tête avec le même style que le reste -->
+    <top>
+        <VBox styleClass="stats-header-consistent">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="📊 Statistiques Médicales" styleClass="section-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="🔄 Actualiser" onAction="#actualiser" styleClass="primary-button"/>
+                <Button text="✖ Fermer" onAction="#fermer" styleClass="secondary-button"/>
+            </HBox>
+            
+            <!-- Filtres -->
+            <HBox spacing="15" alignment="CENTER_LEFT" styleClass="stats-filters">
+                <Label text="Période :" styleClass="info-label"/>
+                <ComboBox fx:id="comboPeriode" promptText="Sélectionner" prefWidth="180" styleClass="combo-box"/>
+                
+                <Label text="Année :" styleClass="info-label"/>
+                <ComboBox fx:id="comboAnnee" promptText="Année" prefWidth="140" styleClass="combo-box"/>
+                
+                <Label text="Comparaison :" styleClass="info-label"/>
+                <ComboBox fx:id="comboComparaison" promptText="Comparer avec..." prefWidth="180" styleClass="combo-box"/>
+                
+                <Button text="Appliquer" onAction="#appliquerFiltres" styleClass="primary-button"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Contenu principal -->
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="stats-scroll-consistent" hbarPolicy="NEVER">
+            <VBox spacing="20" styleClass="stats-container-consistent">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
+                <!-- KPI Cards - 4 cartes -->
+                <GridPane hgap="20" vgap="20" styleClass="kpi-grid-consistent">
+                    <!-- Card 1: Patients -->
+                    <VBox styleClass="kpi-card-consistent kpi-card-blue" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <VBox styleClass="kpi-icon-box kpi-icon-blue-bg">
+                                <Label text="👥" styleClass="kpi-icon-emoji"/>
+                            </VBox>
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="TOTAL PATIENTS" styleClass="kpi-label-consistent"/>
+                                <Label fx:id="lblTotalPatients" text="0" styleClass="kpi-value-consistent"/>
+                                <Label fx:id="lblEvolutionPatients" text="↗ +12.5%" styleClass="kpi-evolution-consistent kpi-evolution-up"/>
+                            </VBox>
+                        </HBox>
+                        <ProgressBar fx:id="progressPatients" progress="0.75" styleClass="kpi-progress-consistent kpi-progress-blue"/>
+                    </VBox>
+                    
+                    <!-- Card 2: Rendez-vous -->
+                    <VBox styleClass="kpi-card-consistent kpi-card-green" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <VBox styleClass="kpi-icon-box kpi-icon-green-bg">
+                                <Label text="📅" styleClass="kpi-icon-emoji"/>
+                            </VBox>
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="RENDEZ-VOUS" styleClass="kpi-label-consistent"/>
+                                <Label fx:id="lblTotalRdv" text="0" styleClass="kpi-value-consistent"/>
+                                <Label fx:id="lblEvolutionRdv" text="↗ +8.3%" styleClass="kpi-evolution-consistent kpi-evolution-up"/>
+                            </VBox>
+                        </HBox>
+                        <ProgressBar fx:id="progressRdv" progress="0.65" styleClass="kpi-progress-consistent kpi-progress-green"/>
+                    </VBox>
+                    
+                    <!-- Card 3: Consultations -->
+                    <VBox styleClass="kpi-card-consistent kpi-card-orange" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <VBox styleClass="kpi-icon-box kpi-icon-orange-bg">
+                                <Label text="🩺" styleClass="kpi-icon-emoji"/>
+                            </VBox>
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="CONSULTATIONS" styleClass="kpi-label-consistent"/>
+                                <Label fx:id="lblTotalConsultations" text="0" styleClass="kpi-value-consistent"/>
+                                <Label fx:id="lblEvolutionConsultations" text="↗ +15.7%" styleClass="kpi-evolution-consistent kpi-evolution-up"/>
+                            </VBox>
+                        </HBox>
+                        <ProgressBar fx:id="progressConsultations" progress="0.85" styleClass="kpi-progress-consistent kpi-progress-orange"/>
+                    </VBox>
+                    
+                    <!-- Card 4: Revenus -->
+                    <VBox styleClass="kpi-card-consistent kpi-card-purple" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <VBox styleClass="kpi-icon-box kpi-icon-purple-bg">
+                                <Label text="💰" styleClass="kpi-icon-emoji"/>
+                            </VBox>
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="REVENUS TOTAUX" styleClass="kpi-label-consistent"/>
+                                <Label fx:id="lblTotalRevenus" text="0 TND" styleClass="kpi-value-consistent"/>
+                                <Label fx:id="lblEvolutionRevenus" text="↗ +18.2%" styleClass="kpi-evolution-consistent kpi-evolution-up"/>
+                            </VBox>
+                        </HBox>
+                        <ProgressBar fx:id="progressRevenus" progress="0.92" styleClass="kpi-progress-consistent kpi-progress-purple"/>
+                    </VBox>
+                </GridPane>
+
+                <!-- Graphiques - 2 colonnes -->
+                <GridPane hgap="20" vgap="20" styleClass="charts-grid-consistent">
+                    
+                    <!-- Graphique 1: Évolution temporelle (large) -->
+                    <VBox styleClass="chart-card-consistent" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
+                        <Label text="📈 Évolution Mensuelle" styleClass="chart-title-consistent"/>
+                        <LineChart fx:id="lineChartEvolution" legendVisible="true" 
+                                   styleClass="line-chart-consistent" VBox.vgrow="ALWAYS" animated="true">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM" styleClass="axis-consistent"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT" styleClass="axis-consistent"/>
+                            </yAxis>
+                        </LineChart>
+                    </VBox>
+                    
+                    <!-- Graphique 2: Statuts RDV -->
+                    <VBox styleClass="chart-card-consistent" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Label text="🎯 Statuts des Rendez-vous" styleClass="chart-title-consistent"/>
+                        <StackPane VBox.vgrow="ALWAYS">
+                            <PieChart fx:id="pieChartStatuts" legendVisible="true" legendSide="RIGHT"
+                                      styleClass="pie-chart-consistent" animated="true"/>
+                            <VBox alignment="CENTER" styleClass="donut-center-consistent">
+                                <Label fx:id="lblTotalRdvDonut" text="0" styleClass="donut-value-consistent"/>
+                                <Label text="Total RDV" styleClass="donut-label-consistent"/>
+                            </VBox>
+                        </StackPane>
+                    </VBox>
+                    
+                    <!-- Graphique 3: Modes de consultation -->
+                    <VBox styleClass="chart-card-consistent" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label text="💻 Modes de Consultation" styleClass="chart-title-consistent"/>
+                        <BarChart fx:id="barChartModes" legendVisible="false" 
+                                  styleClass="bar-chart-consistent" VBox.vgrow="ALWAYS" animated="true">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM" styleClass="axis-consistent"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT" styleClass="axis-consistent"/>
+                            </yAxis>
+                        </BarChart>
+                    </VBox>
+                    
+                    <!-- Graphique 4: Revenus -->
+                    <VBox styleClass="chart-card-consistent" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label text="💰 Revenus Mensuels" styleClass="chart-title-consistent"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="lblRevenuMoyen" text="Moy: 0 TND" styleClass="chart-subtitle-consistent"/>
+                        </HBox>
+                        <AreaChart fx:id="areaChartRevenus" legendVisible="false" 
+                                   styleClass="area-chart-consistent" VBox.vgrow="ALWAYS" animated="true">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM" styleClass="axis-consistent"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT" styleClass="axis-consistent"/>
+                            </yAxis>
+                        </AreaChart>
+                    </VBox>
+                    
+                    <!-- Graphique 5: Distribution par jour -->
+                    <VBox styleClass="chart-card-consistent" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label text="📊 Distribution Hebdomadaire" styleClass="chart-title-consistent"/>
+                        <BarChart fx:id="barChartJours" legendVisible="false" 
+                                  styleClass="bar-chart-consistent" VBox.vgrow="ALWAYS" animated="true">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM" styleClass="axis-consistent"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT" styleClass="axis-consistent"/>
+                            </yAxis>
+                        </BarChart>
+                    </VBox>
+                    
+                    <!-- Graphique 6: Scatter Chart -->
+                    <VBox styleClass="chart-card-consistent" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                        <Label text="🔵 Analyse Coût / Durée" styleClass="chart-title-consistent"/>
+                        <ScatterChart fx:id="scatterChartCoutDuree" legendVisible="false" 
+                                      styleClass="scatter-chart-consistent" VBox.vgrow="ALWAYS" animated="true">
+                            <xAxis>
+                                <NumberAxis side="BOTTOM" label="Durée (min)" styleClass="axis-consistent"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT" label="Coût (TND)" styleClass="axis-consistent"/>
+                            </yAxis>
+                        </ScatterChart>
+                    </VBox>
+                    
+                    <!-- Graphique 7: Top maladies -->
+                    <VBox styleClass="chart-card-consistent" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Label text="🦠 Top 10 Pathologies" styleClass="chart-title-consistent"/>
+                        <BarChart fx:id="barChartMaladies" legendVisible="false" 
+                                  styleClass="bar-chart-consistent" VBox.vgrow="ALWAYS" animated="true">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM" styleClass="axis-consistent"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT" styleClass="axis-consistent"/>
+                            </yAxis>
+                        </BarChart>
+                    </VBox>
+                    
+                </GridPane>
+
+                <!-- Section insights -->
+                <VBox spacing="15" styleClass="insights-section-consistent">
+                    <Label text="💡 Insights et Recommandations" styleClass="section-title"/>
+                    <GridPane hgap="15" vgap="15">
+                        <VBox styleClass="insight-card-consistent insight-success" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                            <Label text="✅ POINT FORT" styleClass="insight-title-consistent"/>
+                            <Label fx:id="lblInsight1" text="Taux d'acceptation des RDV: 85%" wrapText="true" styleClass="insight-text-consistent"/>
+                        </VBox>
+                        <VBox styleClass="insight-card-consistent insight-warning" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                            <Label text="⚠️ ATTENTION" styleClass="insight-title-consistent"/>
+                            <Label fx:id="lblInsight2" text="Lundi surchargé: +40% vs moyenne" wrapText="true" styleClass="insight-text-consistent"/>
+                        </VBox>
+                        <VBox styleClass="insight-card-consistent insight-info" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                            <Label text="📊 TENDANCE" styleClass="insight-title-consistent"/>
+                            <Label fx:id="lblInsight3" text="Téléconsultations en hausse: +25%" wrapText="true" styleClass="insight-text-consistent"/>
+                        </VBox>
+                        <VBox styleClass="insight-card-consistent insight-primary" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                            <Label text="💡 CONSEIL" styleClass="insight-title-consistent"/>
+                            <Label fx:id="lblInsight4" text="Optimiser les créneaux du mardi" wrapText="true" styleClass="insight-text-consistent"/>
+                        </VBox>
+                    </GridPane>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>
