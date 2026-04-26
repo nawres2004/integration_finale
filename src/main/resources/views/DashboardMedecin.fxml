@@ -18,6 +18,7 @@
             <padding><Insets top="14" right="22" bottom="14" left="22"/></padding>
             <Label text="Dashboard Médecin" styleClass="dashboard-medecin-top-title"/>
             <Region HBox.hgrow="ALWAYS"/>
+            <Button text="🔔 Test Notification" onAction="#testerNotification" styleClass="dashboard-top-return"/>
             <Button text="Changer le role" onAction="#retourChoixRole" styleClass="dashboard-top-return"/>
         </HBox>
     </top>
