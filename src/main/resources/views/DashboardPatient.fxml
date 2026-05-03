@@ -34,6 +34,7 @@
                     <HBox alignment="CENTER_RIGHT" spacing="14">
                         <Button onAction="#retourChoixRole" styleClass="patient-top-return" text="Retour roles" />
                         <Button onAction="#voirMesRendezVous" styleClass="patient-top-return" text="Mes Rendez-Vous" />
+                        <Button onAction="#ouvrirChatbot" styleClass="patient-top-action" text="🤖 Assistant Médical" />
                         <Button onAction="#demanderRendezVous" styleClass="patient-top-action" text="Reserver un Rendez-Vous" />
                     </HBox>
 

@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import tn.esprit.suivie_nawres.utils.ChatbotLauncher;
 import tn.esprit.suivie_nawres.utils.RoleContext;
 import tn.esprit.suivie_nawres.utils.UserRole;
 
@@ -31,6 +32,15 @@ public class DashboardPatientController {
         ouvrirFenetreModale("/views/AfficherRendezVous.fxml", "VitaPlus Medical - Mes rendez-vous", 1280, 780);
     }
 
+    /**
+     * 🤖 OUVRE LE CHATBOT MÉDICAL
+     * ===========================
+     * Permet au patient de poser des questions à l'assistant médical IA
+     */
+    @FXML
+    private void ouvrirChatbot() {
+        ChatbotLauncher.ouvrir();
+    }
 
     @FXML
     private void retourChoixRole() {

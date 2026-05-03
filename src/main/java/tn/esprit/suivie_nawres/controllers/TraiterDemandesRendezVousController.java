@@ -124,8 +124,16 @@ public class TraiterDemandesRendezVousController {
 
     private void accepterDemande(RendezVous rendezVous) {
         try {
+            System.out.println("=== 🔍 DÉBUT ACCEPTATION RDV ===");
+            System.out.println("ID : " + rendezVous.getUtilisateurId());
+            System.out.println("Patient : " + rendezVous.getNom() + " " + rendezVous.getPrenom());
+            System.out.println("Téléphone : " + rendezVous.getTelephone());
+            System.out.println("Date : " + rendezVous.getDateRendezVous());
+            System.out.println("Heure : " + rendezVous.getHeureRendezVous());
+            
             // Change le statut à ACCEPTE
             rendezVousService.changerStatutRendezVous(rendezVous.getUtilisateurId(), StatutRendezVous.ACCEPTE);
+            System.out.println("✅ Statut changé à ACCEPTE dans la base de données");
             
             // Met à jour le statut dans l'objet pour l'envoi du SMS
             rendezVous.setStatutRendezVous(StatutRendezVous.ACCEPTE);
@@ -133,16 +141,21 @@ public class TraiterDemandesRendezVousController {
             // ========================================
             // 📱 ENVOI DE SMS D'ACCEPTATION AU PATIENT
             // ========================================
+            System.out.println("📱 Tentative d'envoi de SMS...");
             boolean smsEnvoye = VonageSmsService.envoyerSmsAcceptationRendezVous(rendezVous);
+            System.out.println("Résultat envoi SMS : " + (smsEnvoye ? "✅ SUCCÈS" : "❌ ÉCHEC"));
             
             if (smsEnvoye) {
-                afficherMessage("Demande acceptee. SMS envoye au patient.");
+                afficherMessage("✅ Demande acceptee. SMS envoye au patient.");
             } else {
-                afficherMessage("Demande acceptee. (SMS non envoye - verifiez la configuration)");
+                afficherMessage("⚠️ Demande acceptee. (SMS non envoye - verifiez la configuration)");
             }
             
+            System.out.println("=== 🔍 FIN ACCEPTATION RDV ===\n");
             actualiser();
         } catch (Exception exception) {
+            System.err.println("❌ ERREUR lors de l'acceptation : " + exception.getMessage());
+            exception.printStackTrace();
             afficherMessage("Erreur lors de l'acceptation.");
         }
     }

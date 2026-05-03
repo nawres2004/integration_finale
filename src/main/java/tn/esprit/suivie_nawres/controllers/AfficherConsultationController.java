@@ -117,25 +117,43 @@ public class AfficherConsultationController {
     @FXML
     private void modifier() {
         try {
+            System.out.println("🔧 Bouton Modifier cliqué");
+            
             Consultation selection = tableConsultation.getSelectionModel().getSelectedItem();
             if (selection == null) {
-                afficherMessage("Sélectionne une consultation.");
+                afficherMessage("❌ Sélectionne une consultation.");
+                System.out.println("❌ Aucune consultation sélectionnée");
                 return;
             }
 
+            System.out.println("✅ Consultation sélectionnée : ID=" + selection.getUtilisateurId() + 
+                             ", Nom=" + selection.getNom() + " " + selection.getPrenom());
+
             AjouterConsultationController.setConsultationAEditer(selection);
             AjouterConsultationController.setParentConsultationController(this);
+            
+            System.out.println("📂 Chargement du fichier FXML...");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AjouterConsultation.fxml"));
+            
+            System.out.println("🎨 Création de la scène...");
             Scene scene = new Scene(loader.load(), 900, 760);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/app.css")).toExternalForm());
+            
+            System.out.println("🪟 Création de la fenêtre modale...");
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Modifier Consultation");
             stage.setScene(scene);
+            
+            System.out.println("✅ Affichage de la fenêtre de modification...");
             stage.showAndWait();
+            
+            System.out.println("🔄 Actualisation de la liste après modification");
             actualiser();
         } catch (Exception exception) {
-            afficherMessage("Impossible d'ouvrir la modification.");
+            System.err.println("❌ ERREUR lors de l'ouverture de la modification :");
+            exception.printStackTrace();
+            afficherMessage("❌ Impossible d'ouvrir la modification : " + exception.getMessage());
         }
     }
 

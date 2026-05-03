@@ -247,8 +247,39 @@ public class AfficherConsultationModerneController {
     }
     
     private void modifierConsultation(Consultation consultation) {
-        // TODO: Implémenter la modification
-        afficherMessage("✏ Modification de la consultation...");
+        try {
+            System.out.println("🔧 Modification de la consultation : ID=" + consultation.getUtilisateurId());
+            
+            // Préparer les données pour le contrôleur d'édition
+            AjouterConsultationController.setConsultationAEditer(consultation);
+            
+            // Charger la fenêtre de modification
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
+                getClass().getResource("/views/AjouterConsultation.fxml")
+            );
+            
+            javafx.scene.Scene scene = new javafx.scene.Scene(loader.load(), 900, 760);
+            scene.getStylesheets().add(
+                java.util.Objects.requireNonNull(getClass().getResource("/css/app.css")).toExternalForm()
+            );
+            
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            stage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            stage.setTitle("✏ Modifier Consultation");
+            stage.setScene(scene);
+            
+            System.out.println("✅ Ouverture de la fenêtre de modification...");
+            stage.showAndWait();
+            
+            // Actualiser la liste après modification
+            System.out.println("🔄 Actualisation de la liste...");
+            actualiser();
+            
+        } catch (Exception e) {
+            System.err.println("❌ ERREUR lors de la modification :");
+            e.printStackTrace();
+            afficherMessageErreur("❌ Impossible d'ouvrir la modification : " + e.getMessage());
+        }
     }
     
     private void supprimerConsultation(Consultation consultation) {
