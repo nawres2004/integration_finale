@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="750.0" prefWidth="1200.0"
+            stylesheets="@../dashboard.css"
+            style="-fx-background-color:#F1F5F9;"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.controllers.frontoffice.AjouterDonController">
+
+    <!-- TOPBAR -->
+    <top>
+        <HBox styleClass="topbar" spacing="16" alignment="CENTER_LEFT">
+            <Label text="🏥 Vita+" styleClass="logo"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="topUserLabel" text="💰 Donateur" styleClass="user-name"/>
+            <Button text="🚪 Déconnexion" styleClass="logout-btn" onAction="#goToFrontProjets"/>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox>
+            <!-- SIDEBAR -->
+            <VBox styleClass="sidebar" spacing="4" VBox.vgrow="ALWAYS">
+                <Label text="🏥 Vita+" styleClass="sidebar-logo"/>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="🏠" styleClass="nav-icon"/>
+                    <Label text="Accueil" styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="🩺" styleClass="nav-icon"/>
+                    <Label text="Suivi Médical" styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="💊" styleClass="nav-icon"/>
+                    <Label text="Ordonnances et Mé..." styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="📝" styleClass="nav-icon"/>
+                    <Label text="Blog et Informations" styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="🥗" styleClass="nav-icon"/>
+                    <Label text="Régime Médical" styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item nav-item-active" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="💰" styleClass="nav-icon"/>
+                    <Label text="Donateurs" styleClass="nav-text"/>
+                </HBox>
+                <Region VBox.vgrow="ALWAYS"/>
+                <HBox styleClass="nav-item logout-item" spacing="14" alignment="CENTER_LEFT"
+                      onMouseClicked="#goToFrontProjets" style="-fx-cursor: hand;">
+                    <Label text="🚪" styleClass="nav-icon"/>
+                    <Label text="Déconnexion" styleClass="nav-text"/>
+                </HBox>
+            </VBox>
+
+            <!-- CONTENU -->
+            <VBox styleClass="main-content" spacing="16" HBox.hgrow="ALWAYS">
+
+                <!-- Titre carte -->
+                <VBox styleClass="content-card" spacing="4">
+                    <Label text="Faire un don" styleClass="page-title"/>
+                    <Label fx:id="lblProjet" text="Projet : ..."
+                           style="-fx-font-size:13px; -fx-text-fill:#1a73e8; -fx-font-weight:bold;"/>
+                </VBox>
+
+                <!-- Formulaire carte -->
+                <VBox styleClass="content-card" spacing="14">
+
+                    <HBox spacing="16">
+                        <VBox spacing="4" HBox.hgrow="ALWAYS">
+                            <Label text="Nom" style="-fx-font-size:12px; -fx-text-fill:#555;"/>
+                            <TextField fx:id="tfNom" promptText="Votre nom"
+                                       style="-fx-background-radius:8; -fx-border-radius:8; -fx-border-color:#ddd;
+                                              -fx-padding:8; -fx-background-color:white;"/>
+                        </VBox>
+                        <VBox spacing="4" HBox.hgrow="ALWAYS">
+                            <Label text="Prenom" style="-fx-font-size:12px; -fx-text-fill:#555;"/>
+                            <TextField fx:id="tfPrenom" promptText="Votre prenom"
+                                       style="-fx-background-radius:8; -fx-border-radius:8; -fx-border-color:#ddd;
+                                              -fx-padding:8; -fx-background-color:white;"/>
+                        </VBox>
+                    </HBox>
+
+                    <VBox spacing="4">
+                        <Label text="Email" style="-fx-font-size:12px; -fx-text-fill:#555;"/>
+                        <TextField fx:id="tfEmail" promptText="exemple@mail.com"
+                                   style="-fx-background-radius:8; -fx-border-radius:8; -fx-border-color:#ddd;
+                                          -fx-padding:8; -fx-background-color:white;"/>
+                    </VBox>
+
+                    <HBox spacing="16">
+                        <VBox spacing="4" HBox.hgrow="ALWAYS">
+                            <Label text="Montant (DT)" style="-fx-font-size:12px; -fx-text-fill:#555;"/>
+                            <TextField fx:id="tfMontant" promptText="Ex: 50"
+                                       style="-fx-background-radius:8; -fx-border-radius:8; -fx-border-color:#ddd;
+                                              -fx-padding:8; -fx-background-color:white;"/>
+                        </VBox>
+                        <VBox spacing="4" HBox.hgrow="ALWAYS">
+                            <Label text="Mode de paiement" style="-fx-font-size:12px; -fx-text-fill:#555;"/>
+                            <ComboBox fx:id="cbMode" prefWidth="999"
+                                      style="-fx-background-radius:8; -fx-border-radius:8; -fx-background-color:white;"/>
+                        </VBox>
+                    </HBox>
+
+                    <VBox spacing="4">
+                        <Label text="Message (optionnel)" style="-fx-font-size:12px; -fx-text-fill:#555;"/>
+                        <TextField fx:id="tfMessage" promptText="Un petit message..."
+                                   style="-fx-background-radius:8; -fx-border-radius:8; -fx-border-color:#ddd;
+                                          -fx-padding:8; -fx-background-color:white;"/>
+                    </VBox>
+
+                    <HBox spacing="12" style="-fx-padding:8 0 0 0;">
+                        <Button text="Retour" styleClass="btn-secondary"
+                                prefWidth="120" onAction="#goToFrontProjets"/>
+                        <Button text="Valider le don" styleClass="btn-primary"
+                                prefWidth="160" onAction="#ajouterDon"/>
+                        <Button fx:id="btnVerifier"
+                                text="✅ Confirmer paiement Stripe"
+                                visible="false" managed="false"
+                                style="-fx-background-color:#635bff; -fx-text-fill:white; -fx-font-weight:bold;
+                                       -fx-background-radius:20; -fx-cursor:hand; -fx-padding:8 16 8 16;"
+                                onAction="#verifierPaiementStripe"/>
+                        <Button fx:id="btnRecu"
+                                text="📄 Télécharger mon reçu"
+                                visible="false" managed="false"
+                                style="-fx-background-color:#16a34a; -fx-text-fill:white; -fx-font-weight:bold;
+                                       -fx-background-radius:20; -fx-cursor:hand; -fx-padding:8 16 8 16;"
+                                onAction="#telechargerRecu"/>
+                    </HBox>
+
+                </VBox>
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>

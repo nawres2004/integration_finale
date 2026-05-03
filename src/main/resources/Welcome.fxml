@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" spacing="50.0" style="-fx-background-color: linear-gradient(to bottom right, #f8fafc, #eff6ff, #f5f3ff);" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.WelcomeController">
+    <padding>
+        <Insets bottom="60.0" left="60.0" right="60.0" top="60.0" />
+    </padding>
+    
+    <children>
+        <!-- HEADER SECTION -->
+        <VBox alignment="CENTER" maxWidth="1100" spacing="15.0">
+            <children>
+                <Label text="Ordonnances &amp; Médicaments" textFill="#1e293b">
+                    <font>
+                        <Font name="System Bold" size="56.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        
+        <!-- CARDS SECTION -->
+        <HBox alignment="CENTER" spacing="50.0">
+            <children>
+                <!-- ORDONNANCES CARD -->
+                <VBox fx:id="cardOrdonnances" alignment="CENTER" onMouseClicked="#goToOrdonnances" prefHeight="400.0" prefWidth="400.0" spacing="25.0" style="-fx-cursor: hand;" styleClass="card">
+                    <children>
+                        <Label style="-fx-font-size: 90; -fx-effect: dropshadow(three-pass-box, rgba(56, 189, 248, 0.3), 10, 0, 0, 0);" text="📋" textFill="#38bdf8" />
+                        <Label text="Mes Ordonnances" textFill="#0ea5e9">
+                            <font>
+                                <Font name="System Bold" size="32.0" />
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" text="Accédez à toutes vos ordonnances, créez-en de nouvelles et gérez vos prescriptions." textAlignment="CENTER" textFill="#64748b" wrapText="true">
+                            <font>
+                                <Font size="17.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets bottom="45.0" left="40.0" right="40.0" top="45.0" />
+                    </padding>
+                </VBox>
+                
+                <!-- MEDICAMENTS CARD -->
+                <VBox fx:id="cardMedicaments" alignment="CENTER" onMouseClicked="#goToMedicaments" prefHeight="400.0" prefWidth="400.0" spacing="25.0" style="-fx-cursor: hand;" styleClass="card">
+                    <children>
+                        <Label style="-fx-font-size: 90; -fx-effect: dropshadow(three-pass-box, rgba(168, 85, 247, 0.3), 10, 0, 0, 0);" text="💊" textFill="#a855f7" />
+                        <Label text="Mes Médicaments" textFill="#8b5cf6">
+                            <font>
+                                <Font name="System Bold" size="32.0" />
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" text="Consultez vos médicaments, ajoutez de nouveaux traitements et suivez vos prises." textAlignment="CENTER" textFill="#64748b" wrapText="true">
+                            <font>
+                                <Font size="17.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets bottom="45.0" left="40.0" right="40.0" top="45.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</VBox>

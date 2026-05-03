@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.web.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="tn.esprit.controllers.MedecinLocationController"
+            prefWidth="900" prefHeight="600"
+            stylesheets="@dashboard.css">
+
+    <top>
+        <HBox styleClass="topbar" spacing="16" alignment="CENTER_LEFT">
+            <Label text="📍 Ma Localisation" styleClass="logo"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="coordLabel" text="Cliquez sur la carte pour définir votre cabinet"
+                   style="-fx-text-fill: rgba(255,255,255,0.8); -fx-font-size: 13px;"/>
+            <Button text="💾 Sauvegarder" fx:id="saveBtn" onAction="#saveLocation"
+                    style="-fx-background-color: #22C55E; -fx-text-fill: white;
+                           -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 6 14 6 14;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox>
+            <WebView fx:id="mapView" HBox.hgrow="ALWAYS" prefHeight="560"/>
+
+            <VBox prefWidth="260" spacing="12"
+                  style="-fx-background-color: #F1F5F9; -fx-padding: 16;">
+                <Label text="📍 Position actuelle"
+                       style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                <VBox styleClass="content-card" spacing="8">
+                    <Label text="Latitude:" styleClass="profile-label"/>
+                    <Label fx:id="latLabel" text="-" styleClass="profile-value"/>
+                    <Label text="Longitude:" styleClass="profile-label"/>
+                    <Label fx:id="lonLabel" text="-" styleClass="profile-value"/>
+                </VBox>
+                <Label text="ℹ️ Cliquez sur la carte pour placer votre cabinet médical."
+                       wrapText="true"
+                       style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/>
+                <Label fx:id="statusLabel" wrapText="true"
+                       style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefWidth="1000" prefHeight="680"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="tn.esprit.controllers.RegisterController"
+            stylesheets="@style.css">
+
+    <HBox prefWidth="1000" prefHeight="680">
+
+        <!-- LEFT PANEL -->
+        <VBox prefWidth="340" alignment="CENTER" styleClass="left-panel" spacing="18">
+            <Label text="🏥 VitaPlus" styleClass="logo"/>
+            <Label text="Créez votre compte" styleClass="subtitle"/>
+            <Label text="Rejoignez notre plateforme" styleClass="subtitle"/>
+            <Label text="médicale en quelques étapes." styleClass="subtitle"/>
+        </VBox>
+
+        <!-- RIGHT PANEL -->
+        <VBox prefWidth="660" alignment="TOP_CENTER"
+              style="-fx-background-color: #F1F5F9; -fx-padding: 0;">
+
+            <!-- BOUTON RETOUR -->
+            <HBox alignment="CENTER_LEFT" style="-fx-padding: 16 24 0 24;">
+                <Button text="← Retour à la connexion" onAction="#goToLogin"
+                        style="-fx-background-color: transparent; -fx-text-fill: #0066CC;
+                               -fx-font-size: 13px; -fx-font-weight: bold; -fx-cursor: hand;
+                               -fx-border-color: transparent;"/>
+            </HBox>
+
+            <ScrollPane fitToWidth="true"
+                        style="-fx-background-color: transparent; -fx-background: transparent;"
+                        hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+
+                <VBox style="-fx-padding: 16 40 30 40;" spacing="0">
+
+                    <Label text="Créer un compte"
+                           style="-fx-font-size: 24px; -fx-font-weight: bold;
+                                  -fx-text-fill: #1E293B; -fx-padding: 0 0 20 0;"/>
+
+                    <!-- LIGNE 1 : Nom + Prénom -->
+                    <HBox spacing="20" style="-fx-padding: 0 0 16 0;">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Nom *"
+                                   style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                            <TextField fx:id="nom" promptText="Votre nom"
+                                       styleClass="input" maxWidth="Infinity"/>
+                            <Label fx:id="errorNom" styleClass="field-error" wrapText="true"/>
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Prénom *"
+                                   style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                            <TextField fx:id="prenom" promptText="Votre prénom"
+                                       styleClass="input" maxWidth="Infinity"/>
+                            <Label fx:id="errorPrenom" styleClass="field-error" wrapText="true"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- LIGNE 2 : Email -->
+                    <VBox spacing="6" style="-fx-padding: 0 0 16 0;">
+                        <Label text="Email *"
+                               style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                        <TextField fx:id="email" promptText="exemple@email.com"
+                                   styleClass="input" maxWidth="Infinity"/>
+                        <Label fx:id="errorEmail" styleClass="field-error" wrapText="true"/>
+                    </VBox>
+
+                    <!-- LIGNE 3 : Mot de passe + Confirmation -->
+                    <HBox spacing="20" style="-fx-padding: 0 0 16 0;">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Mot de passe *"
+                                   style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                            <PasswordField fx:id="motDePasse"
+                                           promptText="Min. 8 car., 1 maj., 1 chiffre"
+                                           styleClass="input" maxWidth="Infinity"/>
+                            <Label fx:id="errorPassword" styleClass="field-error" wrapText="true"/>
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Confirmer le mot de passe *"
+                                   style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                            <PasswordField fx:id="confirmMotDePasse"
+                                           promptText="Répétez le mot de passe"
+                                           styleClass="input" maxWidth="Infinity"/>
+                            <Label fx:id="errorConfirm" styleClass="field-error" wrapText="true"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- LIGNE 4 : Téléphone + Spécialité -->
+                    <HBox spacing="20" style="-fx-padding: 0 0 16 0;">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Téléphone"
+                                   style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                            <TextField fx:id="telephone" promptText="Ex: 12345678"
+                                       styleClass="input" maxWidth="Infinity"/>
+                            <Label fx:id="errorTelephone" styleClass="field-error" wrapText="true"/>
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Spécialité (si médecin)"
+                                   style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                            <TextField fx:id="specialite" promptText="Ex: Cardiologie"
+                                       styleClass="input" maxWidth="Infinity"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- LIGNE 5 : Rôle -->
+                    <VBox spacing="6" style="-fx-padding: 0 0 8 0;">
+                        <Label text="Rôle *"
+                               style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                        <ComboBox fx:id="role" promptText="Choisir un rôle"
+                                  styleClass="input" maxWidth="Infinity" prefWidth="Infinity"/>
+                        <Label fx:id="errorRole" styleClass="field-error" wrapText="true"/>
+                    </VBox>
+
+                    <!-- Info rôle médecin -->
+                    <Label fx:id="infoRole" wrapText="true"
+                           style="-fx-font-size: 12px; -fx-text-fill: #EAB308; -fx-padding: 0 0 12 0;"/>
+
+                    <!-- Erreur générale -->
+                    <Label fx:id="errorGeneral" styleClass="field-error" wrapText="true"
+                           style="-fx-padding: 0 0 8 0;"/>
+
+                    <!-- BOUTON S'INSCRIRE -->
+                    <Button text="S'inscrire" onAction="#register"
+                            styleClass="btn-primary" maxWidth="Infinity"
+                            style="-fx-pref-height: 44px; -fx-font-size: 15px;"/>
+
+                    <HBox alignment="CENTER" style="-fx-padding: 14 0 0 0;">
+                        <Hyperlink text="Déjà un compte ? Se connecter" onAction="#goToLogin"
+                                   style="-fx-font-size: 13px;"/>
+                    </HBox>
+
+                </VBox>
+            </ScrollPane>
+        </VBox>
+
+    </HBox>
+
+</AnchorPane>

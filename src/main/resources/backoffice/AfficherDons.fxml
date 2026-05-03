@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" style="-fx-padding: 24 24 0 24; -fx-background-color:#F1F5F9;"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.esprit.controllers.backoffice.AfficherDonsController">
+
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <VBox spacing="4">
+            <Label text="Dons" style="-fx-font-size:20px; -fx-font-weight:bold; -fx-text-fill:#1e293b;"/>
+            <Label text="Gestion des dons enregistrés" style="-fx-font-size:13px; -fx-text-fill:#64748b;"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="← Dashboard"
+                style="-fx-background-color:white; -fx-text-fill:#374151; -fx-font-weight:bold;
+                       -fx-background-radius:10; -fx-cursor:hand; -fx-padding:8 16; -fx-border-color:#ddd; -fx-border-radius:10;"
+                onAction="#goToDashboard"/>
+        <Button text="Projets"
+                style="-fx-background-color:white; -fx-text-fill:#1a73e8; -fx-font-weight:bold;
+                       -fx-background-radius:10; -fx-cursor:hand; -fx-padding:8 16; -fx-border-color:#1a73e8; -fx-border-radius:10;"
+                onAction="#goToProjets"/>
+    </HBox>
+
+    <VBox style="-fx-background-color:white; -fx-background-radius:12;
+                 -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.07),10,0,0,3);" VBox.vgrow="ALWAYS">
+        <TableView fx:id="tableDons" VBox.vgrow="ALWAYS" prefHeight="500">
+            <columns>
+                <TableColumn fx:id="colNom"     text="Nom"          prefWidth="120"/>
+                <TableColumn fx:id="colPrenom"  text="Prénom"       prefWidth="120"/>
+                <TableColumn fx:id="colMontant" text="Montant (DT)" prefWidth="110"/>
+                <TableColumn fx:id="colMode"    text="Mode"         prefWidth="100"/>
+                <TableColumn fx:id="colStatut"  text="Statut"       prefWidth="110"/>
+                <TableColumn fx:id="colDate"    text="Date"         prefWidth="100"/>
+                <TableColumn fx:id="colActions" text="Actions"      prefWidth="130"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+</VBox>

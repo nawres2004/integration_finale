@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+
+<VBox spacing="20" style="-fx-padding: 30 30 20 30; -fx-background-color:#F1F5F9;"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.esprit.controllers.backoffice.AdminDashboardController">
+
+    <HBox alignment="CENTER_RIGHT" spacing="10">
+        <Button text="Projets"
+                style="-fx-background-color:#1a73e8; -fx-text-fill:white; -fx-font-weight:bold;
+                       -fx-background-radius:10; -fx-cursor:hand; -fx-padding:8 16;"
+                onAction="#goToProjets"/>
+        <Button text="Dons"
+                style="-fx-background-color:#1a73e8; -fx-text-fill:white; -fx-font-weight:bold;
+                       -fx-background-radius:10; -fx-cursor:hand; -fx-padding:8 16;"
+                onAction="#goToDons"/>
+        <Button text="Statistiques"
+                style="-fx-background-color:#1a73e8; -fx-text-fill:white; -fx-font-weight:bold;
+                       -fx-background-radius:10; -fx-cursor:hand; -fx-padding:8 16;"
+                onAction="#goToStats"/>
+    </HBox>
+
+    <Label text="Dashboard Administrateur"
+           style="-fx-font-size:20px; -fx-font-weight:bold; -fx-text-fill:#1e293b;"/>
+
+    <!-- KPI Cards -->
+    <VBox spacing="12" fillWidth="true">
+        <VBox style="-fx-background-color:white; -fx-background-radius:12; -fx-padding:20;
+                     -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.07),10,0,0,3);" spacing="6">
+            <Label text="Nombre de projets" style="-fx-text-fill:#666; -fx-font-size:13px;"/>
+            <Label fx:id="lblNbProjets" text="..."
+                   style="-fx-font-size:28px; -fx-font-weight:bold; -fx-text-fill:#1a73e8;"/>
+        </VBox>
+        <VBox style="-fx-background-color:white; -fx-background-radius:12; -fx-padding:20;
+                     -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.07),10,0,0,3);" spacing="6">
+            <Label text="Nombre de dons" style="-fx-text-fill:#666; -fx-font-size:13px;"/>
+            <Label fx:id="lblNbDons" text="..."
+                   style="-fx-font-size:28px; -fx-font-weight:bold; -fx-text-fill:#1a73e8;"/>
+        </VBox>
+        <VBox style="-fx-background-color:white; -fx-background-radius:12; -fx-padding:20;
+                     -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.07),10,0,0,3);" spacing="6">
+            <Label text="Montant collecté" style="-fx-text-fill:#666; -fx-font-size:13px;"/>
+            <Label fx:id="lblTotal" text="..."
+                   style="-fx-font-size:28px; -fx-font-weight:bold; -fx-text-fill:#1a73e8;"/>
+        </VBox>
+    </VBox>
+
+</VBox>

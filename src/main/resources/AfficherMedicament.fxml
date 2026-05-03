@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="0" style="-fx-background-color: #f0f7ff;"
+      stylesheets="@style.css"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.esprit.controllers.AfficherMedicamentController">
+
+    <children>
+        <!-- BREADCRUMB -->
+        <Label text="Médicaments" style="-fx-font-size: 13; -fx-text-fill: #A855F7; -fx-font-weight: bold; -fx-padding: 20 30 0 30;" />
+
+        <!-- PAGE HEADER -->
+        <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 15 30 20 30;">
+            <children>
+                <Label text="All Médicaments" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                <Region HBox.hgrow="ALWAYS" />
+
+                <TextField fx:id="txtSearch" prefHeight="38.0" prefWidth="250.0"
+                           promptText="Recherche par nom..."
+                           style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-padding: 8 15;" />
+
+                <Button fx:id="btnNewMedicament" onAction="#naviguerVersAjout" prefHeight="38.0"
+                        style="-fx-background-color: #A855F7; -fx-background-radius: 8; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 22; -fx-effect: dropshadow(three-pass-box, rgba(168,85,247,0.25), 6, 0, 0, 3);"
+                        text="+ New Médicament" />
+            </children>
+        </HBox>
+
+        <!-- CARDS CONTAINER -->
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                    style="-fx-background: #f0f7ff; -fx-background-color: transparent; -fx-padding: 0 30 30 30;">
+            <content>
+                <FlowPane fx:id="cardsContainer" hgap="25" vgap="25"
+                          style="-fx-padding: 5;" />
+            </content>
+        </ScrollPane>
+
+    </children>
+</VBox>

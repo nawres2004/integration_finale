@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.controllers.AddCategorieController"
+      stylesheets="@styles.css">
+
+    <!-- MAIN AREA -->
+    <VBox VBox.vgrow="ALWAYS">
+
+        <!-- TOP BAR -->
+        <HBox alignment="CENTER_LEFT" styleClass="topbar">
+            <children>
+                <Label text="Add New Category" styleClass="topbar-title"/>
+            </children>
+            <padding><Insets left="20" right="20"/></padding>
+        </HBox>
+
+        <!-- FORM CONTENT -->
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: #EBF5FB; -fx-background: #EBF5FB;">
+            <content>
+                <VBox alignment="TOP_CENTER" style="-fx-background-color: #EBF5FB; -fx-padding: 30;">
+                    <children>
+                        <VBox styleClass="form-card" maxWidth="600">
+                            <children>
+
+                                <!-- NAME -->
+                                <VBox spacing="5">
+                                    <children>
+                                        <Label text="Category Name" styleClass="form-label"/>
+                                        <TextField fx:id="nameField" promptText="Enter category name..." styleClass="form-input"/>
+                                        <Label fx:id="nameErrorLabel" styleClass="error-label" visible="false" managed="false"/>
+                                    </children>
+                                </VBox>
+
+                                <!-- DESCRIPTION -->
+                                <VBox spacing="5">
+                                    <children>
+                                        <Label text="Description" styleClass="form-label"/>
+                                        <TextArea fx:id="descriptionArea" promptText="Describe this category..." styleClass="form-textarea" wrapText="true"/>
+                                        <Label fx:id="descErrorLabel" styleClass="error-label" visible="false" managed="false"/>
+                                    </children>
+                                </VBox>
+
+                                <!-- PERMISSIONS -->
+                                <VBox spacing="8">
+                                    <children>
+                                        <Label text="Posting Permissions" styleClass="form-label"/>
+                                        <HBox spacing="25" style="-fx-padding: 10 14; -fx-background-color: #F0F8FF; -fx-background-radius: 8; -fx-border-color: #A2D8F7; -fx-border-radius: 8; -fx-border-width: 1.5;">
+                                            <children>
+                                                <CheckBox fx:id="patientPostCheck" text="Allow Patients to Post" style="-fx-text-fill: #0C5283; -fx-font-size: 13px;"/>
+                                                <CheckBox fx:id="doctorPostCheck" text="Allow Doctors to Post" style="-fx-text-fill: #0C5283; -fx-font-size: 13px;"/>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+
+                                <!-- BUTTONS -->
+                                <HBox spacing="12" style="-fx-padding: 10 0 0 0;">
+                                    <children>
+                                        <Button text="💾  Add Category" onAction="#handleAddCategorie" styleClass="btn-primary"/>
+                                        <Button text="← Dashboard" onAction="#handleBack" styleClass="btn-secondary"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </VBox>
+</VBox>

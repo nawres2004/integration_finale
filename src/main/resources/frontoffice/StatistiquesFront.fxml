@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+
+<BorderPane prefHeight="750.0" prefWidth="1200.0"
+            stylesheets="@../dashboard.css"
+            style="-fx-background-color:#F1F5F9;"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.controllers.frontoffice.StatistiquesFrontController">
+
+    <!-- TOPBAR -->
+    <top>
+        <HBox styleClass="topbar" spacing="16" alignment="CENTER_LEFT">
+            <Label text="🏥 Vita+" styleClass="logo"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="topUserLabel" text="💰 Donateur" styleClass="user-name"/>
+            <Button text="🚪 Déconnexion" styleClass="logout-btn" onAction="#logout"/>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox>
+            <!-- SIDEBAR -->
+            <VBox styleClass="sidebar" spacing="4" VBox.vgrow="ALWAYS">
+                <Label text="🏥 Vita+" styleClass="sidebar-logo"/>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="🏠" styleClass="nav-icon"/>
+                    <Label text="Accueil" styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="🩺" styleClass="nav-icon"/>
+                    <Label text="Suivi Médical" styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="💊" styleClass="nav-icon"/>
+                    <Label text="Ordonnances et Mé..." styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="📝" styleClass="nav-icon"/>
+                    <Label text="Blog et Informations" styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="🥗" styleClass="nav-icon"/>
+                    <Label text="Régime Médical" styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item nav-item-active" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="💰" styleClass="nav-icon"/>
+                    <Label text="Donateurs" styleClass="nav-text"/>
+                </HBox>
+                <Region VBox.vgrow="ALWAYS"/>
+                <HBox styleClass="nav-item logout-item" spacing="14" alignment="CENTER_LEFT"
+                      onMouseClicked="#logout" style="-fx-cursor: hand;">
+                    <Label text="🚪" styleClass="nav-icon"/>
+                    <Label text="Déconnexion" styleClass="nav-text"/>
+                </HBox>
+            </VBox>
+
+            <!-- CONTENU -->
+            <VBox styleClass="main-content" spacing="20" HBox.hgrow="ALWAYS">
+
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <Label text="Statistiques des projets" styleClass="page-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Projets"
+                            style="-fx-background-color:#374151; -fx-text-fill:white; -fx-font-weight:bold;
+                                   -fx-background-radius:20; -fx-cursor:hand; -fx-padding:9 18 9 18;"
+                            onAction="#goToProjets"/>
+                </HBox>
+
+                <HBox spacing="16">
+                    <VBox styleClass="content-card" HBox.hgrow="ALWAYS" spacing="4" alignment="CENTER">
+                        <Label text="Total collecté" style="-fx-font-size:12px; -fx-text-fill:#888;"/>
+                        <Label fx:id="lblTotalCollecte" text="0 DT"
+                               style="-fx-font-size:22px; -fx-font-weight:bold; -fx-text-fill:#1a73e8;"/>
+                    </VBox>
+                    <VBox styleClass="content-card" HBox.hgrow="ALWAYS" spacing="4" alignment="CENTER">
+                        <Label text="Total objectifs" style="-fx-font-size:12px; -fx-text-fill:#888;"/>
+                        <Label fx:id="lblTotalObjectif" text="0 DT"
+                               style="-fx-font-size:22px; -fx-font-weight:bold; -fx-text-fill:#e53935;"/>
+                    </VBox>
+                    <VBox styleClass="content-card" HBox.hgrow="ALWAYS" spacing="4" alignment="CENTER">
+                        <Label text="Progression globale" style="-fx-font-size:12px; -fx-text-fill:#888;"/>
+                        <Label fx:id="lblProgression" text="0%"
+                               style="-fx-font-size:22px; -fx-font-weight:bold; -fx-text-fill:#2e7d32;"/>
+                    </VBox>
+                </HBox>
+
+                <VBox styleClass="content-card" VBox.vgrow="ALWAYS" spacing="8">
+                    <Label text="Collecté vs Objectif par projet"
+                           style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#333;"/>
+                    <BarChart fx:id="barChart" prefHeight="320" animated="true">
+                        <xAxis><CategoryAxis label="Projets"/></xAxis>
+                        <yAxis><NumberAxis label="Montant (DT)"/></yAxis>
+                    </BarChart>
+                </VBox>
+
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>

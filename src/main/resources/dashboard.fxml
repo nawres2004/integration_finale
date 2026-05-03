@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.MainController">
+    <!-- SIDEBAR -->
+    <left>
+        <VBox styleClass="sidebar">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <children>
+                        <Label style="-fx-font-size: 28; -fx-font-weight: bold;" text="✚" textFill="WHITE" />
+                        <Label text="VitaPlus" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <VBox.margin><Insets bottom="40.0" /></VBox.margin>
+                </HBox>
+                
+                <Button fx:id="btnAccueil" maxWidth="Infinity" onAction="#showWelcome" prefHeight="45.0" styleClass="btn-sidebar, btn-sidebar-active" text="🏠 Accueil">
+                    <font><Font size="16.0" /></font>
+                </Button>
+                
+                <Button fx:id="btnMedicaments" maxWidth="Infinity" onAction="#showMedicaments" prefHeight="45.0" styleClass="btn-sidebar" text="💊 Médicaments">
+                    <font><Font size="16.0" /></font>
+                </Button>
+                
+                <Button fx:id="btnOrdonnances" maxWidth="Infinity" onAction="#showOrdonnances" prefHeight="45.0" styleClass="btn-sidebar" text="📄 Ordonnances">
+                    <font><Font size="16.0" /></font>
+                </Button>
+                
+                <Button fx:id="btnSuiviMedical" maxWidth="Infinity" prefHeight="45.0" styleClass="btn-sidebar" text="📊 Suivi Médical">
+                    <font><Font size="16.0" /></font>
+                </Button>
+                
+                <Button fx:id="btnRendezVous" maxWidth="Infinity" prefHeight="45.0" styleClass="btn-sidebar" text="📅 Rendez-vous">
+                    <font><Font size="16.0" /></font>
+                </Button>
+                
+                <Region VBox.vgrow="ALWAYS" />
+                
+                <Separator opacity="0.2" />
+                
+                <Button fx:id="btnProfil" maxWidth="Infinity" prefHeight="45.0" styleClass="btn-sidebar" text="👤 Mon Profil">
+                    <font><Font size="16.0" /></font>
+                </Button>
+            </children>
+        </VBox>
+    </left>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <VBox>
+            <children>
+
+                
+                <!-- CONTENT PANEL -->
+                <StackPane fx:id="contentPane" VBox.vgrow="ALWAYS" style="-fx-padding: 30;">
+                    <!-- Views will be loaded here -->
+                    <children>
+                        <Label text="Bienvenue dans votre gestionnaire de santé" textFill="#A0AEC0">
+                            <font><Font size="20.0" /></font>
+                        </Label>
+                    </children>
+                </StackPane>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

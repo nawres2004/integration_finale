@@ -1,0 +1,175 @@
+/* ===== VitaPlus Dashboard CSS ===== */
+
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-background-color: #F1F5F9;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    -fx-background-color: linear-gradient(to bottom, #0066CC, #0099CC);
+    -fx-pref-width: 260px;
+    -fx-padding: 20 0 20 0;
+    -fx-spacing: 4;
+}
+
+.sidebar-logo {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-padding: 0 0 20 20;
+}
+
+.nav-item {
+    -fx-padding: 12 20 12 20;
+    -fx-spacing: 14;
+    -fx-alignment: CENTER_LEFT;
+    -fx-cursor: hand;
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 8;
+}
+
+.nav-item:hover {
+    -fx-background-color: #334155;
+}
+
+.nav-icon {
+    -fx-font-size: 18px;
+}
+
+.nav-text {
+    -fx-font-size: 15px;
+    -fx-text-fill: #E0F2FE;
+}
+
+.nav-item:hover .nav-text {
+    -fx-text-fill: white;
+}
+
+.logout-item {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-border-color: rgba(239, 68, 68, 0.5);
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+}
+
+.logout-item:hover {
+    -fx-background-color: #EF4444;
+    -fx-effect: dropshadow(three-pass-box, rgba(239, 68, 68, 0.4), 10, 0, 0, 0);
+}
+
+.logout-item:hover .nav-text, .logout-item:hover .nav-icon {
+    -fx-text-fill: white;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+    -fx-background-color: #0066CC;
+    -fx-padding: 10 20 10 20;
+    -fx-pref-height: 60px;
+    -fx-spacing: 16;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.logo {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.user-name {
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+}
+
+.icon-btn {
+    -fx-background-color: transparent;
+    -fx-font-size: 18px;
+    -fx-cursor: hand;
+    -fx-text-fill: #94A3B8;
+}
+
+.logout-btn {
+    -fx-background-color: linear-gradient(to right, #EF4444, #DC2626);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 8 18 8 18;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(239, 68, 68, 0.3), 10, 0, 0, 4);
+}
+
+.logout-btn:hover {
+    -fx-background-color: linear-gradient(to right, #DC2626, #B91C1C);
+    -fx-effect: dropshadow(three-pass-box, rgba(239, 68, 68, 0.5), 15, 0, 0, 6);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    -fx-background-color: #F1F5F9;
+    -fx-padding: 24;
+}
+
+.page-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E293B;
+}
+
+.section-title {
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E293B;
+    -fx-padding: 0 0 8 0;
+}
+
+/* ===== STAT CARDS ===== */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 20;
+    -fx-spacing: 6;
+    -fx-pref-width: 180px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0.1, 0, 2);
+}
+
+.stat-icon {
+    -fx-font-size: 28px;
+}
+
+.stat-value {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E293B;
+}
+
+.stat-label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0066CC;
+}
+
+.stat-change {
+    -fx-font-size: 13px;
+    -fx-text-fill: #475569;
+}
+
+/* ===== CONTENT CARD ===== */
+.content-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0.1, 0, 2);
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+    -fx-background-color: linear-gradient(to right, #0066CC, #0099CC);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 10;
+    -fx-padding: 8 18 8 18;
+    -fx-cursor: hand;
+}

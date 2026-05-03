@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="700.0" prefWidth="900.0" spacing="15.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AjouterMedicamentController">
+
+    <padding>
+        <Insets bottom="30.0" left="50.0" right="50.0" top="20.0" />
+    </padding>
+
+    <children>
+
+        <!-- TITRE -->
+        <Label text="Ajouter un Médicament" textFill="#A855F7">
+            <font>
+                <Font name="System Bold" size="32.0" />
+            </font>
+        </Label>
+
+        <Label text="Veuillez saisir les détails du médicament à ajouter." textFill="#7f8c8d" />
+
+        <!-- FORMULAIRE -->
+        <VBox spacing="10.0" styleClass="card">
+
+            <children>
+
+                <GridPane hgap="20.0" vgap="10.0">
+                    <columnConstraints>
+                        <javafx.scene.layout.ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
+                        <javafx.scene.layout.ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
+                    </columnConstraints>
+
+                    <children>
+                        <!-- NOM -->
+                        <VBox spacing="5.0" GridPane.columnIndex="0">
+                            <Label text="Nom du médicament" textFill="#2c3e50"><font><Font name="System Bold" size="14.0" /></font></Label>
+                            <TextField fx:id="nomField" prefHeight="40.0" promptText="Ex: Paracétamol" style="-fx-background-radius: 10;" />
+                        </VBox>
+
+                        <!-- DOSAGE -->
+                        <VBox spacing="5.0" GridPane.columnIndex="1">
+                            <Label text="Dosage" textFill="#2c3e50"><font><Font name="System Bold" size="14.0" /></font></Label>
+                            <TextField fx:id="dosageField" prefHeight="40.0" promptText="Ex: 500mg" style="-fx-background-radius: 10;" />
+                        </VBox>
+
+                        <!-- FORME -->
+                        <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                            <Label text="Forme" textFill="#2c3e50"><font><Font name="System Bold" size="14.0" /></font></Label>
+                            <TextField fx:id="formeField" prefHeight="40.0" promptText="Ex: Comprimé" style="-fx-background-radius: 10;" />
+                        </VBox>
+
+                        <!-- FREQUENCE -->
+                        <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <Label text="Fréquence" textFill="#2c3e50"><font><Font name="System Bold" size="14.0" /></font></Label>
+                            <TextField fx:id="frequenceField" prefHeight="40.0" promptText="Ex: 3 fois par jour" style="-fx-background-radius: 10;" />
+                        </VBox>
+
+                        
+                    </children>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
+                </GridPane>
+
+                <!-- DATE EXPIRATION -->
+                <Label text="Date d'expiration" textFill="#2c3e50">
+                    <font><Font name="System Bold" size="14.0" /></font>
+                    <VBox.margin><Insets top="5.0" /></VBox.margin>
+                </Label>
+                <DatePicker fx:id="dateExpirationPicker" maxWidth="Infinity" prefHeight="40.0" promptText="jj/mm/aaaa" style="-fx-background-radius: 10;" />
+
+                <!-- CONTRE INDICATIONS -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <VBox.margin><Insets top="5.0" /></VBox.margin>
+                    <children>
+                        <Label text="Contre-indications" textFill="#2c3e50">
+                            <font><Font name="System Bold" size="14.0" /></font>
+                        </Label>
+                        <Button onAction="#handleAICheck" style="-fx-background-color: #A855F7; -fx-text-fill: white; -fx-background-radius: 20; -fx-cursor: hand;" text="✨ Vérifier avec l'IA">
+                            <font>
+                                <Font size="10.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+                <TextArea fx:id="contreIndicationsArea" prefHeight="80.0" promptText="Précisez les allergies ou contre-indications..." style="-fx-background-radius: 10;" />
+
+                <!-- BOUTONS -->
+                <HBox spacing="15.0">
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+
+                    <children>
+                        <Button onAction="#handleAjouter" prefHeight="45.0" prefWidth="160.0" styleClass="btn-primary" text="💾 Enregistrer" />
+
+                        <Button onAction="#showList" prefHeight="45.0" prefWidth="160.0" styleClass="btn-secondary" text="⬅ Retour" />
+                    </children>
+                </HBox>
+
+            </children>
+        </VBox>
+
+    </children>
+</VBox>

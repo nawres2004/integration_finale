@@ -1,0 +1,109 @@
+/* ===== VitaPlus - Login & Register CSS ===== */
+
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-background-color: #F1F5F9;
+}
+
+/* ===== LEFT PANEL ===== */
+.left-panel {
+    -fx-background-color: linear-gradient(to bottom, #0066CC, #0099CC);
+    -fx-padding: 40;
+}
+
+.logo {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: rgba(255,255,255,0.85);
+}
+
+/* ===== CARD ===== */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 36 40 36 40;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 20, 0.1, 0, 4);
+    -fx-max-width: 340;
+}
+
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E293B;
+    -fx-padding: 0 0 8 0;
+}
+
+/* ===== INPUTS ===== */
+.input {
+    -fx-background-color: #F8FAFC;
+    -fx-border-color: #CBD5E1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-border-width: 1.5;
+    -fx-padding: 10 14 10 14;
+    -fx-font-size: 14px;
+    -fx-pref-height: 42px;
+}
+
+.input:focused {
+    -fx-border-color: #0066CC;
+    -fx-background-color: white;
+}
+/* ===== BUTTONS ===== */
+.btn-primary {
+    -fx-background-color: linear-gradient(to right, #0066CC, #0099CC);
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 11 0 11 0;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,102,204,0.35), 8, 0.2, 0, 3);
+}
+
+.btn-primary:hover {
+    -fx-background-color: linear-gradient(to right, #0055AA, #0088BB);
+}
+
+/* ===== ERROR / SUCCESS LABELS ===== */
+.error {
+    -fx-font-size: 13px;
+    -fx-text-fill: #EF4444;
+    -fx-wrap-text: true;
+    -fx-max-text-width: 260;
+}
+
+.field-error {
+    -fx-font-size: 12px;
+    -fx-text-fill: #EF4444;
+    -fx-wrap-text: true;
+    -fx-padding: 0 0 2 2;
+    -fx-min-height: 0;
+}
+
+.success-msg {
+    -fx-font-size: 13px;
+    -fx-text-fill: #22C55E;
+}
+
+/* Champ en erreur */
+.input-error {
+    -fx-border-color: #EF4444;
+    -fx-border-width: 1.5;
+}
+
+/* ===== HYPERLINK ===== */
+.hyperlink {
+    -fx-text-fill: #0066CC;
+    -fx-font-size: 13px;
+    -fx-border-color: transparent;
+}
+
+.hyperlink:hover {
+    -fx-text-fill: #0044AA;
+}

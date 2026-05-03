@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.controllers.SignInController"
+      stylesheets="@styles.css">
+
+    <!-- LEFT BRAND PANEL -->
+    <VBox alignment="CENTER" spacing="16" HBox.hgrow="ALWAYS" styleClass="signin-left-panel">
+        <children>
+            <Label text="💊" style="-fx-font-size: 60px;"/>
+            <Label text="VitaPlus" styleClass="signin-brand-title"/>
+            <Label text="Health Management Platform" styleClass="signin-brand-subtitle"/>
+            <Label text="Your health, managed smartly." style="-fx-text-fill: #7CBAF7; -fx-font-size: 12px;"/>
+        </children>
+        <padding><Insets top="60" right="40" bottom="60" left="40"/></padding>
+    </VBox>
+
+    <!-- RIGHT FORM PANEL -->
+    <VBox alignment="CENTER" HBox.hgrow="ALWAYS" styleClass="signin-right-panel">
+        <children>
+            <VBox styleClass="signin-form-card" maxWidth="380" alignment="CENTER_LEFT">
+                <children>
+                    <Label text="Welcome Back 👋" styleClass="signin-title"/>
+                    <Label text="Sign in to your account to continue" styleClass="signin-subtitle"/>
+
+                    <Label text="" style="-fx-min-height: 10;"/>
+
+                    <!-- EMAIL -->
+                    <VBox spacing="5">
+                        <children>
+                            <Label text="Email Address" styleClass="form-label"/>
+                            <TextField fx:id="emailField" promptText="you@vitaplus.com" styleClass="form-input"/>
+                            <Label fx:id="emailErrorLabel" styleClass="error-label" visible="false" managed="false"/>
+                        </children>
+                    </VBox>
+
+                    <!-- PASSWORD -->
+                    <VBox spacing="5">
+                        <children>
+                            <Label text="Password" styleClass="form-label"/>
+                            <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="form-input"/>
+                            <Label fx:id="passwordErrorLabel" styleClass="error-label" visible="false" managed="false"/>
+                        </children>
+                    </VBox>
+
+                    <Label text="" style="-fx-min-height: 6;"/>
+                    <Button text="Sign In →" onAction="#handleLogin" prefWidth="300" styleClass="btn-primary"/>
+
+                    <Label text="● admin@vitaplus.com / admin123" style="-fx-font-size: 10px; -fx-text-fill: #63B8F3;"/>
+                    <Label text="● patient@vitaplus.com / patient123" style="-fx-font-size: 10px; -fx-text-fill: #63B8F3;"/>
+                    <Label text="● doctor@vitaplus.com / doctor123" style="-fx-font-size: 10px; -fx-text-fill: #63B8F3;"/>
+                </children>
+            </VBox>
+        </children>
+        <padding><Insets top="60" right="60" bottom="60" left="60"/></padding>
+    </VBox>
+</HBox>

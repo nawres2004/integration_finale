@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.controllers.ArticleListController"
+      stylesheets="@styles.css"
+      VBox.vgrow="ALWAYS">
+
+    <!-- TOP BAR -->
+    <HBox alignment="CENTER_LEFT" styleClass="topbar" spacing="15">
+        <children>
+            <Label text="Articles" styleClass="topbar-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="notifBtn" text="🔔 (0)" onAction="#handleShowNotifications" styleClass="btn-secondary" style="-fx-background-radius: 20; -fx-padding: 8 15;"/>
+            <Button text="＋ New Article" onAction="#handleAddNew" styleClass="btn-success"/>
+        </children>
+        <padding><Insets left="20" right="20"/></padding>
+    </HBox>
+
+    <!-- CONTENT: SCROLLABLE GRID OF CARDS -->
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: #F8FAFC; -fx-background: #F8FAFC; -fx-border-color: transparent;">
+        <content>
+            <VBox style="-fx-background-color: #F8FAFC; -fx-padding: 25; -fx-spacing: 20;">
+                <children>
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+                        <children>
+                            <Label text="All Articles" styleClass="section-title"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="searchField" promptText="Recherche par titre..." prefWidth="200" style="-fx-background-radius: 20; -fx-padding: 8; -fx-border-color: #D1D5DB; -fx-border-radius: 20;"/>
+                            <ComboBox fx:id="sortComboBox" promptText="Tri par date..." style="-fx-background-color: white; -fx-border-color: #D1D5DB; -fx-border-radius: 5;"/>
+                            <Button fx:id="statsButton" text="📊 Statistiques" onAction="#handleShowStats" styleClass="btn-primary" style="-fx-background-radius: 20;"/>
+                        </children>
+                    </HBox>
+                    <FlowPane fx:id="articlesGrid" hgap="20" vgap="20" prefWrapLength="640"/>
+                </children>
+            </VBox>
+        </content>
+    </ScrollPane>
+</VBox>

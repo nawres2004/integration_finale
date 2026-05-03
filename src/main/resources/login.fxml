@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefWidth="1000" prefHeight="620"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="tn.esprit.controllers.LoginController"
+            stylesheets="@style.css">
+
+    <HBox prefWidth="1000" prefHeight="620">
+
+        <!-- LEFT PANEL -->
+        <VBox prefWidth="460" alignment="CENTER" styleClass="left-panel" spacing="16">
+            <Label text="🏥 VitaPlus" styleClass="logo"/>
+            <Label text="Medical Management System" styleClass="subtitle"/>
+            <Label text="Connectez-vous à votre espace" styleClass="subtitle"/>
+        </VBox>
+
+        <!-- RIGHT PANEL -->
+        <VBox prefWidth="540" alignment="CENTER"
+              style="-fx-padding: 50; -fx-background-color: #F1F5F9;">
+
+            <VBox alignment="CENTER" spacing="16"
+                  style="-fx-background-color: white; -fx-background-radius: 16;
+                         -fx-padding: 40 44 40 44;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 20, 0.1, 0, 4);
+                         -fx-max-width: 400;">
+
+                <Label text="Connexion"
+                       style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1E293B;
+                              -fx-padding: 0 0 6 0;"/>
+
+                <!-- EMAIL -->
+                <VBox spacing="6" maxWidth="340">
+                    <Label text="Email"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                    <TextField fx:id="email" promptText="votre@email.com"
+                               styleClass="input" prefWidth="340"/>
+                    <Label fx:id="errorEmail" styleClass="field-error" wrapText="true" maxWidth="340"/>
+                </VBox>
+
+                <!-- MOT DE PASSE -->
+                <VBox spacing="6" maxWidth="340">
+                    <Label text="Mot de passe"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                    <PasswordField fx:id="motDePasse" promptText="Votre mot de passe"
+                                   styleClass="input" prefWidth="340"/>
+                    <Label fx:id="errorPassword" styleClass="field-error" wrapText="true" maxWidth="340"/>
+                </VBox>
+
+                <!-- CAPTCHA -->
+                <VBox spacing="10" maxWidth="340"
+                      style="-fx-background-color: #EFF6FF; -fx-border-color: #93C5FD;
+                             -fx-border-radius: 12; -fx-background-radius: 12;
+                             -fx-padding: 14 18 14 18;">
+
+                    <!-- Titre captcha -->
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <Label text="🔐"
+                               style="-fx-font-size: 15px;"/>
+                        <Label text="Vérification de sécurité"
+                               style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1D4ED8;"/>
+                    </HBox>
+
+                    <!-- Question + réponse sur une ligne claire -->
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+
+                        <!-- La question complète ex: "5 + 3" -->
+                        <Label fx:id="captchaQuestion" text="? + ?"
+                               style="-fx-font-size: 22px; -fx-font-weight: bold;
+                                      -fx-text-fill: #1E293B; -fx-background-color: white;
+                                      -fx-background-radius: 8; -fx-padding: 8 16 8 16;
+                                      -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                      -fx-min-width: 110;"/>
+
+                        <!-- Signe égal -->
+                        <Label text="="
+                               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+
+                        <!-- Champ réponse -->
+                        <TextField fx:id="captchaAnswer" promptText="?"
+                                   style="-fx-background-color: white; -fx-border-color: #93C5FD;
+                                          -fx-border-radius: 8; -fx-background-radius: 8;
+                                          -fx-padding: 8 12 8 12; -fx-font-size: 22px;
+                                          -fx-font-weight: bold; -fx-pref-width: 80;
+                                          -fx-alignment: center;"/>
+
+                        <!-- Bouton rafraîchir -->
+                        <Button text="🔄" onAction="#refreshCaptcha"
+                                style="-fx-background-color: #DBEAFE; -fx-font-size: 16px;
+                                       -fx-cursor: hand; -fx-background-radius: 8;
+                                       -fx-border-color: transparent; -fx-padding: 8 10 8 10;"/>
+                    </HBox>
+
+                    <Label fx:id="errorCaptcha" styleClass="field-error" wrapText="true" maxWidth="320"/>
+                    <Label fx:id="behaviorScoreLabel" text=""
+                           style="-fx-font-size: 11px;" maxWidth="320"/>
+                </VBox>
+
+                <!-- BOUTON CONNEXION -->
+                <Button text="Se connecter" onAction="#login"
+                        styleClass="btn-primary" prefWidth="340"
+                        style="-fx-pref-height: 46px; -fx-font-size: 16px;"/>
+
+                <!-- ERREUR GENERALE -->
+                <Label fx:id="errorGeneral" styleClass="field-error"
+                       maxWidth="340" wrapText="true"/>
+
+                <!-- LIENS -->
+                <HBox spacing="24" alignment="CENTER">
+                    <Hyperlink text="Mot de passe oublié ?" onAction="#goToForgotPassword"
+                               style="-fx-font-size: 13px;"/>
+                    <Hyperlink text="Créer un compte" onAction="#goToRegister"
+                               style="-fx-font-size: 13px;"/>
+                </HBox>
+
+            </VBox>
+        </VBox>
+
+    </HBox>
+
+</AnchorPane>

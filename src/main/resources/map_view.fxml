@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.web.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="tn.esprit.controllers.MapController"
+            prefWidth="1100" prefHeight="700"
+            stylesheets="@dashboard.css">
+
+    <!-- TOPBAR -->
+    <top>
+        <HBox styleClass="topbar" spacing="16" alignment="CENTER_LEFT">
+            <Label text="🗺️ Médecins proches de moi" styleClass="logo"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="coordLabel" text="Cliquez sur la carte pour vous localiser"
+                   style="-fx-text-fill: rgba(255,255,255,0.8); -fx-font-size: 13px;"/>
+            <Button text="💾 Sauvegarder position" fx:id="saveLocationBtn"
+                    onAction="#saveLocation"
+                    style="-fx-background-color: #22C55E; -fx-text-fill: white;
+                           -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 6 14 6 14;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox>
+            <!-- CARTE MAPBOX -->
+            <WebView fx:id="mapView" HBox.hgrow="ALWAYS" prefHeight="650"/>
+
+            <!-- PANNEAU LATÉRAL -->
+            <VBox prefWidth="300" spacing="10"
+                  style="-fx-background-color: #F1F5F9; -fx-padding: 16;">
+
+                <Label text="🏥 Médecins les plus proches"
+                       style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+
+                <Label fx:id="statusLabel" text="Chargement..."
+                       style="-fx-font-size: 12px; -fx-text-fill: #64748B;" wrapText="true"/>
+
+                <ListView fx:id="doctorListView" prefHeight="480"
+                          style="-fx-background-color: white; -fx-background-radius: 10;
+                                 -fx-border-color: #E2E8F0; -fx-border-radius: 10;
+                                 -fx-font-size: 13px;"/>
+
+                <Button text="📍 Voir sur la carte" onAction="#viewOnMap"
+                        style="-fx-background-color: #0066CC; -fx-text-fill: white;
+                               -fx-background-radius: 8; -fx-cursor: hand;
+                               -fx-padding: 8 16 8 16; -fx-font-size: 13px;"
+                        maxWidth="Infinity"/>
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>

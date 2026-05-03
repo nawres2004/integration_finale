@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<HBox spacing="0" prefHeight="700" prefWidth="1100" 
+      style="-fx-background-color: #f8fafc;"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="tn.esprit.controllers.UtilisateurController">
+
+    <children>
+        <!-- ================= LEFT: MODERN FORM ================= -->
+        <VBox prefWidth="380" spacing="20" style="-fx-background-color: white; -fx-padding: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 0);">
+            <children>
+                <Label text="Gestion Utilisateur" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                <Label text="Ajoutez ou modifiez les informations utilisateur" style="-fx-font-size: 13; -fx-text-fill: #64748b;" />
+
+                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent; -fx-padding: 0 5 0 0;">
+                    <VBox spacing="15">
+                        <VBox spacing="5">
+                            <Label text="Nom" style="-fx-font-weight: bold; -fx-text-fill: #475569;" />
+                            <TextField fx:id="nom" promptText="Nom" styleClass="modern-field" />
+                        </VBox>
+                        
+                        <VBox spacing="5">
+                            <Label text="Prénom" style="-fx-font-weight: bold; -fx-text-fill: #475569;" />
+                            <TextField fx:id="prenom" promptText="Prénom" styleClass="modern-field" />
+                        </VBox>
+                        
+                        <VBox spacing="5">
+                            <Label text="Email" style="-fx-font-weight: bold; -fx-text-fill: #475569;" />
+                            <TextField fx:id="email" promptText="email@example.com" styleClass="modern-field" />
+                        </VBox>
+                        
+                        <VBox spacing="5">
+                            <Label text="Mot de passe" style="-fx-font-weight: bold; -fx-text-fill: #475569;" />
+                            <PasswordField fx:id="motDePasse" promptText="••••••••" styleClass="modern-field" />
+                        </VBox>
+                        
+                        <VBox spacing="5">
+                            <Label text="Téléphone" style="-fx-font-weight: bold; -fx-text-fill: #475569;" />
+                            <TextField fx:id="telephone" promptText="xx xxx xxx" styleClass="modern-field" />
+                        </VBox>
+                        
+                        <VBox spacing="5">
+                            <Label text="Spécialité" style="-fx-font-weight: bold; -fx-text-fill: #475569;" />
+                            <TextField fx:id="specialite" promptText="Spécialité (si médecin)" styleClass="modern-field" />
+                        </VBox>
+                        
+                        <VBox spacing="5">
+                            <Label text="Rôle" style="-fx-font-weight: bold; -fx-text-fill: #475569;" />
+                            <ComboBox fx:id="role" prefWidth="320" promptText="Choisir un rôle" styleClass="modern-combo" />
+                        </VBox>
+                        
+                        <CheckBox fx:id="isActive" text="Compte Actif" style="-fx-font-weight: bold; -fx-text-fill: #1e293b; -fx-padding: 5 0;" />
+                    </VBox>
+                </ScrollPane>
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <HBox spacing="10" alignment="CENTER">
+                    <Button onAction="#ajouter" prefHeight="40" prefWidth="100" text="Ajouter" 
+                            style="-fx-background-color: #0ea5e9; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;" />
+                    <Button onAction="#modifier" prefHeight="40" prefWidth="100" text="Modifier" 
+                            style="-fx-background-color: #10b981; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;" />
+                    <Button onAction="#clearForm" prefHeight="40" prefWidth="100" text="Vider" 
+                            style="-fx-background-color: #64748b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;" />
+                </HBox>
+            </children>
+        </VBox>
+
+        <!-- ================= RIGHT: CARDS LIST ================= -->
+        <VBox HBox.hgrow="ALWAYS" spacing="20" style="-fx-padding: 30;">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <children>
+                        <Label text="Liste des Utilisateurs" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button onAction="#loadCards" text="🔄 Actualiser" style="-fx-background-color: transparent; -fx-text-fill: #0ea5e9; -fx-font-weight: bold; -fx-cursor: hand;" />
+                    </children>
+                </HBox>
+
+                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent; -fx-background: transparent;">
+                    <content>
+                        <FlowPane fx:id="cardsContainer" hgap="20" vgap="20" style="-fx-padding: 10;" />
+                    </content>
+                </ScrollPane>
+            </children>
+        </VBox>
+    </children>
+</HBox>

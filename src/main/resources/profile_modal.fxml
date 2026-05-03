@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tn.esprit.controllers.ProfileController"
+      spacing="0"
+      style="-fx-background-color: white; -fx-background-radius: 16; -fx-padding: 0;"
+      prefWidth="420">
+
+    <!-- HEADER -->
+    <VBox alignment="CENTER" spacing="12"
+          style="-fx-background-color: linear-gradient(to bottom right, #0066CC, #0099CC);
+                 -fx-background-radius: 16 16 0 0; -fx-padding: 30 20 24 20;">
+
+        <!-- Avatar circle -->
+        <StackPane>
+            <Circle radius="42"
+                    style="-fx-fill: rgba(255,255,255,0.2); -fx-stroke: rgba(255,255,255,0.5); -fx-stroke-width: 2;"/>
+            <Label fx:id="avatarLabel" text="👤"
+                   style="-fx-font-size: 38px;"/>
+        </StackPane>
+
+        <Label fx:id="headerNameLabel" text="Mon Profil"
+               style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+        <Label fx:id="headerRoleLabel" text=""
+               style="-fx-font-size: 13px; -fx-text-fill: rgba(255,255,255,0.8);
+                      -fx-background-color: rgba(255,255,255,0.2); -fx-background-radius: 20;
+                      -fx-padding: 3 12 3 12;"/>
+    </VBox>
+
+    <!-- FORM -->
+    <VBox spacing="14" style="-fx-padding: 24 28 10 28;">
+
+        <!-- Nom -->
+        <VBox spacing="4">
+            <Label text="Nom" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #64748B;"/>
+            <TextField fx:id="nomField" promptText="Votre nom"
+                       style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0;
+                              -fx-border-radius: 8; -fx-background-radius: 8;
+                              -fx-padding: 10 14 10 14; -fx-font-size: 14px;"/>
+            <Label fx:id="errorNom" style="-fx-font-size: 11px; -fx-text-fill: #EF4444;" text=""/>
+        </VBox>
+
+        <!-- Prénom -->
+        <VBox spacing="4">
+            <Label text="Prénom" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #64748B;"/>
+            <TextField fx:id="prenomField" promptText="Votre prénom"
+                       style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0;
+                              -fx-border-radius: 8; -fx-background-radius: 8;
+                              -fx-padding: 10 14 10 14; -fx-font-size: 14px;"/>
+            <Label fx:id="errorPrenom" style="-fx-font-size: 11px; -fx-text-fill: #EF4444;" text=""/>
+        </VBox>
+
+        <!-- Téléphone -->
+        <VBox spacing="4">
+            <Label text="Téléphone" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #64748B;"/>
+            <TextField fx:id="telephoneField" promptText="Ex: 12345678"
+                       style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0;
+                              -fx-border-radius: 8; -fx-background-radius: 8;
+                              -fx-padding: 10 14 10 14; -fx-font-size: 14px;"/>
+            <Label fx:id="errorTelephone" style="-fx-font-size: 11px; -fx-text-fill: #EF4444;" text=""/>
+        </VBox>
+
+        <!-- Email (lecture seule) -->
+        <VBox spacing="4">
+            <Label text="Email (non modifiable)" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+            <TextField fx:id="emailField" editable="false"
+                       style="-fx-background-color: #F1F5F9; -fx-border-color: #E2E8F0;
+                              -fx-border-radius: 8; -fx-background-radius: 8;
+                              -fx-padding: 10 14 10 14; -fx-font-size: 14px; -fx-text-fill: #94A3B8;"/>
+        </VBox>
+
+        <!-- Message succès/erreur -->
+        <Label fx:id="statusLabel" text="" wrapText="true"
+               style="-fx-font-size: 12px; -fx-font-weight: bold;" maxWidth="360"/>
+
+    </VBox>
+
+    <!-- BUTTONS -->
+    <HBox spacing="12" alignment="CENTER" style="-fx-padding: 16 28 28 28;">
+        <Button fx:id="cancelBtn" text="Annuler" onAction="#cancel" prefWidth="160" prefHeight="40"
+                style="-fx-background-color: #F1F5F9; -fx-text-fill: #475569;
+                       -fx-font-size: 14px; -fx-font-weight: bold;
+                       -fx-background-radius: 10; -fx-cursor: hand;
+                       -fx-border-color: #E2E8F0; -fx-border-radius: 10;"/>
+        <Button fx:id="saveBtn" text="💾 Enregistrer" onAction="#save" prefWidth="160" prefHeight="40"
+                style="-fx-background-color: linear-gradient(to right, #0066CC, #0099CC);
+                       -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;
+                       -fx-background-radius: 10; -fx-cursor: hand;"/>
+    </HBox>
+
+</VBox>

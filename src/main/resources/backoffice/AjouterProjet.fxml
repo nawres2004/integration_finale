@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" style="-fx-padding:30; -fx-background-color:#F1F5F9;"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.esprit.controllers.backoffice.AjouterProjetController">
+
+    <Label text="+ Nouveau Projet"
+           style="-fx-font-size:20px; -fx-font-weight:bold; -fx-text-fill:#1e293b;"/>
+
+    <VBox style="-fx-background-color:white; -fx-background-radius:12; -fx-padding:24;
+                 -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.07),10,0,0,3);"
+          spacing="16" VBox.vgrow="ALWAYS">
+
+        <HBox spacing="16" alignment="CENTER_LEFT">
+            <Label text="Titre :" prefWidth="120" style="-fx-font-size:13px; -fx-text-fill:#555;"/>
+            <TextField fx:id="tfTitre" promptText="Min. 3 caractères" HBox.hgrow="ALWAYS"
+                       style="-fx-background-radius:8; -fx-border-radius:8; -fx-border-color:#ddd; -fx-padding:8; -fx-background-color:white;"/>
+        </HBox>
+
+        <HBox spacing="16" alignment="TOP_LEFT">
+            <Label text="Description :" prefWidth="120" style="-fx-font-size:13px; -fx-text-fill:#555;"/>
+            <TextArea fx:id="taDescription" promptText="Min. 10 caractères"
+                      prefHeight="90" HBox.hgrow="ALWAYS" wrapText="true"
+                      style="-fx-background-radius:8; -fx-border-radius:8; -fx-border-color:#ddd; -fx-background-color:white;"/>
+        </HBox>
+
+        <HBox spacing="16" alignment="CENTER_LEFT">
+            <Label text="Objectif (DT) :" prefWidth="120" style="-fx-font-size:13px; -fx-text-fill:#555;"/>
+            <TextField fx:id="tfObjectif" promptText="Ex: 5000" HBox.hgrow="ALWAYS"
+                       style="-fx-background-radius:8; -fx-border-radius:8; -fx-border-color:#ddd; -fx-padding:8; -fx-background-color:white;"/>
+        </HBox>
+
+        <HBox spacing="16" alignment="CENTER_LEFT">
+            <Label text="Date début :" prefWidth="120" style="-fx-font-size:13px; -fx-text-fill:#555;"/>
+            <DatePicker fx:id="dpDebut" HBox.hgrow="ALWAYS"/>
+        </HBox>
+
+        <HBox spacing="16" alignment="CENTER_LEFT">
+            <Label text="Date fin :" prefWidth="120" style="-fx-font-size:13px; -fx-text-fill:#555;"/>
+            <DatePicker fx:id="dpFin" HBox.hgrow="ALWAYS"/>
+        </HBox>
+
+        <HBox spacing="12" style="-fx-padding:8 0 0 0;">
+            <Button text="💾 Enregistrer"
+                    style="-fx-background-color:#16a34a; -fx-text-fill:white; -fx-font-weight:bold;
+                           -fx-background-radius:20; -fx-cursor:hand; -fx-padding:9 18 9 18;"
+                    prefWidth="150" onAction="#ajouterProjet"/>
+            <Button text="📋 Voir Projets"
+                    style="-fx-background-color:#374151; -fx-text-fill:white; -fx-font-weight:bold;
+                           -fx-background-radius:20; -fx-cursor:hand; -fx-padding:9 18 9 18;"
+                    prefWidth="150" onAction="#goToAfficher"/>
+        </HBox>
+
+    </VBox>
+
+</VBox>

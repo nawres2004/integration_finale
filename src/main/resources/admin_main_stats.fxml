@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tn.esprit.controllers.AdminDashboardController"
+      styleClass="main-content" spacing="20">
+
+    <Label text="📊 Tableau de Bord Administrateur" styleClass="page-title"/>
+
+    <!-- PROFIL -->
+    <VBox styleClass="content-card" spacing="10">
+        <Label text="👤 Mon Profil" styleClass="section-title"/>
+        <HBox spacing="30" alignment="CENTER_LEFT">
+            <VBox spacing="4">
+                <Label text="Nom:" styleClass="profile-label"/>
+                <Label fx:id="nomLabel" text="-" styleClass="profile-value"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Prénom:" styleClass="profile-label"/>
+                <Label fx:id="prenomLabel" text="-" styleClass="profile-value"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Email:" styleClass="profile-label"/>
+                <Label fx:id="emailLabel" text="-" styleClass="profile-value"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Téléphone:" styleClass="profile-label"/>
+                <Label fx:id="telephoneLabel" text="-" styleClass="profile-value"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Rôle:" styleClass="profile-label"/>
+                <Label fx:id="roleLabel" text="-" styleClass="profile-value"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- STATS -->
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <VBox styleClass="stat-card" onMouseClicked="#scrollToUsers" style="-fx-cursor: hand;">
+            <Label text="👥" styleClass="stat-icon"/>
+            <Label text="Utilisateurs" styleClass="stat-value"/>
+            <Label text="Total" styleClass="stat-label"/>
+        </VBox>
+        <VBox styleClass="stat-card">
+            <Label text="🩺" styleClass="stat-icon"/>
+            <Label text="Médecins" styleClass="stat-value"/>
+            <Label text="Actifs" styleClass="stat-label"/>
+        </VBox>
+        <VBox styleClass="stat-card">
+            <Label text="⏳" styleClass="stat-icon"/>
+            <Label text="En attente" styleClass="stat-value"/>
+            <Label text="Validation" styleClass="stat-label"/>
+        </VBox>
+        <VBox styleClass="stat-card">
+            <Label text="🏥" styleClass="stat-icon"/>
+            <Label text="Patients" styleClass="stat-value"/>
+            <Label text="Inscrits" styleClass="stat-label"/>
+        </VBox>
+    </HBox>
+
+    <!-- TABLEAU TOUS LES UTILISATEURS -->
+    <VBox fx:id="usersSection" styleClass="content-card" spacing="12">
+        <Label text="👥 Gestion des Utilisateurs" styleClass="section-title"/>
+
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <TextField fx:id="searchField"
+                       promptText="🔍 Rechercher par nom, prénom ou email..."
+                       prefWidth="340"
+                       style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0;
+                              -fx-border-radius: 8; -fx-background-radius: 8;
+                              -fx-padding: 8 12 8 12; -fx-font-size: 13px;"/>
+            <Button text="🔄 Rafraîchir" onAction="#refreshTable"
+                    style="-fx-background-color: #0066CC; -fx-text-fill: white;
+                           -fx-background-radius: 8; -fx-font-size: 13px;
+                           -fx-cursor: hand; -fx-padding: 8 16 8 16;"/>
+        </HBox>
+
+        <Label text="🩺 Médecins → Accepter / Refuser  |  Autres → Activer / Désactiver"
+               style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/>
+
+        <TableView fx:id="utilisateurTable" prefHeight="360">
+            <columns>
+                <TableColumn fx:id="colNom"       text="Nom"        prefWidth="130"/>
+                <TableColumn fx:id="colPrenom"    text="Prénom"     prefWidth="110"/>
+                <TableColumn fx:id="colEmail"     text="Email"      prefWidth="185"/>
+                <TableColumn fx:id="colTelephone" text="Téléphone"  prefWidth="100"/>
+                <TableColumn fx:id="colRole"      text="Rôle"       prefWidth="110"/>
+                <TableColumn fx:id="colStatut"    text="Statut"     prefWidth="100"/>
+                <TableColumn fx:id="colActions"   text="Actions"    prefWidth="240"/>
+            </columns>
+            <placeholder>
+                <Label text="Aucun utilisateur trouvé."
+                       style="-fx-text-fill: #94A3B8; -fx-font-size: 14px;"/>
+            </placeholder>
+        </TableView>
+
+        <Label fx:id="tableStatusLabel" style="-fx-font-size: 13px;"/>
+    </VBox>
+
+</VBox>

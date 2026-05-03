@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="tn.esprit.controllers.ClientDashboardController"
+            prefWidth="1200" prefHeight="750"
+            stylesheets="@dashboard.css">
+
+    <top>
+        <HBox styleClass="topbar" spacing="16" alignment="CENTER_LEFT">
+            <Label text="🏥 Vita+" styleClass="logo"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="topUserLabel" text="👤 Patient" styleClass="user-name"/>
+            <Button text="👤" onAction="#openProfile"
+                    style="-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white;
+                           -fx-font-size: 18px; -fx-background-radius: 50; -fx-cursor: hand;
+                           -fx-pref-width: 38; -fx-pref-height: 38;"/>
+            <Button text="🔒" onAction="#openChangePassword"
+                    style="-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white;
+                           -fx-font-size: 16px; -fx-background-radius: 50; -fx-cursor: hand;
+                           -fx-pref-width: 38; -fx-pref-height: 38;"/>
+            <Button text="🚪 Déconnexion" styleClass="logout-btn" onAction="#logout"/>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox>
+            <VBox styleClass="sidebar" spacing="4">
+                <Label text="🏥 Vita+" styleClass="sidebar-logo"/>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="🏠" styleClass="nav-icon"/>
+                    <Label text="Accueil" styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT"
+                      onMouseClicked="#openMap">
+                    <Label text="🗺️" styleClass="nav-icon"/>
+                    <Label text="Médecins proches" styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="📅" styleClass="nav-icon"/>
+                    <Label text="Mes Rendez-vous" styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT" onMouseClicked="#openOrdonnances">
+                    <Label text="📄" styleClass="nav-icon"/>
+                    <Label text="Ordonnances" styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT" onMouseClicked="#openMedicaments">
+                    <Label text="💊" styleClass="nav-icon"/>
+                    <Label text="Médicaments" styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT" onMouseClicked="#openBlogEtInformations">
+                    <Label text="📝" styleClass="nav-icon"/>
+                    <Label text="Blog et Informations" styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="📊" styleClass="nav-icon"/>
+                    <Label text="Historique" styleClass="nav-text"/>
+                </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT">
+                    <Label text="👤" styleClass="nav-icon"/>
+                    <Label text="Profil" styleClass="nav-text"/>
+                </HBox>
+                <Region VBox.vgrow="ALWAYS"/>
+                <HBox styleClass="nav-item logout-item" spacing="14" alignment="CENTER_LEFT"
+                      onMouseClicked="#logout">
+                    <Label text="🚪" styleClass="nav-icon"/>
+                    <Label text="Déconnexion" styleClass="nav-text"/>
+                </HBox>
+            </VBox>
+
+            <ScrollPane fx:id="mainContent" fitToWidth="true" HBox.hgrow="ALWAYS"
+                        style="-fx-background-color: #F1F5F9; -fx-background: #F1F5F9;">
+                <StackPane fx:id="contentPane">
+                    <VBox styleClass="main-content" spacing="20">
+
+                    <Label fx:id="welcomeLabel" text="👋 Bonjour" styleClass="page-title"/>
+
+                    <VBox styleClass="content-card" spacing="10">
+                        <Label text="👤 Mon Profil" styleClass="section-title"/>
+                        <HBox spacing="20">
+                            <VBox spacing="6">
+                                <Label text="Nom:" styleClass="profile-label"/>
+                                <Label fx:id="nomLabel" text="-" styleClass="profile-value"/>
+                            </VBox>
+                            <VBox spacing="6">
+                                <Label text="Prénom:" styleClass="profile-label"/>
+                                <Label fx:id="prenomLabel" text="-" styleClass="profile-value"/>
+                            </VBox>
+                            <VBox spacing="6">
+                                <Label text="Email:" styleClass="profile-label"/>
+                                <Label fx:id="emailLabel" text="-" styleClass="profile-value"/>
+                            </VBox>
+                            <VBox spacing="6">
+                                <Label text="Téléphone:" styleClass="profile-label"/>
+                                <Label fx:id="telephoneLabel" text="-" styleClass="profile-value"/>
+                            </VBox>
+                            <VBox spacing="6">
+                                <Label text="Rôle:" styleClass="profile-label"/>
+                                <Label fx:id="roleLabel" text="-" styleClass="profile-value"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                    <HBox spacing="20" alignment="CENTER_LEFT">
+                        <VBox styleClass="stat-card">
+                            <Label text="📅" styleClass="stat-icon"/>
+                            <Label text="RDV" styleClass="stat-value"/>
+                            <Label text="3" styleClass="stat-label"/>
+                            <Label text="À venir" styleClass="stat-change"/>
+                        </VBox>
+                        <VBox styleClass="stat-card">
+                            <Label text="🏥" styleClass="stat-icon"/>
+                            <Label text="Consultations" styleClass="stat-value"/>
+                            <Label text="12" styleClass="stat-label"/>
+                            <Label text="Cette année" styleClass="stat-change"/>
+                        </VBox>
+                        <VBox styleClass="stat-card">
+                            <Label text="💊" styleClass="stat-icon"/>
+                            <Label text="Traitements" styleClass="stat-value"/>
+                            <Label text="2" styleClass="stat-label"/>
+                            <Label text="En cours" styleClass="stat-change"/>
+                        </VBox>
+                    </HBox>
+
+                    <VBox styleClass="content-card" spacing="10">
+                        <Label text="📅 Prochain Rendez-vous" styleClass="section-title"/>
+                        <HBox styleClass="appointment-card" spacing="20">
+                            <VBox spacing="4">
+                                <Label text="🩺 Dr. Dupont" styleClass="patient-name"/>
+                                <Label text="📅 15 Avril 2025 à 14:30" styleClass="time-label"/>
+                            </VBox>
+                            <Label text="Consultation de suivi" styleClass="appointment-type"/>
+                        </HBox>
+                        <HBox spacing="10">
+                            <Button text="📅 Nouveau RDV" styleClass="btn-primary"/>
+                            <Button text="❌ Annuler" styleClass="btn-danger"/>
+                        </HBox>
+                    </VBox>
+
+                </VBox>
+                </StackPane>
+            </ScrollPane>
+        </HBox>
+    </center>
+
+</BorderPane>
