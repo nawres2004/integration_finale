@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.10" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.suivie_nawres.controllers.AjouterRendezVousController"
+            styleClass="card">
+    <top>
+        <VBox spacing="6">
+            <Label text="Réserver un rendez-vous" styleClass="section-title"/>
+            <Label text="Remplis le formulaire : le statut sera automatiquement mis à EN_ATTENTE." styleClass="info-label"/>
+        </VBox>
+    </top>
+    <center>
+        <GridPane hgap="14" vgap="12">
+            <padding><Insets top="18" right="0" bottom="0" left="0"/></padding>
+            
+            <!-- ❌ SUPPRIMÉ : Champ ID (auto-généré maintenant) -->
+            
+            <Label text="Nom" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtNom" promptText="Dupont" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Prenom" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtPrenom" promptText="Ali" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Date rendez-vous" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="datePickerRendezVous" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Heure rendez-vous" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtHeureRendezVous" promptText="14:30" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Priorité" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="comboPriorite" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <Label text="Mode consultation" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="comboModeConsultation" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+            <Label text="Notes" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextArea fx:id="txtNotesRendezVous" prefRowCount="4" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+            <Label text="Pays" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="comboPays" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+            <Label text="Téléphone" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtTelephone" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+        </GridPane>
+    </center>
+    <bottom>
+        <VBox spacing="10">
+            <Label fx:id="lblMessage" text="Prêt." styleClass="info-label"/>
+            <HBox spacing="10">
+                <Button text="✏ Enregistrer" onAction="#enregistrer" styleClass="primary-button"/>
+                <Button text="Vider" onAction="#vider" styleClass="secondary-button"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>
+

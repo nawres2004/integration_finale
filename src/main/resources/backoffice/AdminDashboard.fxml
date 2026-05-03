@@ -17,6 +17,10 @@
                 style="-fx-background-color:#1a73e8; -fx-text-fill:white; -fx-font-weight:bold;
                        -fx-background-radius:10; -fx-cursor:hand; -fx-padding:8 16;"
                 onAction="#goToDons"/>
+        <Button text="Suivi Patient"
+                style="-fx-background-color:#1a73e8; -fx-text-fill:white; -fx-font-weight:bold;
+                       -fx-background-radius:10; -fx-cursor:hand; -fx-padding:8 16;"
+                onAction="#goToSuivi"/>
         <Button text="Statistiques"
                 style="-fx-background-color:#1a73e8; -fx-text-fill:white; -fx-font-weight:bold;
                        -fx-background-radius:10; -fx-cursor:hand; -fx-padding:8 16;"

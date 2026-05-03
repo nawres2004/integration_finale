@@ -41,6 +41,10 @@
                     <Label text="👥" styleClass="nav-icon"/>
                     <Label text="Patients" styleClass="nav-text"/>
                 </HBox>
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT" onMouseClicked="#openSuiviPatient">
+                    <Label text="📋" styleClass="nav-icon"/>
+                    <Label text="Suivi de patient" styleClass="nav-text"/>
+                </HBox>
                 <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT"
                       onMouseClicked="#openLocation">
                     <Label text="📍" styleClass="nav-icon"/>

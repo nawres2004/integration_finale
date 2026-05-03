@@ -95,6 +95,11 @@ public class MedecinDashboardController {
     }
 
     @FXML
+    public void openSuiviPatient() {
+        loadView("/views/DashboardMedecin.fxml");
+    }
+
+    @FXML
     public void openBlogEtInformations() {
         try {
             tn.esprit.utils.SessionBridge.sync(); // Sync session first

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.10" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.suivie_nawres.controllers.DashboardMedecinController"
+            styleClass="root">
+    <top>
+        <HBox spacing="12" styleClass="dashboard-medecin-top">
+            <padding><Insets top="14" right="22" bottom="14" left="22"/></padding>
+            <Label text="Dashboard Médecin" styleClass="dashboard-medecin-top-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="🔔 Test Notification" onAction="#testerNotification" styleClass="dashboard-top-return"/>
+            <Button text="Changer le role" onAction="#retourChoixRole" styleClass="dashboard-top-return"/>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="dashboard-scroll">
+            <content>
+                <VBox spacing="22" styleClass="dashboard-medecin-wrapper">
+                    <padding><Insets top="28" right="28" bottom="28" left="28"/></padding>
+
+                    <VBox spacing="10" styleClass="dashboard-medecin-hero">
+                        <padding><Insets top="24" right="28" bottom="24" left="28"/></padding>
+                        <Label text="Suivi Medical" styleClass="dashboard-medecin-hero-title"/>
+                        <Label text="Gerez vos rendez-vous et vos consultations en toute simplicite" styleClass="dashboard-medecin-hero-subtitle"/>
+                    </VBox>
+
+                    <HBox spacing="26">
+                        <VBox spacing="18" prefWidth="340" styleClass="dashboard-medecin-card">
+                            <padding><Insets top="26" right="26" bottom="26" left="26"/></padding>
+                            <StackPane prefWidth="88" prefHeight="88" maxWidth="88" maxHeight="88" styleClass="dashboard-medecin-icon dashboard-medecin-icon-orange">
+                                <Label text="RDV" styleClass="dashboard-medecin-icon-text"/>
+                            </StackPane>
+                            <Label text="Demandes en Attente" wrapText="true" styleClass="dashboard-medecin-card-title"/>
+                            <Label text="Validez ou refusez les demandes de rendez-vous des patients." wrapText="true" styleClass="dashboard-medecin-card-text"/>
+                            <Button text="Traiter les Demandes" onAction="#traiterDemandesRendezVous" maxWidth="1.7976931348623157E308" styleClass="dashboard-medecin-action-primary"/>
+                        </VBox>
+
+                        <VBox spacing="14" prefWidth="340" styleClass="dashboard-medecin-card">
+                            <padding><Insets top="26" right="26" bottom="26" left="26"/></padding>
+                            <StackPane prefWidth="88" prefHeight="88" maxWidth="88" maxHeight="88" styleClass="dashboard-medecin-icon dashboard-medecin-icon-blue">
+                                <Label text="CAL" styleClass="dashboard-medecin-icon-text"/>
+                            </StackPane>
+                            <Label text="Gerer les Rendez-Vous" wrapText="true" styleClass="dashboard-medecin-card-title"/>
+                            <Label text="Consultez et gerez tous les rendez-vous confirmes." wrapText="true" styleClass="dashboard-medecin-card-text"/>
+                            <Button text="📅 Voir le Calendrier" onAction="#afficherCalendrier" maxWidth="1.7976931348623157E308" styleClass="dashboard-medecin-action-primary"/>
+                            <Button text="Creer un Rendez-vous" onAction="#ajouterRendezVous" maxWidth="1.7976931348623157E308" styleClass="dashboard-medecin-action-secondary"/>
+                            <Button text="Voir Tous les RDV" onAction="#gererRendezVous" maxWidth="1.7976931348623157E308" styleClass="dashboard-medecin-action-secondary"/>
+                        </VBox>
+
+                        <VBox spacing="14" prefWidth="340" styleClass="dashboard-medecin-card">
+                            <padding><Insets top="26" right="26" bottom="26" left="26"/></padding>
+                            <StackPane prefWidth="88" prefHeight="88" maxWidth="88" maxHeight="88" styleClass="dashboard-medecin-icon dashboard-medecin-icon-green">
+                                <Label text="MED" styleClass="dashboard-medecin-icon-text"/>
+                            </StackPane>
+                            <Label text="Gerer les Consultations" wrapText="true" styleClass="dashboard-medecin-card-title"/>
+                            <Label text="Creez et gerez les dossiers de consultations medicales." wrapText="true" styleClass="dashboard-medecin-card-text"/>
+                            <Button text="Nouvelle Consultation" onAction="#ajouterConsultation" maxWidth="1.7976931348623157E308" styleClass="dashboard-medecin-action-primary"/>
+                            <Button text="Voir les Consultations" onAction="#gererConsultations" maxWidth="1.7976931348623157E308" styleClass="dashboard-medecin-action-secondary"/>
+                        </VBox>
+                    </HBox>
+
+                    <StackPane fx:id="contentPane" minHeight="320" styleClass="content-area dashboard-medecin-content"/>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
+
