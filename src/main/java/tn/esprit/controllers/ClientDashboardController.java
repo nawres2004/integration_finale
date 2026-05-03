@@ -104,6 +104,11 @@ public class ClientDashboardController {
     }
 
     @FXML
+    public void openRendezVous() {
+        loadView("/views/AfficherRendezVous.fxml");
+    }
+
+    @FXML
     public void openBlogEtInformations() {
         try {
             tn.esprit.utils.SessionBridge.sync(); // Sync session first

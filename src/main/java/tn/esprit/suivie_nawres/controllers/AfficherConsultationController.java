@@ -1,0 +1,312 @@
+package tn.esprit.suivie_nawres.controllers;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.Scene;
+import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import tn.esprit.suivie_nawres.models.Consultation;
+import tn.esprit.suivie_nawres.services.ConsultationApi2PdfService;
+import tn.esprit.suivie_nawres.services.ConsultationService;
+import tn.esprit.suivie_nawres.utils.RoleContext;
+import tn.esprit.suivie_nawres.utils.UserRole;
+
+import java.io.File;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Objects;
+
+public class AfficherConsultationController {
+    @FXML private TableView<Consultation> tableConsultation;
+    @FXML private TableColumn<Consultation, String> colNom;
+    @FXML private TableColumn<Consultation, String> colPrenom;
+    @FXML private TableColumn<Consultation, Object> colDate;
+    @FXML private TableColumn<Consultation, Object> colHeure;
+    @FXML private TableColumn<Consultation, String> colMode;
+    @FXML private TableColumn<Consultation, String> colMaladie;
+    @FXML private TableColumn<Consultation, String> colDiagnostic;
+    @FXML private TableColumn<Consultation, String> colTraitement;
+    @FXML private TableColumn<Consultation, String> colExamens;
+    @FXML private TableColumn<Consultation, String> colNotes;
+    @FXML private TableColumn<Consultation, Object> colCout;
+    @FXML private TextField txtRechercheId;
+    @FXML private ComboBox<String> comboFiltreMode;
+    @FXML private Label lblMessage;
+    @FXML private Button btnSupprimer;
+    @FXML private Button btnModifier;
+    @FXML private Button btnTelechargerPdf;
+
+    private final ConsultationService consultationService = new ConsultationService();
+    private final ConsultationApi2PdfService pdfService = new ConsultationApi2PdfService();
+    private final ObservableList<Consultation> sourceConsultations = FXCollections.observableArrayList();
+    private FilteredList<Consultation> consultationsFiltrees;
+
+    @FXML
+    private void initialize() {
+        tableConsultation.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
+        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("dateConsultation"));
+        colHeure.setCellValueFactory(new PropertyValueFactory<>("heureConsultation"));
+        colMode.setCellValueFactory(new PropertyValueFactory<>("modeConsultation"));
+        colMaladie.setCellValueFactory(new PropertyValueFactory<>("maladie"));
+        colDiagnostic.setCellValueFactory(new PropertyValueFactory<>("diagnostic"));
+        colTraitement.setCellValueFactory(new PropertyValueFactory<>("traitement"));
+        colExamens.setCellValueFactory(new PropertyValueFactory<>("examensComplementaires"));
+        colNotes.setCellValueFactory(new PropertyValueFactory<>("notesConsultation"));
+        colCout.setCellValueFactory(new PropertyValueFactory<>("coutConsultation"));
+        initialiserFiltres();
+        appliquerVisibiliteSelonRole();
+        actualiser();
+    }
+
+    @FXML
+    private void actualiser() {
+        try {
+            List<Consultation> consultations = consultationService.afficherConsultations();
+            sourceConsultations.setAll(consultations);
+            appliquerFiltres();
+            afficherMessage(sourceConsultations.isEmpty() ? "Aucune consultation trouvee." : "Liste des consultations chargee.");
+        } catch (Exception exception) {
+            afficherMessage("Erreur base de donnees. Verifie la structure de la table consultation.");
+        }
+    }
+
+    @FXML
+    private void rechercher() {
+        appliquerFiltres();
+    }
+
+    @FXML
+    private void reinitialiserFiltres() {
+        txtRechercheId.clear();
+        if (comboFiltreMode != null) {
+            comboFiltreMode.getSelectionModel().select("Tous");
+        }
+        appliquerFiltres();
+    }
+
+    @FXML
+    private void supprimer() {
+        try {
+            Consultation selection = tableConsultation.getSelectionModel().getSelectedItem();
+            if (selection == null) {
+                afficherMessage("Sélectionne une consultation.");
+                return;
+            }
+            consultationService.supprimerConsultation(selection.getUtilisateurId());
+            actualiser();
+            afficherMessage("Consultation supprimée.");
+        } catch (Exception exception) {
+            afficherMessage("Suppression impossible. Verifie les donnees.");
+        }
+    }
+
+    @FXML
+    private void modifier() {
+        try {
+            System.out.println("🔧 Bouton Modifier cliqué");
+            
+            Consultation selection = tableConsultation.getSelectionModel().getSelectedItem();
+            if (selection == null) {
+                afficherMessage("❌ Sélectionne une consultation.");
+                System.out.println("❌ Aucune consultation sélectionnée");
+                return;
+            }
+
+            System.out.println("✅ Consultation sélectionnée : ID=" + selection.getUtilisateurId() + 
+                             ", Nom=" + selection.getNom() + " " + selection.getPrenom());
+
+            AjouterConsultationController.setConsultationAEditer(selection);
+            AjouterConsultationController.setParentConsultationController(this);
+            
+            System.out.println("📂 Chargement du fichier FXML...");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AjouterConsultation.fxml"));
+            
+            System.out.println("🎨 Création de la scène...");
+            Scene scene = new Scene(loader.load(), 900, 760);
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/app.css")).toExternalForm());
+            
+            System.out.println("🪟 Création de la fenêtre modale...");
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Modifier Consultation");
+            stage.setScene(scene);
+            
+            System.out.println("✅ Affichage de la fenêtre de modification...");
+            stage.showAndWait();
+            
+            System.out.println("🔄 Actualisation de la liste après modification");
+            actualiser();
+        } catch (Exception exception) {
+            System.err.println("❌ ERREUR lors de l'ouverture de la modification :");
+            exception.printStackTrace();
+            afficherMessage("❌ Impossible d'ouvrir la modification : " + exception.getMessage());
+        }
+    }
+
+    public void rafraichirListe() {
+        actualiser();
+    }
+
+    /**
+     * 📄 TÉLÉCHARGER LA CONSULTATION EN PDF
+     * =====================================
+     * Cette méthode permet de générer et télécharger un PDF de la consultation sélectionnée.
+     * 
+     * 🎯 FONCTIONNEMENT :
+     * 1. Vérifier qu'une consultation est sélectionnée
+     * 2. Ouvrir une fenêtre pour choisir où sauvegarder le PDF
+     * 3. Générer le PDF avec toutes les informations
+     * 4. Afficher un message de succès ou d'erreur
+     * 
+     * 💡 ANALOGIE :
+     * C'est comme "Enregistrer sous..." dans Word :
+     * - Tu choisis le nom du fichier
+     * - Tu choisis l'emplacement (Bureau, Documents, etc.)
+     * - Le fichier est créé automatiquement
+     */
+    @FXML
+    private void telechargerPdf() {
+        try {
+            // ✅ ÉTAPE 1 : Vérifier qu'une consultation est sélectionnée
+            Consultation selection = tableConsultation.getSelectionModel().getSelectedItem();
+            if (selection == null) {
+                afficherMessage("❌ Sélectionne une consultation pour générer le PDF.");
+                return;
+            }
+
+            // ✅ ÉTAPE 2 : Ouvrir la fenêtre de sélection de fichier
+            // FileChooser = Fenêtre Windows pour choisir où sauvegarder
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Enregistrer la consultation en PDF");
+            
+            // 📁 Définir le nom par défaut du fichier
+            // Format : "Consultation_NOM_PRENOM_DATE.pdf"
+            String nomFichier = String.format("Consultation_%s_%s_%s.pdf",
+                    selection.getNom() != null ? selection.getNom().replace(" ", "_") : "Patient",
+                    selection.getPrenom() != null ? selection.getPrenom().replace(" ", "_") : "",
+                    selection.getDateConsultation() != null 
+                            ? selection.getDateConsultation().format(DateTimeFormatter.ofPattern("ddMMyyyy"))
+                            : "SansDate");
+            fileChooser.setInitialFileName(nomFichier);
+            
+            // 🔧 Définir le filtre pour n'afficher que les fichiers PDF
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Fichiers PDF (*.pdf)", "*.pdf");
+            fileChooser.getExtensionFilters().add(extFilter);
+            
+            // 📂 Définir le dossier par défaut (Bureau de l'utilisateur)
+            String cheminBureau = System.getProperty("user.home") + "/Desktop";
+            File dossierBureau = new File(cheminBureau);
+            if (dossierBureau.exists()) {
+                fileChooser.setInitialDirectory(dossierBureau);
+            }
+
+            // 🪟 Afficher la fenêtre et attendre que l'utilisateur choisisse
+            File fichier = fileChooser.showSaveDialog(tableConsultation.getScene().getWindow());
+            
+            // ❌ Si l'utilisateur annule, on arrête
+            if (fichier == null) {
+                afficherMessage("⚠️ Téléchargement PDF annulé.");
+                return;
+            }
+
+            // ✅ ÉTAPE 3 : Générer le PDF
+            pdfService.genererPdfConsultation(selection, fichier.getAbsolutePath());
+            
+            // ✅ ÉTAPE 4 : Afficher le message de succès
+            afficherMessage("✅ PDF téléchargé avec succès : " + fichier.getName());
+            
+        } catch (Exception exception) {
+            // ❌ En cas d'erreur, afficher un message d'erreur
+            afficherMessage("❌ Erreur lors de la génération du PDF : " + exception.getMessage());
+            exception.printStackTrace(); // Afficher l'erreur dans la console pour le débogage
+        }
+    }
+
+    private void appliquerVisibiliteSelonRole() {
+        boolean medecin = RoleContext.getCurrentRole() == UserRole.MEDECIN;
+        if (btnModifier != null) {
+            btnModifier.setVisible(medecin);
+            btnModifier.setManaged(medecin);
+        }
+        btnSupprimer.setVisible(medecin);
+        btnSupprimer.setManaged(medecin);
+    }
+
+    private void afficherMessage(String message) {
+        if (lblMessage != null) {
+            lblMessage.setText(message);
+        }
+    }
+
+    private void initialiserFiltres() {
+        if (comboFiltreMode != null) {
+            comboFiltreMode.setItems(FXCollections.observableArrayList("Tous", "A_DISTANCE", "PRESENTIEL", "TELECONSULTATION"));
+            comboFiltreMode.getSelectionModel().select("Tous");
+            comboFiltreMode.valueProperty().addListener((obs, oldValue, newValue) -> appliquerFiltres());
+        }
+        if (txtRechercheId != null) {
+            txtRechercheId.textProperty().addListener((obs, oldValue, newValue) -> appliquerFiltres());
+        }
+
+        consultationsFiltrees = new FilteredList<>(sourceConsultations, item -> true);
+        SortedList<Consultation> consultationsTriees = new SortedList<>(consultationsFiltrees);
+        consultationsTriees.comparatorProperty().bind(tableConsultation.comparatorProperty());
+        tableConsultation.setItems(consultationsTriees);
+    }
+
+    private void appliquerFiltres() {
+        if (consultationsFiltrees == null) {
+            return;
+        }
+        String recherche = txtRechercheId == null || txtRechercheId.getText() == null
+                ? ""
+                : txtRechercheId.getText().trim().toLowerCase();
+        String mode = comboFiltreMode == null ? "Tous" : comboFiltreMode.getValue();
+
+        consultationsFiltrees.setPredicate(consultation -> {
+            if (consultation == null) {
+                return false;
+            }
+            boolean matchRecherche = recherche.isEmpty()
+                    || String.valueOf(consultation.getUtilisateurId()).contains(recherche)
+                    || contient(consultation.getNom(), recherche)
+                    || contient(consultation.getPrenom(), recherche)
+                    || contient(consultation.getMaladie(), recherche)
+                    || contient(consultation.getDiagnostic(), recherche)
+                    || contient(consultation.getTraitement(), recherche)
+                    || contient(consultation.getNotesConsultation(), recherche);
+
+            boolean matchMode = mode == null || "Tous".equals(mode)
+                    || contientExact(consultation.getModeConsultation(), mode);
+
+            return matchRecherche && matchMode;
+        });
+
+        afficherMessage(tableConsultation.getItems().isEmpty()
+                ? "Aucune consultation ne correspond au filtre."
+                : tableConsultation.getItems().size() + " consultations affichees.");
+    }
+
+    private boolean contient(String valeur, String recherche) {
+        return valeur != null && valeur.toLowerCase().contains(recherche);
+    }
+
+    private boolean contientExact(String valeur, String attendu) {
+        return valeur != null && valeur.trim().equalsIgnoreCase(attendu);
+    }
+}
+

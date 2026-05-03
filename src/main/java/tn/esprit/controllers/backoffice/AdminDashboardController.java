@@ -35,6 +35,7 @@ public class AdminDashboardController {
     @FXML public void goToDons()    { tn.esprit.controllers.AdminDashboardController.chargerDansContentPane("/backoffice/AfficherDons.fxml"); }
     @FXML public void goToFront()   { tn.esprit.controllers.AdminDashboardController.chargerDansContentPane("/backoffice/AdminDashboard.fxml"); }
     @FXML public void goToStats()   { tn.esprit.controllers.AdminDashboardController.chargerDansContentPane("/backoffice/Statistiques.fxml"); }
+    @FXML public void goToSuivi()   { tn.esprit.controllers.AdminDashboardController.chargerDansContentPane("/views/DashboardAdmin.fxml"); }
 
     private void naviguer(String fxml) {
         try {

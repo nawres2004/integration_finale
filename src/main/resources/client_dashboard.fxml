@@ -38,7 +38,7 @@
                     <Label text="🗺️" styleClass="nav-icon"/>
                     <Label text="Médecins proches" styleClass="nav-text"/>
                 </HBox>
-                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT">
+                <HBox styleClass="nav-item" spacing="14" alignment="CENTER_LEFT" onMouseClicked="#openRendezVous">
                     <Label text="📅" styleClass="nav-icon"/>
                     <Label text="Mes Rendez-vous" styleClass="nav-text"/>
                 </HBox>

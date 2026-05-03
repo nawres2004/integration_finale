@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="rootPane" xmlns="http://javafx.com/javafx/17.0.10" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.suivie_nawres.controllers.DetailRendezVousMedecinController"
+            styleClass="root">
+    <top>
+        <VBox spacing="6" styleClass="detail-header">
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+            <Label fx:id="lblTitre" text="Details rendez-vous" styleClass="section-title"/>
+        </VBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="detail-scroll">
+            <content>
+                <VBox spacing="24" styleClass="detail-container">
+                    <padding><Insets top="20" right="28" bottom="20" left="28"/></padding>
+
+                    <VBox spacing="16" styleClass="detail-section">
+                        <Label text="Patient et Contact" styleClass="detail-section-title"/>
+                        <GridPane hgap="20" vgap="14">
+                            <columnConstraints>
+                                <ColumnConstraints prefWidth="150" minWidth="120"/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                            </columnConstraints>
+
+                            <Label text="Telephone :" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="detail-label"/>
+                            <Label fx:id="lblTelephone" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="detail-value" wrapText="true"/>
+
+                            <Label text="Pays :" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="detail-label"/>
+                            <Label fx:id="lblPays" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="detail-value"/>
+
+                            <Label text="Nom :" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="detail-label"/>
+                            <Label fx:id="lblNom" GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="detail-value"/>
+
+                            <Label text="Prenom :" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="detail-label"/>
+                            <Label fx:id="lblPrenom" GridPane.columnIndex="1" GridPane.rowIndex="3" styleClass="detail-value"/>
+                        </GridPane>
+                    </VBox>
+
+                    <VBox spacing="16" styleClass="detail-section">
+                        <Label text="Rendez-vous" styleClass="detail-section-title"/>
+                        <GridPane hgap="20" vgap="14">
+                            <columnConstraints>
+                                <ColumnConstraints prefWidth="150" minWidth="120"/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                            </columnConstraints>
+
+                            <Label text="Date :" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="detail-label"/>
+                            <Label fx:id="lblDate" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="detail-value"/>
+
+                            <Label text="Heure :" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="detail-label"/>
+                            <Label fx:id="lblHeure" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="detail-value"/>
+
+                            <Label text="Mode :" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="detail-label"/>
+                            <Label fx:id="lblMode" GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="detail-value"/>
+                        </GridPane>
+                    </VBox>
+
+                    <VBox spacing="16" styleClass="detail-section">
+                        <Label text="Statut et Priorite" styleClass="detail-section-title"/>
+                        <GridPane hgap="20" vgap="14">
+                            <columnConstraints>
+                                <ColumnConstraints prefWidth="150" minWidth="120"/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                            </columnConstraints>
+
+                            <Label text="Statut :" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="detail-label"/>
+                            <Label fx:id="lblStatut" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="detail-value"/>
+
+                            <Label text="Priorite :" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="detail-label"/>
+                            <Label fx:id="lblPriorite" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="detail-value"/>
+                        </GridPane>
+                    </VBox>
+
+                    <VBox spacing="16" styleClass="detail-section">
+                        <Label text="Notes" styleClass="detail-section-title"/>
+                        <Label fx:id="lblNotes" styleClass="detail-notes" wrapText="true" textAlignment="LEFT"/>
+                    </VBox>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+    <bottom>
+        <VBox spacing="12" styleClass="detail-footer">
+            <padding><Insets top="14" right="20" bottom="20" left="20"/></padding>
+            <Label fx:id="lblMessage" text="Pret." styleClass="info-label"/>
+            <HBox spacing="12">
+                <Button text="Retour" onAction="#retour" styleClass="secondary-button"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Supprimer" onAction="#supprimer" styleClass="danger-button"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>
+

@@ -1,0 +1,2644 @@
+/* Base */
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-background-color: #eef3f8;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.10), 10, 0.2, 0, 3);
+}
+
+.section-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0f172a;
+}
+
+.info-label {
+    -fx-text-fill: #475569;
+    -fx-font-size: 13px;
+}
+
+/* Buttons */
+.primary-button {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-padding: 10 16 10 16;
+    -fx-font-weight: bold;
+}
+
+.secondary-button {
+    -fx-background-color: #e2e8f0;
+    -fx-text-fill: #0f172a;
+    -fx-background-radius: 10;
+    -fx-padding: 10 16 10 16;
+    -fx-font-weight: bold;
+}
+
+.danger-button {
+    -fx-background-color: #dc2626;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-padding: 10 16 10 16;
+    -fx-font-weight: bold;
+}
+
+/* Inputs */
+.text-field,
+.text-area,
+.combo-box,
+.date-picker {
+    -fx-background-radius: 10;
+}
+
+.search-field {
+    -fx-font-size: 15px;
+}
+
+/* Table */
+.table-view {
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #cbd5e1;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #f1f5f9;
+    -fx-background-radius: 12 12 0 0;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: #e2e8f0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #1e293b;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell {
+    -fx-font-size: 14px;
+}
+
+/* Sidebars / headers legacy */
+.app-header {
+    -fx-background-color: linear-gradient(to right, #0f172a, #1d4ed8);
+    -fx-padding: 16 20 16 20;
+}
+
+.app-title {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.app-subtitle {
+    -fx-text-fill: #dbeafe;
+    -fx-font-size: 13px;
+}
+
+.sidebar {
+    -fx-background-color: #0f172a;
+    -fx-padding: 20;
+}
+
+.sidebar .button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: rgba(255, 255, 255, 0.10);
+    -fx-border-width: 1;
+}
+
+.sidebar .button:hover {
+    -fx-background-color: rgba(59, 130, 246, 0.25);
+}
+
+.content-area {
+    -fx-background-color: #eef3f8;
+    -fx-padding: 16;
+}
+
+/* Dashboard medecin */
+.dashboard-medecin-top {
+    -fx-background-color: linear-gradient(to right, #0f5ea8, #1ca7de);
+}
+
+.dashboard-medecin-top-title {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.dashboard-top-return {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 14 8 14;
+}
+
+.dashboard-scroll,
+.dashboard-scroll > .viewport {
+    -fx-background-color: #bfe5fb;
+    -fx-border-color: transparent;
+}
+
+.dashboard-medecin-wrapper {
+    -fx-background-color: #bfe5fb;
+}
+
+.dashboard-medecin-hero {
+    -fx-background-color: #f6f7fb;
+    -fx-background-radius: 24;
+}
+
+.dashboard-medecin-hero-title {
+    -fx-text-fill: #1696d2;
+    -fx-font-size: 48px;
+    -fx-font-weight: bold;
+}
+
+.dashboard-medecin-hero-subtitle {
+    -fx-text-fill: #2d4f72;
+    -fx-font-size: 18px;
+}
+
+.dashboard-medecin-card {
+    -fx-background-color: #f6f7fb;
+    -fx-background-radius: 24;
+    -fx-min-height: 420;
+}
+
+.dashboard-medecin-icon {
+    -fx-background-radius: 24;
+}
+
+.dashboard-medecin-icon-orange { -fx-background-color: #f59e0b; }
+.dashboard-medecin-icon-blue { -fx-background-color: #0ea5e9; }
+.dashboard-medecin-icon-green { -fx-background-color: #10b981; }
+
+.dashboard-medecin-icon-text {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.dashboard-medecin-card-title {
+    -fx-text-fill: #142b52;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.dashboard-medecin-card-text {
+    -fx-text-fill: #456184;
+    -fx-font-size: 15px;
+}
+
+.dashboard-medecin-action-primary {
+    -fx-background-color: #12a8d8;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 10 18 10 18;
+}
+
+.dashboard-medecin-action-secondary {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1095d0;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #1095d0;
+    -fx-border-width: 2;
+    -fx-padding: 10 18 10 18;
+}
+
+.dashboard-medecin-content {
+    -fx-background-color: #f6f7fb;
+    -fx-background-radius: 18;
+}
+
+/* Dashboard patient */
+.patient-sidebar {
+    -fx-background-color: linear-gradient(to bottom, #12a8d8, #7c4dff);
+    -fx-padding: 24 16 24 16;
+}
+
+.patient-logo {
+    -fx-text-fill: white;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-padding: 20 8 24 8;
+}
+
+.patient-menu-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 10 12 10 12;
+    -fx-alignment: center-left;
+}
+
+.patient-menu-item:hover { -fx-background-color: rgba(255, 255, 255, 0.2); }
+.patient-menu-item-active { -fx-background-color: rgba(255, 255, 255, 0.22); }
+
+.patient-admin-button,
+.patient-top-action,
+.patient-top-return {
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+}
+
+.patient-admin-button {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-border-color: rgba(255, 255, 255, 0.25);
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 10 12 10 12;
+}
+
+.patient-scroll,
+.patient-scroll > .viewport,
+.patient-wrapper {
+    -fx-background-color: #f3f6fb;
+    -fx-border-color: transparent;
+}
+
+.patient-top-action {
+    -fx-background-color: linear-gradient(to right, #7c4dff, #5b6be5);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 9 16 9 16;
+}
+
+.patient-top-return {
+    -fx-background-color: white;
+    -fx-text-fill: #5b6be5;
+    -fx-font-size: 14px;
+    -fx-border-color: #5b6be5;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 9 14 9 14;
+}
+
+.patient-header-box { -fx-alignment: center; }
+
+.patient-main-title {
+    -fx-text-fill: #1d3557;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+}
+
+.patient-main-subtitle {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 17px;
+}
+
+.patient-primary-card {
+    -fx-background-color: linear-gradient(to right, #5a7aea, #7f42b5);
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(30, 41, 59, 0.18), 14, 0.2, 0, 5);
+}
+
+.patient-card-title {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 34px;
+    -fx-font-weight: bold;
+}
+
+.patient-card-text { -fx-text-fill: #eaf1ff; -fx-font-size: 16px; }
+
+.patient-card-button {
+    -fx-background-color: rgba(255, 255, 255, 0.24);
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-padding: 10 20 10 20;
+}
+
+.patient-info-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 18;
+    -fx-border-color: #4b9cff transparent transparent transparent;
+    -fx-border-width: 0 0 0 4;
+}
+
+.patient-info-title { -fx-text-fill: #1d3557; -fx-font-size: 18px; -fx-font-weight: bold; }
+.patient-info-text { -fx-text-fill: #334155; -fx-font-size: 15px; }
+
+.patient-content-host {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 18;
+    -fx-padding: 18;
+}
+
+/* RDV medecin list */
+.medecin-list-header {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+}
+
+.rdv-list-scroll {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.rdv-list-scroll > .viewport {
+    -fx-background-color: #eef3f8;
+}
+
+.rdv-cards-list {
+    -fx-background-color: #eef3f8;
+}
+
+.rdv-card-row {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #dbe5f0;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+}
+
+.rdv-row-left {
+    -fx-background-color: linear-gradient(to bottom, #f59e0b, #ea580c);
+    -fx-background-radius: 14 0 0 14;
+    -fx-min-width: 170;
+}
+
+.rdv-row-id {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.rdv-row-priority {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(255, 255, 255, 0.25);
+    -fx-background-radius: 10;
+    -fx-padding: 4 10 4 10;
+}
+
+.rdv-row-patient {
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.rdv-row-line {
+    -fx-text-fill: #334155;
+    -fx-font-size: 14px;
+}
+
+.rdv-row-actions {
+    -fx-alignment: center;
+}
+
+.crud-icon-button {
+    -fx-min-width: 110;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+}
+
+.crud-view {
+    -fx-background-color: #dbeafe;
+    -fx-text-fill: #1d4ed8;
+}
+
+.crud-edit {
+    -fx-background-color: #fef3c7;
+    -fx-text-fill: #b45309;
+}
+
+/* Detail modal */
+.detail-header {
+    -fx-background-color: linear-gradient(to right, #0ea5e9, #0f5ea8);
+}
+
+.detail-header .section-title {
+    -fx-text-fill: white;
+}
+
+.detail-scroll,
+.detail-scroll > .viewport,
+.detail-container {
+    -fx-background-color: #f3f6fb;
+    -fx-border-color: transparent;
+}
+
+.detail-section {
+    -fx-background-color: white;
+    -fx-background-radius: 14;
+    -fx-padding: 18 20 18 20;
+    -fx-effect: dropshadow(gaussian, rgba(30, 41, 59, 0.08), 10, 0.15, 0, 2);
+}
+
+.detail-section-title {
+    -fx-text-fill: #0f5ea8;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+.detail-label {
+    -fx-text-fill: #475569;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.detail-value {
+    -fx-text-fill: #1e293b;
+    -fx-font-size: 14px;
+}
+
+.detail-notes {
+    -fx-text-fill: #1e293b;
+    -fx-font-size: 14px;
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 10;
+    -fx-padding: 14 16 14 16;
+}
+
+.detail-footer {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0 transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+
+/* ========================================
+   STYLES DU CALENDRIER
+   ======================================== */
+
+/* Titre du mois */
+.calendrier-mois-titre {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0f172a;
+    -fx-min-width: 200px;
+    -fx-alignment: center;
+}
+
+/* Grille du calendrier */
+.calendrier-grille {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-padding: 10;
+}
+
+/* En-tête des jours (Lun, Mar, etc.) */
+.calendrier-entete-jour {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #64748b;
+    -fx-padding: 10;
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 0 0 2 0;
+}
+
+/* Bouton jour par défaut */
+.calendrier-jour {
+    -fx-background-color: white;
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-min-height: 70px;
+    -fx-min-width: 70px;
+}
+
+.calendrier-jour:hover {
+    -fx-background-color: #f1f5f9;
+    -fx-border-color: #cbd5e1;
+}
+
+/* Jour avec rendez-vous */
+.calendrier-jour-rdv {
+    -fx-background-color: #dbeafe;
+    -fx-border-color: #3b82f6;
+    -fx-border-width: 2;
+}
+
+.calendrier-jour-rdv:hover {
+    -fx-background-color: #bfdbfe;
+}
+
+/* Jour avec consultations */
+.calendrier-jour-consultation {
+    -fx-background-color: #dcfce7;
+    -fx-border-color: #22c55e;
+    -fx-border-width: 2;
+}
+
+.calendrier-jour-consultation:hover {
+    -fx-background-color: #bbf7d0;
+}
+
+/* Jour avec RDV ET consultations */
+.calendrier-jour-mixte {
+    -fx-background-color: #fef3c7;
+    -fx-border-color: #f59e0b;
+    -fx-border-width: 2;
+}
+
+.calendrier-jour-mixte:hover {
+    -fx-background-color: #fde68a;
+}
+
+/* Aujourd'hui */
+.calendrier-jour-aujourd-hui {
+    -fx-border-color: #dc2626;
+    -fx-border-width: 3;
+    -fx-font-weight: 900;
+}
+
+/* Panneau de détails */
+.calendrier-details {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.calendrier-details-titre {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0f172a;
+}
+
+.calendrier-details-date {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2563eb;
+    -fx-padding: 0 0 10 0;
+}
+
+.calendrier-details-contenu {
+    -fx-font-size: 13px;
+    -fx-text-fill: #475569;
+    -fx-font-family: "Consolas", "Courier New", monospace;
+    -fx-padding: 10;
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+/* Légende */
+.calendrier-legende-titre {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #64748b;
+}
+
+.calendrier-legende-texte {
+    -fx-font-size: 12px;
+    -fx-text-fill: #64748b;
+}
+
+.calendrier-legende-rdv {
+    -fx-font-size: 20px;
+    -fx-text-fill: #3b82f6;
+}
+
+.calendrier-legende-consultation {
+    -fx-font-size: 20px;
+    -fx-text-fill: #22c55e;
+}
+
+.calendrier-legende-mixte {
+    -fx-font-size: 20px;
+    -fx-text-fill: #f59e0b;
+}
+
+.calendrier-legende-aujourd-hui {
+    -fx-font-size: 20px;
+    -fx-text-fill: #dc2626;
+}
+
+
+/* ========================================
+   STYLES AMÉLIORÉS POUR CONSULTATIONS
+   ======================================== */
+
+/* Carte compacte */
+.consultation-card-compact {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-padding: 14 18;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.08), 10, 0.15, 0, 2);
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+}
+
+.consultation-card-compact:hover {
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.12), 12, 0.2, 0, 3);
+    -fx-border-color: #cbd5e1;
+}
+
+.consultation-nom-compact {
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.consultation-date-compact {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+}
+
+.consultation-badge-compact {
+    -fx-background-radius: 6;
+    -fx-padding: 4 10;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.consultation-label-compact {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.consultation-value-compact {
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+}
+
+.consultation-maladie-compact {
+    -fx-text-fill: #dc2626;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.consultation-cout-compact {
+    -fx-background-color: #fef3c7;
+    -fx-text-fill: #78350f;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-padding: 4 10;
+}
+
+.consultation-btn-icon {
+    -fx-background-color: #f1f5f9;
+    -fx-text-fill: #475569;
+    -fx-font-size: 14px;
+    -fx-background-radius: 6;
+    -fx-padding: 6 10;
+    -fx-cursor: hand;
+    -fx-min-width: 35px;
+}
+
+.consultation-btn-icon:hover {
+    -fx-background-color: #e2e8f0;
+}
+
+/* Anciens styles (gardés pour compatibilité) */
+
+.consultation-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.08), 12, 0.15, 0, 3);
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+}
+
+.consultation-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.15), 16, 0.2, 0, 5);
+    -fx-border-color: #cbd5e1;
+}
+
+.consultation-header {
+    -fx-background-color: linear-gradient(to right, #10b981, #059669);
+    -fx-background-radius: 12;
+    -fx-padding: 12 16;
+}
+
+.consultation-patient-name {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.consultation-date-time {
+    -fx-text-fill: #d1fae5;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+}
+
+.consultation-badge {
+    -fx-background-radius: 8;
+    -fx-padding: 6 12;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.consultation-badge-presentiel {
+    -fx-background-color: #dbeafe;
+    -fx-text-fill: #1e40af;
+}
+
+.consultation-badge-distance {
+    -fx-background-color: #fef3c7;
+    -fx-text-fill: #b45309;
+}
+
+.consultation-badge-teleconsultation {
+    -fx-background-color: #e0e7ff;
+    -fx-text-fill: #4338ca;
+}
+
+.consultation-info-grid {
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 10;
+    -fx-padding: 14;
+}
+
+.consultation-label {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+.consultation-value {
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+}
+
+.consultation-maladie {
+    -fx-text-fill: #dc2626;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.consultation-diagnostic {
+    -fx-background-color: #fef2f2;
+    -fx-border-color: #fecaca;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+    -fx-text-fill: #7f1d1d;
+    -fx-font-size: 13px;
+}
+
+.consultation-traitement {
+    -fx-background-color: #f0fdf4;
+    -fx-border-color: #bbf7d0;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+    -fx-text-fill: #14532d;
+    -fx-font-size: 13px;
+}
+
+.consultation-cout {
+    -fx-background-color: #fef3c7;
+    -fx-text-fill: #78350f;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 14;
+}
+
+.consultation-actions {
+    -fx-spacing: 8;
+}
+
+.consultation-btn-modifier {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 16;
+}
+
+.consultation-btn-supprimer {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 16;
+}
+
+.consultation-btn-pdf {
+    -fx-background-color: #10b981;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 16;
+}
+
+/* ========================================
+   STYLES AMÉLIORÉS POUR RENDEZ-VOUS
+   ======================================== */
+
+.rdv-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-padding: 0;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.08), 12, 0.15, 0, 3);
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+}
+
+.rdv-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.15), 16, 0.2, 0, 5);
+    -fx-border-color: #cbd5e1;
+}
+
+.rdv-card-left {
+    -fx-background-radius: 16 0 0 16;
+    -fx-padding: 20;
+    -fx-min-width: 180;
+    -fx-alignment: center;
+}
+
+.rdv-card-left-accepte {
+    -fx-background-color: linear-gradient(to bottom, #10b981, #059669);
+}
+
+.rdv-card-left-attente {
+    -fx-background-color: linear-gradient(to bottom, #f59e0b, #d97706);
+}
+
+.rdv-card-left-refuse {
+    -fx-background-color: linear-gradient(to bottom, #ef4444, #dc2626);
+}
+
+.rdv-patient-name {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
+
+.rdv-date-badge {
+    -fx-background-color: rgba(255, 255, 255, 0.25);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 14;
+}
+
+.rdv-time-badge {
+    -fx-background-color: rgba(255, 255, 255, 0.25);
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 14;
+}
+
+.rdv-card-content {
+    -fx-padding: 20;
+}
+
+.rdv-priorite-badge {
+    -fx-background-radius: 8;
+    -fx-padding: 6 12;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.rdv-priorite-urgente {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #991b1b;
+}
+
+.rdv-priorite-haute {
+    -fx-background-color: #fed7aa;
+    -fx-text-fill: #9a3412;
+}
+
+.rdv-priorite-normale {
+    -fx-background-color: #dbeafe;
+    -fx-text-fill: #1e40af;
+}
+
+.rdv-priorite-basse {
+    -fx-background-color: #e0e7ff;
+    -fx-text-fill: #4338ca;
+}
+
+.rdv-statut-badge {
+    -fx-background-radius: 8;
+    -fx-padding: 6 12;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.rdv-statut-accepte {
+    -fx-background-color: #d1fae5;
+    -fx-text-fill: #065f46;
+}
+
+.rdv-statut-attente {
+    -fx-background-color: #fef3c7;
+    -fx-text-fill: #78350f;
+}
+
+.rdv-statut-refuse {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #991b1b;
+}
+
+.rdv-mode-badge {
+    -fx-background-radius: 8;
+    -fx-padding: 6 12;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.rdv-mode-presentiel {
+    -fx-background-color: #dbeafe;
+    -fx-text-fill: #1e40af;
+}
+
+.rdv-mode-distance {
+    -fx-background-color: #fef3c7;
+    -fx-text-fill: #b45309;
+}
+
+.rdv-mode-teleconsultation {
+    -fx-background-color: #e0e7ff;
+    -fx-text-fill: #4338ca;
+}
+
+.rdv-info-row {
+    -fx-spacing: 8;
+    -fx-alignment: center-left;
+}
+
+.rdv-info-icon {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 16px;
+}
+
+.rdv-info-label {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+.rdv-info-value {
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+}
+
+.rdv-notes {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 12;
+    -fx-text-fill: #475569;
+    -fx-font-size: 13px;
+}
+
+.rdv-actions {
+    -fx-spacing: 8;
+    -fx-padding: 16 20;
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0 transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.rdv-btn-accepter {
+    -fx-background-color: #10b981;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 16;
+}
+
+.rdv-btn-refuser {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 16;
+}
+
+.rdv-btn-modifier {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 16;
+}
+
+.rdv-btn-supprimer {
+    -fx-background-color: #64748b;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 16;
+}
+
+/* Scroll panes pour les listes de cartes */
+.cards-scroll {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.cards-scroll > .viewport {
+    -fx-background-color: #f8fafc;
+}
+
+.cards-container {
+    -fx-background-color: #f8fafc;
+    -fx-padding: 10;
+    -fx-spacing: 16;
+}
+
+/* Barre de recherche améliorée */
+.search-bar {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 16;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.06), 8, 0.1, 0, 2);
+}
+
+.search-field-modern {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 10 14;
+    -fx-font-size: 14px;
+}
+
+.search-field-modern:focused {
+    -fx-border-color: #3b82f6;
+    -fx-background-color: white;
+}
+
+.filter-combo {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 8 12;
+    -fx-font-size: 13px;
+}
+
+.btn-search {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 10 20;
+}
+
+.btn-reset {
+    -fx-background-color: #f1f5f9;
+    -fx-text-fill: #475569;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 10 20;
+}
+
+.btn-refresh {
+    -fx-background-color: #10b981;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 10 20;
+}
+
+.btn-close {
+    -fx-background-color: #64748b;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.btn-close:hover {
+    -fx-background-color: #475569;
+}
+
+/* Message de statut */
+.status-message {
+    -fx-background-color: #eff6ff;
+    -fx-border-color: #bfdbfe;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 12 16;
+    -fx-text-fill: #1e40af;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+}
+
+.status-message-success {
+    -fx-background-color: #f0fdf4;
+    -fx-border-color: #bbf7d0;
+    -fx-text-fill: #166534;
+}
+
+.status-message-error {
+    -fx-background-color: #fef2f2;
+    -fx-border-color: #fecaca;
+    -fx-text-fill: #991b1b;
+}
+
+.status-message-warning {
+    -fx-background-color: #fffbeb;
+    -fx-border-color: #fde68a;
+    -fx-text-fill: #78350f;
+}
+
+
+/* ========================================
+   📊 STYLES POUR LES STATISTIQUES
+   ======================================== */
+
+/* En-tête des statistiques */
+.stats-header {
+    -fx-background-color: linear-gradient(to right, #667eea 0%, #764ba2 100%);
+    -fx-padding: 20 30 20 30;
+}
+
+.stats-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.filter-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+}
+
+.btn-primary {
+    -fx-background-color: white;
+    -fx-text-fill: #667eea;
+    -fx-background-radius: 8;
+    -fx-padding: 10 20;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+.btn-secondary {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-padding: 10 20;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-filter {
+    -fx-background-color: #10b981;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-padding: 8 16;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.btn-filter:hover {
+    -fx-background-color: #059669;
+}
+
+/* Conteneur principal */
+.stats-scroll {
+    -fx-background-color: #f8fafc;
+}
+
+.stats-container {
+    -fx-background-color: #f8fafc;
+}
+
+/* Cartes de résumé */
+.stats-cards-row {
+    -fx-padding: 0;
+}
+
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 24;
+    -fx-spacing: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 15, 0, 0, 5);
+}
+
+.stat-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 20, 0, 0, 8);
+    -fx-translate-y: -2;
+}
+
+.stat-card-blue {
+    -fx-border-color: #3b82f6;
+    -fx-border-width: 0 0 4 0;
+}
+
+.stat-card-green {
+    -fx-border-color: #10b981;
+    -fx-border-width: 0 0 4 0;
+}
+
+.stat-card-orange {
+    -fx-border-color: #f59e0b;
+    -fx-border-width: 0 0 4 0;
+}
+
+.stat-card-purple {
+    -fx-border-color: #8b5cf6;
+    -fx-border-width: 0 0 4 0;
+}
+
+.stat-card-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #64748b;
+    -fx-font-weight: 600;
+}
+
+.stat-card-value {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0f172a;
+}
+
+.stat-card-evolution {
+    -fx-font-size: 13px;
+    -fx-text-fill: #10b981;
+    -fx-font-weight: 600;
+}
+
+/* Conteneurs de graphiques */
+.charts-row {
+    -fx-padding: 0;
+}
+
+.chart-container {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 20;
+    -fx-spacing: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 12, 0, 0, 4);
+}
+
+.chart-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e293b;
+}
+
+/* Styles des graphiques */
+.pie-chart {
+    -fx-padding: 10;
+}
+
+.bar-chart {
+    -fx-padding: 10;
+}
+
+.line-chart {
+    -fx-padding: 10;
+}
+
+.area-chart {
+    -fx-padding: 10;
+}
+
+.scatter-chart {
+    -fx-padding: 10;
+}
+
+/* Couleurs des graphiques */
+.default-color0.chart-pie { -fx-pie-color: #3b82f6; }
+.default-color1.chart-pie { -fx-pie-color: #10b981; }
+.default-color2.chart-pie { -fx-pie-color: #f59e0b; }
+.default-color3.chart-pie { -fx-pie-color: #ef4444; }
+.default-color4.chart-pie { -fx-pie-color: #8b5cf6; }
+.default-color5.chart-pie { -fx-pie-color: #ec4899; }
+
+.default-color0.chart-bar { -fx-bar-fill: #3b82f6; }
+.default-color1.chart-bar { -fx-bar-fill: #10b981; }
+.default-color2.chart-bar { -fx-bar-fill: #f59e0b; }
+
+.default-color0.chart-series-line { -fx-stroke: #3b82f6; -fx-stroke-width: 3px; }
+.default-color1.chart-series-line { -fx-stroke: #10b981; -fx-stroke-width: 3px; }
+
+.default-color0.chart-series-area-fill { -fx-fill: rgba(59, 130, 246, 0.3); }
+.default-color0.chart-series-area-line { -fx-stroke: #3b82f6; -fx-stroke-width: 2px; }
+
+.default-color0.chart-symbol { -fx-background-color: #3b82f6; }
+
+/* Légendes */
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+.chart-legend-item {
+    -fx-text-fill: #475569;
+    -fx-font-size: 12px;
+}
+
+/* Axes */
+.axis {
+    -fx-tick-label-fill: #64748b;
+    -fx-font-size: 11px;
+}
+
+.axis-label {
+    -fx-text-fill: #475569;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { -fx-opacity: 0; }
+    to { -fx-opacity: 1; }
+}
+
+.chart-container {
+    -fx-opacity: 0;
+    -fx-animation: fadeIn 0.5s ease-in forwards;
+}
+
+
+/* ============================================
+   🎨 STATISTIQUES ULTRA-MODERNES
+   ============================================ */
+
+/* Root et fond */
+.stats-root {
+    -fx-background-color: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+/* En-tête moderne avec gradient */
+.stats-header-modern {
+    -fx-background-color: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    -fx-background-radius: 0 0 20 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);
+}
+
+.header-indicator {
+    -fx-fill: linear-gradient(to right, #3b82f6, #8b5cf6);
+    -fx-effect: dropshadow(gaussian, #3b82f6, 10, 0.7, 0, 0);
+}
+
+.stats-title-modern {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(to right, #ffffff, #e2e8f0);
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.5), 5, 0, 0, 0);
+}
+
+/* Boutons modernes */
+.btn-modern-primary {
+    -fx-background-color: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 12 24;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.4), 10, 0, 0, 4);
+    -fx-transition: all 0.3s ease;
+}
+
+.btn-modern-primary:hover {
+    -fx-background-color: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.6), 15, 0, 0, 6);
+}
+
+.btn-modern-secondary {
+    -fx-background-color: linear-gradient(135deg, #64748b 0%, #475569 100%);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 12 24;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 3);
+}
+
+.btn-modern-secondary:hover {
+    -fx-background-color: linear-gradient(135deg, #475569 0%, #334155 100%);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.btn-modern-close {
+    -fx-background-color: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 18;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(239, 68, 68, 0.4), 10, 0, 0, 4);
+}
+
+.btn-modern-close:hover {
+    -fx-background-color: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+/* Filtres modernes */
+.filters-modern {
+    -fx-padding: 20 0 0 0;
+}
+
+.filter-label-modern {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-letter-spacing: 1px;
+}
+
+.combo-modern {
+    -fx-background-color: rgba(30, 41, 59, 0.6);
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(148, 163, 184, 0.2);
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-text-fill: #e2e8f0;
+    -fx-font-size: 13px;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
+}
+
+.combo-modern:hover {
+    -fx-border-color: rgba(59, 130, 246, 0.5);
+    -fx-background-color: rgba(30, 41, 59, 0.8);
+}
+
+.combo-modern .list-cell {
+    -fx-background-color: #1e293b;
+    -fx-text-fill: #e2e8f0;
+}
+
+.combo-modern .list-cell:hover {
+    -fx-background-color: #334155;
+}
+
+.btn-filter-modern {
+    -fx-background-color: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 20;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(139, 92, 246, 0.4), 8, 0, 0, 3);
+}
+
+.btn-filter-modern:hover {
+    -fx-background-color: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* Scroll moderne */
+.stats-scroll-modern {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.stats-scroll-modern > .viewport {
+    -fx-background-color: transparent;
+}
+
+.stats-scroll-modern .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8px;
+}
+
+.stats-scroll-modern .scroll-bar:vertical .track {
+    -fx-background-color: rgba(30, 41, 59, 0.3);
+    -fx-background-radius: 4;
+}
+
+.stats-scroll-modern .scroll-bar:vertical .thumb {
+    -fx-background-color: linear-gradient(to bottom, #3b82f6, #2563eb);
+    -fx-background-radius: 4;
+}
+
+.stats-scroll-modern .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: linear-gradient(to bottom, #2563eb, #1d4ed8);
+}
+
+/* Container principal */
+.stats-container-modern {
+    -fx-background-color: transparent;
+}
+
+/* ============================================
+   💎 KPI CARDS - GLASSMORPHISM
+   ============================================ */
+
+.kpi-grid {
+    -fx-padding: 0;
+}
+
+.kpi-card {
+    -fx-background-color: rgba(30, 41, 59, 0.7);
+    -fx-background-radius: 20;
+    -fx-padding: 25;
+    -fx-spacing: 15;
+    -fx-border-color: rgba(148, 163, 184, 0.1);
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 20, 0, 0, 8);
+    -fx-cursor: hand;
+}
+
+.kpi-card:hover {
+    -fx-background-color: rgba(30, 41, 59, 0.9);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 25, 0, 0, 10);
+}
+
+/* Gradients pour chaque carte */
+.kpi-card-gradient-blue {
+    -fx-border-color: linear-gradient(to right, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3));
+    -fx-border-width: 2;
+}
+
+.kpi-card-gradient-green {
+    -fx-border-color: linear-gradient(to right, rgba(16, 185, 129, 0.3), rgba(5, 150, 105, 0.3));
+    -fx-border-width: 2;
+}
+
+.kpi-card-gradient-orange {
+    -fx-border-color: linear-gradient(to right, rgba(245, 158, 11, 0.3), rgba(217, 119, 6, 0.3));
+    -fx-border-width: 2;
+}
+
+.kpi-card-gradient-purple {
+    -fx-border-color: linear-gradient(to right, rgba(139, 92, 246, 0.3), rgba(124, 58, 237, 0.3));
+    -fx-border-width: 2;
+}
+
+/* Icônes KPI */
+.kpi-icon-container {
+    -fx-min-width: 60px;
+    -fx-min-height: 60px;
+    -fx-max-width: 60px;
+    -fx-max-height: 60px;
+    -fx-background-radius: 15;
+    -fx-alignment: center;
+}
+
+.kpi-icon-blue {
+    -fx-background-color: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+    -fx-border-color: rgba(59, 130, 246, 0.4);
+    -fx-border-width: 2;
+    -fx-border-radius: 15;
+}
+
+.kpi-icon-green {
+    -fx-background-color: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.2));
+    -fx-border-color: rgba(16, 185, 129, 0.4);
+    -fx-border-width: 2;
+    -fx-border-radius: 15;
+}
+
+.kpi-icon-orange {
+    -fx-background-color: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.2));
+    -fx-border-color: rgba(245, 158, 11, 0.4);
+    -fx-border-width: 2;
+    -fx-border-radius: 15;
+}
+
+.kpi-icon-purple {
+    -fx-background-color: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(124, 58, 237, 0.2));
+    -fx-border-color: rgba(139, 92, 246, 0.4);
+    -fx-border-width: 2;
+    -fx-border-radius: 15;
+}
+
+.kpi-icon {
+    -fx-font-size: 28px;
+}
+
+/* Labels KPI */
+.kpi-label {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-letter-spacing: 1px;
+}
+
+.kpi-value {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 32px;
+    -fx-font-weight: 800;
+}
+
+.kpi-evolution {
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-padding: 4 10;
+    -fx-background-radius: 8;
+}
+
+.kpi-evolution-up {
+    -fx-text-fill: #10b981;
+    -fx-background-color: rgba(16, 185, 129, 0.15);
+}
+
+.kpi-evolution-down {
+    -fx-text-fill: #ef4444;
+    -fx-background-color: rgba(239, 68, 68, 0.15);
+}
+
+.kpi-subtitle {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 11px;
+}
+
+/* Progress bars KPI */
+.kpi-progress {
+    -fx-pref-height: 6px;
+    -fx-background-radius: 3;
+}
+
+.kpi-progress .track {
+    -fx-background-color: rgba(148, 163, 184, 0.2);
+    -fx-background-radius: 3;
+}
+
+.kpi-progress-blue .bar {
+    -fx-background-color: linear-gradient(to right, #3b82f6, #8b5cf6);
+    -fx-background-radius: 3;
+}
+
+.kpi-progress-green .bar {
+    -fx-background-color: linear-gradient(to right, #10b981, #059669);
+    -fx-background-radius: 3;
+}
+
+.kpi-progress-orange .bar {
+    -fx-background-color: linear-gradient(to right, #f59e0b, #d97706);
+    -fx-background-radius: 3;
+}
+
+.kpi-progress-purple .bar {
+    -fx-background-color: linear-gradient(to right, #8b5cf6, #7c3aed);
+    -fx-background-radius: 3;
+}
+
+/* ============================================
+   📊 GRAPHIQUES MODERNES
+   ============================================ */
+
+.charts-grid {
+    -fx-padding: 0;
+}
+
+.chart-card-modern {
+    -fx-background-color: rgba(30, 41, 59, 0.6);
+    -fx-background-radius: 18;
+    -fx-padding: 20;
+    -fx-spacing: 15;
+    -fx-border-color: rgba(148, 163, 184, 0.1);
+    -fx-border-width: 1;
+    -fx-border-radius: 18;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0, 0, 5);
+    -fx-min-height: 350px;
+}
+
+.chart-card-large {
+    -fx-min-height: 400px;
+}
+
+.chart-card-modern:hover {
+    -fx-background-color: rgba(30, 41, 59, 0.8);
+    -fx-border-color: rgba(59, 130, 246, 0.3);
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.2), 20, 0, 0, 8);
+}
+
+.chart-title-modern {
+    -fx-text-fill: #e2e8f0;
+    -fx-font-size: 15px;
+    -fx-font-weight: 700;
+    -fx-letter-spacing: 0.5px;
+}
+
+.chart-subtitle-modern {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 4 12;
+    -fx-background-color: rgba(59, 130, 246, 0.1);
+    -fx-background-radius: 8;
+}
+
+/* Légende personnalisée */
+.chart-legend-custom {
+    -fx-padding: 8 15;
+    -fx-background-color: rgba(15, 23, 42, 0.5);
+    -fx-background-radius: 10;
+    -fx-spacing: 15;
+}
+
+.legend-dot-blue {
+    -fx-fill: #3b82f6;
+}
+
+.legend-dot-green {
+    -fx-fill: #10b981;
+}
+
+.legend-text {
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+}
+
+/* Line Chart moderne */
+.line-chart-modern {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+.line-chart-modern .chart-plot-background {
+    -fx-background-color: rgba(15, 23, 42, 0.3);
+    -fx-background-radius: 10;
+}
+
+.line-chart-modern .chart-vertical-grid-lines,
+.line-chart-modern .chart-horizontal-grid-lines {
+    -fx-stroke: rgba(148, 163, 184, 0.1);
+    -fx-stroke-width: 1;
+}
+
+.line-chart-modern .chart-series-line {
+    -fx-stroke-width: 3;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.5), 5, 0, 0, 0);
+}
+
+.line-chart-modern .default-color0.chart-series-line {
+    -fx-stroke: #3b82f6;
+}
+
+.line-chart-modern .default-color1.chart-series-line {
+    -fx-stroke: #10b981;
+}
+
+.line-chart-modern .chart-line-symbol {
+    -fx-background-color: #3b82f6, white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 6px;
+    -fx-padding: 6px;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.6), 8, 0, 0, 0);
+}
+
+/* Pie Chart moderne (Donut) */
+.pie-chart-modern {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+.pie-chart-modern .chart-pie {
+    -fx-border-width: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 3);
+}
+
+.pie-chart-modern .default-color0.chart-pie {
+    -fx-pie-color: linear-gradient(to bottom right, #10b981, #059669);
+}
+
+.pie-chart-modern .default-color1.chart-pie {
+    -fx-pie-color: linear-gradient(to bottom right, #f59e0b, #d97706);
+}
+
+.pie-chart-modern .default-color2.chart-pie {
+    -fx-pie-color: linear-gradient(to bottom right, #ef4444, #dc2626);
+}
+
+.pie-chart-modern .chart-legend {
+    -fx-background-color: rgba(30, 41, 59, 0.5);
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+}
+
+.pie-chart-modern .chart-legend-item-text {
+    -fx-fill: #cbd5e1;
+    -fx-font-size: 12px;
+}
+
+/* Centre du donut */
+.donut-center {
+    -fx-background-color: rgba(15, 23, 42, 0.8);
+    -fx-background-radius: 80;
+    -fx-min-width: 160px;
+    -fx-min-height: 160px;
+    -fx-max-width: 160px;
+    -fx-max-height: 160px;
+    -fx-spacing: 5;
+    -fx-border-color: rgba(59, 130, 246, 0.3);
+    -fx-border-width: 2;
+    -fx-border-radius: 80;
+}
+
+.donut-value {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 36px;
+    -fx-font-weight: 800;
+}
+
+.donut-label {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+/* Bar Chart moderne */
+.bar-chart-modern {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+.bar-chart-modern .chart-plot-background {
+    -fx-background-color: rgba(15, 23, 42, 0.3);
+    -fx-background-radius: 10;
+}
+
+.bar-chart-modern .chart-bar {
+    -fx-background-radius: 8 8 0 0;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.4), 8, 0, 0, 3);
+}
+
+.bar-chart-modern .default-color0.chart-bar {
+    -fx-background-color: linear-gradient(to top, #3b82f6, #60a5fa);
+}
+
+.bar-chart-modern .default-color1.chart-bar {
+    -fx-background-color: linear-gradient(to top, #10b981, #34d399);
+}
+
+.bar-chart-modern .default-color2.chart-bar {
+    -fx-background-color: linear-gradient(to top, #f59e0b, #fbbf24);
+}
+
+.bar-chart-gradient .chart-bar {
+    -fx-background-color: linear-gradient(to top, #8b5cf6, #a78bfa);
+}
+
+/* Area Chart moderne */
+.area-chart-modern {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+.area-chart-modern .chart-plot-background {
+    -fx-background-color: rgba(15, 23, 42, 0.3);
+    -fx-background-radius: 10;
+}
+
+.area-chart-modern .chart-series-area-fill {
+    -fx-fill: linear-gradient(to bottom, rgba(139, 92, 246, 0.4), rgba(139, 92, 246, 0.05));
+}
+
+.area-chart-modern .chart-series-area-line {
+    -fx-stroke: #8b5cf6;
+    -fx-stroke-width: 3;
+    -fx-effect: dropshadow(gaussian, rgba(139, 92, 246, 0.5), 5, 0, 0, 0);
+}
+
+/* Scatter Chart moderne */
+.scatter-chart-modern {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+.scatter-chart-modern .chart-plot-background {
+    -fx-background-color: rgba(15, 23, 42, 0.3);
+    -fx-background-radius: 10;
+}
+
+.scatter-chart-modern .chart-symbol {
+    -fx-background-color: #3b82f6, rgba(59, 130, 246, 0.3);
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.6), 8, 0, 0, 0);
+}
+
+/* Axes modernes */
+.axis-modern {
+    -fx-tick-label-fill: #94a3b8;
+    -fx-font-size: 11px;
+}
+
+.axis-modern .axis-label {
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+/* ============================================
+   💡 INSIGHTS & RECOMMANDATIONS
+   ============================================ */
+
+.insights-section {
+    -fx-padding: 20 0 0 0;
+}
+
+.section-title-modern {
+    -fx-text-fill: #e2e8f0;
+    -fx-font-size: 18px;
+    -fx-font-weight: 700;
+    -fx-letter-spacing: 0.5px;
+}
+
+.insight-card {
+    -fx-background-radius: 15;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-border-width: 2;
+    -fx-border-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 4);
+}
+
+.insight-success {
+    -fx-background-color: rgba(16, 185, 129, 0.1);
+    -fx-border-color: rgba(16, 185, 129, 0.4);
+}
+
+.insight-warning {
+    -fx-background-color: rgba(245, 158, 11, 0.1);
+    -fx-border-color: rgba(245, 158, 11, 0.4);
+}
+
+.insight-info {
+    -fx-background-color: rgba(59, 130, 246, 0.1);
+    -fx-border-color: rgba(59, 130, 246, 0.4);
+}
+
+.insight-primary {
+    -fx-background-color: rgba(139, 92, 246, 0.1);
+    -fx-border-color: rgba(139, 92, 246, 0.4);
+}
+
+.insight-title {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-letter-spacing: 0.5px;
+}
+
+.insight-text {
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 13px;
+    -fx-line-spacing: 2px;
+}
+
+/* ============================================
+   🎭 ANIMATIONS & TRANSITIONS
+   ============================================ */
+
+@keyframes fadeIn {
+    from { -fx-opacity: 0; }
+    to { -fx-opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { -fx-translate-y: 20px; -fx-opacity: 0; }
+    to { -fx-translate-y: 0; -fx-opacity: 1; }
+}
+
+.kpi-card,
+.chart-card-modern,
+.insight-card {
+    -fx-animation: fadeIn 0.5s ease-out;
+}
+
+
+/* ============================================
+   📊 STATISTIQUES - STYLE COHÉRENT
+   ============================================ */
+
+/* En-tête */
+.stats-header-consistent {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-spacing: 16;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.08), 10, 0.15, 0, 2);
+}
+
+.stats-filters {
+    -fx-padding: 16 0 0 0;
+}
+
+/* Scroll */
+.stats-scroll-consistent {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.stats-scroll-consistent > .viewport {
+    -fx-background-color: #eef3f8;
+}
+
+.stats-container-consistent {
+    -fx-background-color: #eef3f8;
+}
+
+/* KPI Cards */
+.kpi-grid-consistent {
+    -fx-padding: 0;
+}
+
+.kpi-card-consistent {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 20;
+    -fx-spacing: 12;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.10), 10, 0.2, 0, 3);
+}
+
+.kpi-card-consistent:hover {
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.15), 12, 0.25, 0, 4);
+}
+
+.kpi-card-blue {
+    -fx-border-color: #3b82f6 transparent transparent transparent;
+    -fx-border-width: 4 0 0 0;
+}
+
+.kpi-card-green {
+    -fx-border-color: #10b981 transparent transparent transparent;
+    -fx-border-width: 4 0 0 0;
+}
+
+.kpi-card-orange {
+    -fx-border-color: #f59e0b transparent transparent transparent;
+    -fx-border-width: 4 0 0 0;
+}
+
+.kpi-card-purple {
+    -fx-border-color: #8b5cf6 transparent transparent transparent;
+    -fx-border-width: 4 0 0 0;
+}
+
+/* Icônes KPI */
+.kpi-icon-box {
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
+    -fx-background-radius: 12;
+    -fx-alignment: center;
+}
+
+.kpi-icon-blue-bg {
+    -fx-background-color: #dbeafe;
+}
+
+.kpi-icon-green-bg {
+    -fx-background-color: #d1fae5;
+}
+
+.kpi-icon-orange-bg {
+    -fx-background-color: #fed7aa;
+}
+
+.kpi-icon-purple-bg {
+    -fx-background-color: #e9d5ff;
+}
+
+.kpi-icon-emoji {
+    -fx-font-size: 24px;
+}
+
+/* Labels KPI */
+.kpi-label-consistent {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-letter-spacing: 0.5px;
+}
+
+.kpi-value-consistent {
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.kpi-evolution-consistent {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-padding: 4 8;
+    -fx-background-radius: 6;
+}
+
+.kpi-evolution-up {
+    -fx-text-fill: #10b981;
+    -fx-background-color: #d1fae5;
+}
+
+.kpi-evolution-down {
+    -fx-text-fill: #ef4444;
+    -fx-background-color: #fee2e2;
+}
+
+/* Progress bars */
+.kpi-progress-consistent {
+    -fx-pref-height: 4px;
+    -fx-background-radius: 2;
+}
+
+.kpi-progress-consistent .track {
+    -fx-background-color: #e2e8f0;
+    -fx-background-radius: 2;
+}
+
+.kpi-progress-blue .bar {
+    -fx-background-color: #3b82f6;
+    -fx-background-radius: 2;
+}
+
+.kpi-progress-green .bar {
+    -fx-background-color: #10b981;
+    -fx-background-radius: 2;
+}
+
+.kpi-progress-orange .bar {
+    -fx-background-color: #f59e0b;
+    -fx-background-radius: 2;
+}
+
+.kpi-progress-purple .bar {
+    -fx-background-color: #8b5cf6;
+    -fx-background-radius: 2;
+}
+
+/* Graphiques */
+.charts-grid-consistent {
+    -fx-padding: 0;
+}
+
+.chart-card-consistent {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 20;
+    -fx-spacing: 12;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.10), 10, 0.2, 0, 3);
+    -fx-min-height: 320px;
+}
+
+.chart-card-consistent:hover {
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.15), 12, 0.25, 0, 4);
+}
+
+.chart-title-consistent {
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.chart-subtitle-consistent {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 4 10;
+    -fx-background-color: #f1f5f9;
+    -fx-background-radius: 6;
+}
+
+/* Styles des graphiques */
+.line-chart-consistent,
+.pie-chart-consistent,
+.bar-chart-consistent,
+.area-chart-consistent,
+.scatter-chart-consistent {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+.line-chart-consistent .chart-plot-background,
+.bar-chart-consistent .chart-plot-background,
+.area-chart-consistent .chart-plot-background,
+.scatter-chart-consistent .chart-plot-background {
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 8;
+}
+
+.line-chart-consistent .chart-vertical-grid-lines,
+.line-chart-consistent .chart-horizontal-grid-lines,
+.bar-chart-consistent .chart-vertical-grid-lines,
+.bar-chart-consistent .chart-horizontal-grid-lines,
+.area-chart-consistent .chart-vertical-grid-lines,
+.area-chart-consistent .chart-horizontal-grid-lines,
+.scatter-chart-consistent .chart-vertical-grid-lines,
+.scatter-chart-consistent .chart-horizontal-grid-lines {
+    -fx-stroke: #e2e8f0;
+    -fx-stroke-width: 1;
+}
+
+/* Line Chart */
+.line-chart-consistent .chart-series-line {
+    -fx-stroke-width: 3;
+}
+
+.line-chart-consistent .default-color0.chart-series-line {
+    -fx-stroke: #3b82f6;
+}
+
+.line-chart-consistent .default-color1.chart-series-line {
+    -fx-stroke: #10b981;
+}
+
+.line-chart-consistent .chart-line-symbol {
+    -fx-background-color: #3b82f6, white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+
+/* Pie Chart */
+.pie-chart-consistent .default-color0.chart-pie {
+    -fx-pie-color: #10b981;
+}
+
+.pie-chart-consistent .default-color1.chart-pie {
+    -fx-pie-color: #f59e0b;
+}
+
+.pie-chart-consistent .default-color2.chart-pie {
+    -fx-pie-color: #ef4444;
+}
+
+.pie-chart-consistent .chart-legend {
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 8;
+    -fx-padding: 8;
+}
+
+.pie-chart-consistent .chart-legend-item-text {
+    -fx-fill: #475569;
+    -fx-font-size: 12px;
+}
+
+/* Centre du donut */
+.donut-center-consistent {
+    -fx-background-color: white;
+    -fx-background-radius: 60;
+    -fx-min-width: 120px;
+    -fx-min-height: 120px;
+    -fx-max-width: 120px;
+    -fx-max-height: 120px;
+    -fx-spacing: 4;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 2;
+    -fx-border-radius: 60;
+}
+
+.donut-value-consistent {
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.donut-label-consistent {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+/* Bar Chart */
+.bar-chart-consistent .chart-bar {
+    -fx-background-radius: 6 6 0 0;
+}
+
+.bar-chart-consistent .default-color0.chart-bar {
+    -fx-background-color: #3b82f6;
+}
+
+.bar-chart-consistent .default-color1.chart-bar {
+    -fx-background-color: #10b981;
+}
+
+.bar-chart-consistent .default-color2.chart-bar {
+    -fx-background-color: #f59e0b;
+}
+
+/* Area Chart */
+.area-chart-consistent .chart-series-area-fill {
+    -fx-fill: linear-gradient(to bottom, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.05));
+}
+
+.area-chart-consistent .chart-series-area-line {
+    -fx-stroke: #8b5cf6;
+    -fx-stroke-width: 3;
+}
+
+/* Scatter Chart */
+.scatter-chart-consistent .chart-symbol {
+    -fx-background-color: #3b82f6;
+    -fx-background-radius: 6px;
+    -fx-padding: 6px;
+}
+
+/* Axes */
+.axis-consistent {
+    -fx-tick-label-fill: #64748b;
+    -fx-font-size: 11px;
+}
+
+.axis-consistent .axis-label {
+    -fx-text-fill: #475569;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+/* Insights */
+.insights-section-consistent {
+    -fx-padding: 0;
+}
+
+.insight-card-consistent {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 16;
+    -fx-spacing: 8;
+    -fx-border-width: 2;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.08), 8, 0.15, 0, 2);
+}
+
+.insight-success {
+    -fx-border-color: #10b981;
+}
+
+.insight-warning {
+    -fx-border-color: #f59e0b;
+}
+
+.insight-info {
+    -fx-border-color: #3b82f6;
+}
+
+.insight-primary {
+    -fx-border-color: #8b5cf6;
+}
+
+.insight-title-consistent {
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-letter-spacing: 0.5px;
+}
+
+.insight-text-consistent {
+    -fx-text-fill: #475569;
+    -fx-font-size: 13px;
+    -fx-line-spacing: 2px;
+}
+
+
+/* ========================================
+   🤖 STYLES DU CHATBOT MÉDICAL
+   ======================================== */
+
+/* En-tête du chat */
+.chat-header {
+    -fx-background-color: linear-gradient(to right, #2563eb, #3b82f6);
+    -fx-background-radius: 16 16 0 0;
+}
+
+.chat-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.chat-status {
+    -fx-font-size: 13px;
+    -fx-text-fill: #dbeafe;
+    -fx-padding: 4 10 4 10;
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 12;
+}
+
+/* Zone de chat */
+.chat-scroll {
+    -fx-background-color: #f8fafc;
+    -fx-background: #f8fafc;
+}
+
+.chat-container {
+    -fx-background-color: #f8fafc;
+    -fx-padding: 10;
+}
+
+/* Bulles de message - Utilisateur */
+.chat-bubble-user {
+    -fx-background-color: #2563eb;
+    -fx-background-radius: 18 18 4 18;
+    -fx-padding: 12 16 12 16;
+    -fx-effect: dropshadow(gaussian, rgba(37, 99, 235, 0.3), 8, 0.3, 0, 2);
+}
+
+.chat-text-user {
+    -fx-fill: white;
+    -fx-font-size: 14px;
+    -fx-line-spacing: 2;
+}
+
+.chat-time-user {
+    -fx-text-fill: #bfdbfe;
+    -fx-font-size: 11px;
+    -fx-alignment: center-right;
+}
+
+/* Bulles de message - Bot */
+.chat-bubble-bot {
+    -fx-background-color: white;
+    -fx-background-radius: 18 18 18 4;
+    -fx-padding: 12 16 12 16;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.1), 8, 0.3, 0, 2);
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 18 18 18 4;
+}
+
+.chat-text-bot {
+    -fx-fill: #1e293b;
+    -fx-font-size: 14px;
+    -fx-line-spacing: 2;
+}
+
+.chat-time-bot {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 11px;
+}
+
+/* Bulles de message - Système */
+.chat-bubble-system {
+    -fx-background-color: #fef3c7;
+    -fx-background-radius: 12;
+    -fx-padding: 12 16 12 16;
+    -fx-border-color: #fbbf24;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+.chat-text-system {
+    -fx-fill: #92400e;
+    -fx-font-size: 13px;
+    -fx-line-spacing: 2;
+}
+
+/* Bulles de message - Erreur */
+.chat-bubble-error {
+    -fx-background-color: #fee2e2;
+    -fx-background-radius: 12;
+    -fx-padding: 12 16 12 16;
+    -fx-border-color: #ef4444;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+.chat-text-error {
+    -fx-fill: #991b1b;
+    -fx-font-size: 13px;
+    -fx-line-spacing: 2;
+}
+
+/* Zone de saisie */
+.chat-input-area {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1 0 0 0;
+}
+
+.chat-input-field {
+    -fx-font-size: 14px;
+    -fx-padding: 12 16 12 16;
+    -fx-background-radius: 24;
+    -fx-border-color: #cbd5e1;
+    -fx-border-width: 1;
+    -fx-border-radius: 24;
+}
+
+.chat-input-field:focused {
+    -fx-border-color: #2563eb;
+    -fx-border-width: 2;
+}
+
+.chat-disclaimer {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 11px;
+    -fx-font-style: italic;
+    -fx-padding: 5 0 0 0;
+}
+
+/* Boutons du chat */
+.btn-primary {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+    -fx-background-radius: 24;
+    -fx-padding: 12 24 12 24;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #1d4ed8;
+}
+
+.btn-secondary {
+    -fx-background-color: #e2e8f0;
+    -fx-text-fill: #1e293b;
+    -fx-background-radius: 20;
+    -fx-padding: 8 16 8 16;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #cbd5e1;
+}
+
+.btn-close {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #991b1b;
+    -fx-background-radius: 20;
+    -fx-padding: 8 16 8 16;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+.btn-close:hover {
+    -fx-background-color: #fecaca;
+}
